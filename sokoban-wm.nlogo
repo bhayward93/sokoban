@@ -6,26 +6,39 @@ to setup
   define-map
 end
 
+to reset
+  clear-all
+end
+
 to define-map
   ask patches
   [
-    setup-walls
     set pcolor green
   ]
+    setup-walls
 end
 
 to setup-walls
-   ask patch-at 1 1 [sprout wall[]]
+  let index 0
+  loop[
+    if (index = 11)[stop]
+    create-walls 1[set shape "square"
+      set color 2
+      set ycor 0
+      set xcor index]
+    set index (index + 1)
+  ]
+
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-649
-470
-16
-16
-13.0
+197
+21
+442
+272
+-1
+-1
+20.0
 1
 10
 1
@@ -35,13 +48,13 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
--16
-16
+0
+10
+0
+10
 0
 0
-1
+0
 ticks
 30.0
 
@@ -52,6 +65,23 @@ BUTTON
 76
 setup
 setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+105
+46
+175
+79
+reset
+reset
 NIL
 1
 T
