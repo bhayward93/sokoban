@@ -1,0 +1,26 @@
+----------------------------------------------------------------------------------
+Fixed => non-manipulable
+Light => manipulable
+Heavy => non-manipulable
+----------------------------------------------------------------------------------
+Operators:
+Move-Box
+Move-Into-Blank-Space
+----------------------------------------------------------------------------------
+Rules:
+Moving a box:   (is ?box light)
+		(adjacent ?x ?box)
+		(is (?x patch-ahead-x2) empty) 
+		(adjacent (?x patch-ahead-x2) (2-opposite-potential-positions)) 
+		=> Pushable 
+
+Moving: 
+		(is empty patch)(is patch adjacent) => Moveable
+
+----------------------------------------------------------------------------------
+Optional:
+Forklift - required if box is too heavy, will break light boxes.
+Ice -   Boxes pushed onto ice slide to the end of the ice patch.
+	Worker standing on a patch of ice cannot push.
+
+----------------------------------------------------------------------------------
