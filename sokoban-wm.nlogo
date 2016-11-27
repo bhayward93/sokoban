@@ -19,17 +19,45 @@ to define-map
 end
 
 to setup-walls
-  let index 0
+  setup-row-0
+  setup-row-1
+  setup-row-2
+end
+
+to setup-row-0
+  let index 0 ;Bottom row
   loop[
     if (index = 11)[stop]
-    create-walls 1[set shape "square"
+    create-walls 1 [set shape "square"
       set color 2
       set ycor 0
       set xcor index]
     set index (index + 1)
   ]
-
 end
+
+to setup-row-1
+  create-walls 1[set shape "square" set color 2 set ycor 1 set xcor 0]
+  create-walls 1[set shape "square" set color 2 set ycor 1 set xcor 10] ;2nd row
+end
+
+to setup-row-2
+  let index 0 ;Bottom row
+  loop[
+    if (index = 11)[stop]
+    if (xcor != 3 or xcor != 6) ;remove this if you want things to work <<<<<<<<<<<<<<
+    [
+        create-walls 1 [set shape "square"
+        set color 2
+        set ycor 2
+        set xcor index
+      ]
+    ]
+      set index (index + 1)
+
+  ]
+end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 197
