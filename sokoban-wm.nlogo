@@ -1,6 +1,7 @@
 breed [boxes box]
 breed [switches switch]
 breed [walls wall]
+breed [players player]
 
 to setup
   define-map
@@ -16,6 +17,9 @@ to define-map
     set pcolor green
   ]
     setup-walls
+    setup-switches
+    setup-boxes
+    setup-player
 end
 
 to setup-walls
@@ -38,20 +42,19 @@ to setup-row-0
     if (index = 11)[stop]
     create-walls 1 [set shape "square"
       set color 2
-      set ycor 0
-      set xcor index]
+      setxy index 0]
     set index (index + 1)
   ]
 end
 
 to setup-row-2
-  create-walls 1[set shape "square" set color 2 set ycor 2 set xcor 0]
-  create-walls 1[set shape "square" set color 2 set ycor 2 set xcor 10] ;2nd row
+  create-walls 1[set shape "square" set color 2 setxy 0 2]
+  create-walls 1[set shape "square" set color 2 setxy 10 2]
 end
 
 to setup-row-1
-  create-walls 1[set shape "square" set color 2 set ycor 1 set xcor 0]
-  create-walls 1[set shape "square" set color 2 set ycor 1 set xcor 10] ;2nd row
+  create-walls 1[set shape "square" set color 2 setxy 0 1]
+  create-walls 1[set shape "square" set color 2 setxy 10 1]
 end
 
 to setup-row-3
@@ -59,13 +62,10 @@ to setup-row-3
   loop[
     if (index = 11)[stop]
     if (index = 2 or index = 5)[set index (index + 1)] ;blank spaces
-
         create-walls 1 [set shape "square"
-        set color 2
-        set ycor 3
-        set xcor index
-      ]
-
+                        set color 2
+                        setxy index 3
+        ]
     set index (index + 1)
   ]
 end
@@ -80,11 +80,9 @@ to setup-row-4
     if (index = 8)[set index (index + 1)]
 
         create-walls 1 [set shape "square"
-        set color 2
-        set ycor 4
-        set xcor index
-      ]
-
+                        set color 2
+                        setxy index 4
+        ]
     set index (index + 1)
   ]
 end
@@ -97,40 +95,38 @@ to setup-row-5
     if (index = 5)[set index (index + 1)]
     if (index = 7)[set index (index + 1)]
     if (index = 8)[set index (index + 1)]
-
         create-walls 1 [set shape "square"
-        set color 2
-        set ycor 5
-        set xcor index
-      ]
+                        set color 2
+                        setxy index 5
+        ]
 
     set index (index + 1)
   ]
 end
 
 to setup-row-6
-  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 0]
-  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 1]
-  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 9]
-  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 10]
+  create-walls 1[set shape "square" set color 2 setxy 0 6]
+  create-walls 1[set shape "square" set color 2 setxy 1 6]
+  create-walls 1[set shape "square" set color 2 setxy 9 6]
+  create-walls 1[set shape "square" set color 2 setxy 10 6]
 end
 
 to setup-row-7
-  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 0]
-  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 1]
-  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 2]
-  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 6]
-  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 9]
-  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 10]
+  create-walls 1[set shape "square" set color 2 setxy 0 7]
+  create-walls 1[set shape "square" set color 2 setxy 1 7]
+  create-walls 1[set shape "square" set color 2 setxy 2 7]
+  create-walls 1[set shape "square" set color 2 setxy 6 7]
+  create-walls 1[set shape "square" set color 2 setxy 9 7]
+  create-walls 1[set shape "square" set color 2 setxy 10 7]
 end
 
 to setup-row-8
-  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 0]
-  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 1]
-  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 2]
-  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 6]
-  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 9]
-  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 10]
+  create-walls 1[set shape "square" set color 2 setxy 0 8]
+  create-walls 1[set shape "square" set color 2 setxy 1 8]
+  create-walls 1[set shape "square" set color 2 setxy 2 8]
+  create-walls 1[set shape "square" set color 2 setxy 6 8]
+  create-walls 1[set shape "square" set color 2 setxy 9 8]
+  create-walls 1[set shape "square" set color 2 setxy 10 8]
 end
 
 to setup-row-9
@@ -138,10 +134,10 @@ to setup-row-9
   loop[
     if (index = 11)[stop]
     create-walls 1 [set shape "square"
-      set color 2
-      set ycor 9
-      set xcor index]
-    set index (index + 1)
+                    set color 2
+                    setxy index 9
+                    set index (index + 1)
+    ]
   ]
 end
 
@@ -151,10 +147,40 @@ to setup-row-10
     if (index = 11)[stop]
     create-walls 1 [set shape "square"
       set color 2
-      set ycor 10
-      set xcor index]
+      setxy index 10
       set index (index + 1)
+      ]
   ]
+end
+
+to setup-switches
+  create-switches 1[set shape "circle"
+                    setxy 6 2
+                    set color 117]
+  create-switches 1[set shape "circle"
+                    setxy 2 5
+                    set color 117]
+  create-switches 1[set shape "circle"
+                    setxy 5 8
+                    set color 117]
+end
+
+to setup-boxes
+  create-boxes 1[set shape "square"
+                 setxy 7 7
+                 set color 22]
+  create-boxes 1[set shape "square"
+                 setxy 7 5
+                 set color 22]
+  create-boxes 1[set shape "square"
+                 setxy 3 6
+                 set color 22]
+end
+
+to setup-player
+create-players 1[set shape "person"
+                 set color 45
+                 setxy 3 8]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
