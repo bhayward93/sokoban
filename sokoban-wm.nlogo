@@ -22,6 +22,14 @@ to setup-walls
   setup-row-0
   setup-row-1
   setup-row-2
+  setup-row-3
+  setup-row-4
+  setup-row-5
+  setup-row-6
+  setup-row-7
+  setup-row-8
+  setup-row-9
+  setup-row-10
 end
 
 to setup-row-0
@@ -36,28 +44,118 @@ to setup-row-0
   ]
 end
 
+to setup-row-2
+  create-walls 1[set shape "square" set color 2 set ycor 2 set xcor 0]
+  create-walls 1[set shape "square" set color 2 set ycor 2 set xcor 10] ;2nd row
+end
+
 to setup-row-1
   create-walls 1[set shape "square" set color 2 set ycor 1 set xcor 0]
   create-walls 1[set shape "square" set color 2 set ycor 1 set xcor 10] ;2nd row
 end
 
-to setup-row-2
-  let index 0 ;Bottom row
+to setup-row-3
+  let index 0
   loop[
     if (index = 11)[stop]
-    if (xcor != 3 or xcor != 6) ;remove this if you want things to work <<<<<<<<<<<<<<
-    [
+    if (index = 2 or index = 5)[set index (index + 1)] ;blank spaces
+
         create-walls 1 [set shape "square"
         set color 2
-        set ycor 2
+        set ycor 3
         set xcor index
       ]
-    ]
-      set index (index + 1)
 
+    set index (index + 1)
   ]
 end
 
+to setup-row-4
+  let index 0
+  loop[
+    if (index = 11)[stop]
+    if (index = 2)[set index (index + 1)] ;using an or statement fails if the blank spaces are is 2 adjacent numbers
+    if (index = 5)[set index (index + 1)]
+    if (index = 7)[set index (index + 1)]
+    if (index = 8)[set index (index + 1)]
+
+        create-walls 1 [set shape "square"
+        set color 2
+        set ycor 4
+        set xcor index
+      ]
+
+    set index (index + 1)
+  ]
+end
+
+to setup-row-5
+  let index 0
+  loop[
+    if (index = 11)[stop]
+    if (index = 2)[set index (index + 1)] ;using an or statement fails if the blank spaces are is 2 adjacent numbers
+    if (index = 5)[set index (index + 1)]
+    if (index = 7)[set index (index + 1)]
+    if (index = 8)[set index (index + 1)]
+
+        create-walls 1 [set shape "square"
+        set color 2
+        set ycor 5
+        set xcor index
+      ]
+
+    set index (index + 1)
+  ]
+end
+
+to setup-row-6
+  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 0]
+  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 1]
+  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 9]
+  create-walls 1[set shape "square" set color 2 set ycor 6 set xcor 10]
+end
+
+to setup-row-7
+  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 0]
+  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 1]
+  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 2]
+  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 6]
+  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 9]
+  create-walls 1[set shape "square" set color 2 set ycor 7 set xcor 10]
+end
+
+to setup-row-8
+  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 0]
+  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 1]
+  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 2]
+  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 6]
+  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 9]
+  create-walls 1[set shape "square" set color 2 set ycor 8 set xcor 10]
+end
+
+to setup-row-9
+  let index 0 ;Bottom row
+  loop[
+    if (index = 11)[stop]
+    create-walls 1 [set shape "square"
+      set color 2
+      set ycor 9
+      set xcor index]
+    set index (index + 1)
+  ]
+end
+
+to setup-row-10
+    let index 0 ;Bottom row
+  loop[
+    if (index = 11)[stop]
+    create-walls 1 [set shape "square"
+      set color 2
+      set ycor 10
+      set xcor index]
+      set index (index + 1)
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 197
