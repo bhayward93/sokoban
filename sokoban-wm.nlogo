@@ -1,3 +1,5 @@
+extensions [ sock2 ]
+
 breed [boxes box]
 breed [switches switch]
 breed [walls wall]
