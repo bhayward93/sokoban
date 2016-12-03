@@ -24,6 +24,28 @@ to define-map
     setup-player
 end
 
+;---------------operations-------------------
+
+to move-char[dir] ;currently in degrees
+  ask player 0[set heading dir ;set heading to the dir variable specified (degrees to rotate)
+               fd 1 ;move forward 1
+              ]
+end
+
+to push-box [_box]
+  ask player 0[set heading towards _box ;face the box
+               fd 1 ;move forward 1
+              ]
+
+  ask _box    [set heading towards player 0 ;face the player
+               rt 180 ;rotate 180 degrees
+               fd 1 ;move forward 1
+              ]
+end
+
+;-----------movement-------------------------
+
+;--------------set up world------------------
 to setup-walls
   setup-row-0
   setup-row-1
@@ -37,6 +59,7 @@ to setup-walls
   setup-row-9
   setup-row-10
 end
+
 
 to setup-row-0
   let index 0 ;Bottom row
