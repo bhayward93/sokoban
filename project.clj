@@ -1,10 +1,27 @@
-(defproject sokoban "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]]
-  :main ^:skip-aot sokoban.core
-  :target-path "target/%s"
+(defproject sokoban
 
-  :profiles {:uberjar {:aot :all}})
+(def block-ops
+  '{ push-box
+    { :pre ( (is ?box light)
+             (adjacent ?char ?box)
+             (is ?opposite-patch empty)
+             (adjacent ?opposite-patch two-opposite-potential-patches) ;needs changing
+             )
+     :del (
+            )
+     :add (
+            )
+     :txt (?char pushes ?box)                             ;needs changing
+     :cmd (move ?char ?box)
+     }
+    move-char
+    { :pre ( (adjacent ?patch empty))
+     :del (
+            )
+     :add (
+            )
+     :txt (move ?char to ?x ?y)                             ;needs changing
+     :cmd (drop-at ?s)
+     }
+    })
+
