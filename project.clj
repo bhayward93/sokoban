@@ -1,43 +1,9 @@
-(defproject sokoban
-  (def facts
-    '((non-manipulable wall) (non-manipulable large-box)
-       (manipulable box) (light box)
-       (heavy large-box) (heavy wall)
-       )
-    )
-
-  (def rules
-    '((rule 0 (is ?box manipulable)
-        (adjacent ?x ?box)
-        (is ?opposite-patch empty)
-        (adjacent ?opposite-patch two-opposite-potential-patches) ;needs changing
-        => (pushable ?box))
-       (rule 1 (is empty ?patch)(adjacent ?x patch) => moveable)
-       ))
-
-;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
-(def block-ops
-  '{ push-box
-    { :pre ( (is ?box light)
-             (adjacent ?char ?box)
-             (is ?opposite-patch empty)
-             (adjacent ?opposite-patch two-opposite-potential-patches) ;needs changing
-             )
-     :del (
-            )
-     :add (
-            )
-     :txt (?char pushes ?box)                             ;needs changing
-     :cmd (move ?char ?box)
-     }
-    move-char
-    { :pre ( (adjacent ?patch empty))
-     :del (
-            )
-     :add (
-            )
-     :txt (move ?char to ?x ?y)                             ;needs changing
-     :cmd (drop-at ?s)
-     }
-    })
-
+(defproject sokoban "0.1.0-SNAPSHOT"
+  :description "FIXME: write description"
+  :url "http://example.com/FIXME"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :dependencies [[org.clojure/clojure "1.8.0"]]
+  :main ^:skip-aot sokoban.core
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all}})

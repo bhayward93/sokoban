@@ -22,6 +22,8 @@ to define-map
     setup-switches
     setup-boxes
     setup-player
+
+    connect-clojure
 end
 
 ;---------------operations-------------------
@@ -44,6 +46,20 @@ to push-box [_box]
 end
 
 ;-----------movement-------------------------
+
+;-----------sock2----------------------------
+to connect-clojure
+  sock2:connect-local 2222
+end
+
+to read
+  let text sock2:read
+  show (text)
+end
+
+to send [message]
+    sock2:write (word message)
+end
 
 ;--------------set up world------------------
 to setup-walls
@@ -209,10 +225,10 @@ create-players 1[set shape "person"
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-197
-21
-442
-272
+212
+18
+457
+269
 -1
 -1
 20.0
