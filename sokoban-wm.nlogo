@@ -34,8 +34,8 @@ to move-char[dir] ;currently in degrees
               ]
 end
 
-to move-char-to-[_x _y]
-  ask player [setxy _x _y]
+to move-char-to[cx cy]
+  ask player 0[setxy cx cy]
 end
 
 to push-box [_box]
@@ -49,9 +49,9 @@ to push-box [_box]
               ]
 end
 
-to push-box-to [_x _y _box]
-  ask _box   [setxy _x _y]
-  ask player [set heading towards _box
+to push-box-to [bx by _box]
+  ask _box   [setxy bx by]
+  ask player 0[set heading towards _box
               fd 1
              ]
 end
