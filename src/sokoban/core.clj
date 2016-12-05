@@ -27,27 +27,51 @@
 
 ;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
 (def block-ops
-  '{push-box
-    {:pre ((is ?box light)
-            (adjacent ?char ?box)
-            (is ?opposite-patch empty)
-            (adjacent ?opposite-patch two-opposite-potential-patches) ;needs changing
-            )
-     :del (
-            )
-     :add (
-            )
-     :txt (?char pushes ?box)                             ;needs changing
-     :cmd (move ?char ?box)
+  '{move
+     {:pre (
+             (is    ?agent      worker)
+             (is    ?dest-patch floor)
+             (adj   ?src-patch  ?dest-patch)
+             (holds ?src-patch  ?agent)
+             (holds ?dest-patch nil)
+           )
+      :del (
+             (holds ?src-patch  ?agent)
+             (holds ?dest-patch nil)
+           )
+      :add (
+             (holds ?src-patch  nil)
+             (holds ?dest-patch ?agent)
+           )
+      :txt (?agent moves to ?dest-patch)
+      :cmd (move ?agent ?src-patch ?dest-patch)
+      :nl  (  )
      }
-    move-char
-    {:pre ((adjacent ?patch empty))
-     :del (
-            )
-     :add (
-            )
-     :txt (move ?char to ?x ?y)                             ;needs changing
-     :cmd (drop-at ?s)
+
+    push-box
+     {:pre (
+             (is    ?box             box)
+             (is    ?agent           worker)
+             (is    ?dest-patch      floor)
+             (adj   ?box-src-patch   ?dest-patch)
+             (adj   ?agent-src-patch ?box-src-patch)
+             (holds ?dest-patch      nil)
+             (holds ?agent-src-patch ?agent)
+             (holds ?box-src-patch   ?box)
+           )
+      :del (
+             (holds ?dest-patch      nil)
+             (holds ?agent-src-patch ?agent)
+             (holds ?box-src-patch   ?box)
+           )
+      :add (
+             (holds ?dest-patch      ?box)
+             (holds ?agent-src-patch nil)
+             (holds ?box-src-patch   ?agent)
+           )
+      :txt (?agent pushes ?box to ?dest-patch)
+      :cmd (push ?box ?agent ?box-src-patch ?agent-src-patch ?dest-patch)
+      :nl  (  )
      }
-    }
+   }
   )
