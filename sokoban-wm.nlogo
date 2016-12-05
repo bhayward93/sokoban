@@ -34,6 +34,10 @@ to move-char[dir] ;currently in degrees
               ]
 end
 
+to move-char-to-[_x _y]
+  ask player [setxy _x _y]
+end
+
 to push-box [_box]
   ask player 0[set heading towards _box ;face the box
                fd 1 ;move forward 1
@@ -43,6 +47,13 @@ to push-box [_box]
                rt 180 ;rotate 180 degrees
                fd 1 ;move forward 1
               ]
+end
+
+to push-box-to [_x _y _box]
+  ask _box   [setxy _x _y]
+  ask player [set heading towards _box
+              fd 1
+             ]
 end
 
 ;-----------movement-------------------------
