@@ -5,11 +5,6 @@
 (load-file "../sock2/socket.clj")
 (def s25 (startup-server 2222))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println "Hello, World!"))
-
 (def facts
   '((non-manipulable wall) (non-manipulable large-box)
      (manipulable box) (light box)
@@ -27,6 +22,68 @@
      ))
 
 ;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
+(def setup-ops
+  '{set-floor
+    {:pre ()
+     :del ()
+     :add (
+            (is ?patch floor)
+            )
+     :txt (?patch is a floor)
+     :cmd (set-floor ?patch)
+     :nl  ()
+     }
+
+    set-box
+    {:pre ()
+     :del ()
+     :add (
+            (is ?agent box)
+            (holds ?patch ?agent)
+            )
+     :txt (?box is on floor ?patch)
+     :cmd (set-box ?agent patch)
+     :nl  ()
+     }
+
+    set-worker
+    {:pre ()
+     :del ()
+     :add (
+            (is ?agent worker)
+            (holds ?patch ?agent)
+            )
+     :txt (?worker starts at floor ?patch)
+     :cmd (set-worker ?agent ?patch)
+     :nl  ()
+     }
+
+    set-bay
+    {:pre ()
+     :del ()
+     :add (
+            (is ?patch floor)
+            (is ?patch bay)
+            )
+     :txt (?patch is a bay)
+     :cmd (set-bay ?patch)
+     :nl  ()
+     }
+
+     set-adj
+    {:pre ((is ?patch floor)
+           (is ?adj-patch floor)
+            )
+     :del ()
+     :add ((adj ?patch ?adj-patch)
+            )
+     :txt (?adj-patch is adjacent to ?patch)
+     :cmd (set-adj ?patch ?adj-patch)
+     :nl  ()
+     }
+    }
+  )
+
 (def block-ops
   '{move
     {:pre (
