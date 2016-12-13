@@ -138,3 +138,17 @@
      }
    }
   )
+
+;TEMP STUFF
+;(defn test-one []
+;  mlet ['(?x ?y ?z) '(cat dog bat)]
+;     (? y))
+
+(defn apply-op
+  [state {:keys [pre add del]}]
+  (mfind* [pre state]
+          (union (mout add)
+                 (difference state (mout del))
+                 )))
+
+;(apply-op state1 ('pickup ops))
