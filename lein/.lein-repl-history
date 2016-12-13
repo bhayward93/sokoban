@@ -3,3 +3,5 @@ exit
 (cgsx.tools.matcher)
 clear
 exit
+(apply-op setup-ops)
+exit

@@ -1,6 +1,7 @@
 (ns sokoban.core
   (:gen-class)
-  (require [cgsx.tools.matcher :refer :all :as matcher]))
+  (require [cgsx.tools.matcher :refer :all :as matcher]
+           [clojure.set :refer :all]))
 
 (load-file "./src/sock2/socket.clj")
 (def s25 (startup-server 2222))
