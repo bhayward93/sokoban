@@ -140,6 +140,7 @@
    }
   )
 
+
 ;TEMP STUFF
 ;(defn test-one []
 ;  mlet ['(?x ?y ?z) '(cat dog bat)]
@@ -152,4 +153,34 @@
                  (difference state (mout del))
                  )))
 
-;(apply-op state1 ('pickup ops))
+;(-> state1 (apply-op ('setup-floor setup-ops)))
+;ALT
+;(apply-op state1 (setup-ops 'set-floor))
+
+
+(def state1
+  '#{(is patch empty)
+     })
+;alt
+;(def state1 '(is ?patch empty));TEMP STUFF
+;(defn test-one []
+;  mlet ['(?x ?y ?z) '(cat dog bat)]
+;     (? y))
+
+(defn apply-op
+  [state {:keys [pre add del]}]
+  (mfind* [pre state]
+          (union (mout add)
+                 (difference state (mout del))
+                 )))
+
+;(-> state1 (apply-op ('setup-floor setup-ops)))
+;ALT
+;(apply-op state1 (setup-ops 'set-floor))
+
+
+(def state1
+  '#{(is patch empty)
+     })
+;alt
+;(def state1 '(is ?patch empty))
