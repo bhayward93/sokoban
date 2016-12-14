@@ -234,6 +234,19 @@ create-players 1[set shape "person"
                  set color 9.9
                  setxy 3 8]
 end
+
+to send-world-state
+  ask patches[
+    if (boxes-here = 1)
+     [send"(apply-op box-state (setup-ops 'set-box))"]
+    if (players-here = 1)
+     [send"(apply-op worker-state (setup-ops 'set-worker))"]
+    if (switches-here = 1)
+     [send"(apply-op bay-state (setup-ops 'set-bay))"]
+    if (walls-here = 0)
+     [send"(apply-op floor-state (setup-ops 'set-floor))"]
+    ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 212
@@ -286,6 +299,23 @@ BUTTON
 79
 reset
 reset
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+26
+86
+178
+119
+send world state
+send-world-state
 NIL
 1
 T
