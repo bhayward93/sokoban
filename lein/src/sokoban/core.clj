@@ -30,13 +30,8 @@
 ;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
 (def setup-ops
   '{set-floor
-    {:pre (
-            (is ?patch empty)
-           
-          )
-     :del (
-            (is ?patch empty)
-          )
+    {:pre (is ?patch empty)
+     :del (is ?patch empty)          
      :add (is ?patch floor)
      :txt (?patch is a floor)
      :cmd (set-floor ?patch)
@@ -44,36 +39,36 @@
      }
 
     set-box
-    {:pre ()
-     :del ()
+    {:pre (has ?patch box)
+     :del (has ?patch box)
      :add (
-            (is ?agent box)
-            (holds ?patch ?agent)
-            )
+            (is ?patch floor)
+            (holds ?patch box)
+          )
      :txt (?box is on floor ?patch)
-     :cmd (set-box ?agent patch)
+     :cmd (set-box ?patch)
      :nl  ()
      }
 
     set-worker
-    {:pre ()
-     :del ()
+    {:pre (has ?patch worker)
+     :del (has ?patch worker)
      :add (
-            (is ?agent worker)
-            (holds ?patch ?agent)
-            )
+            (is ?patch floor)
+            (holds ?patch worker)
+          )
      :txt (?worker starts at floor ?patch)
-     :cmd (set-worker ?agent ?patch)
+     :cmd (set-worker ?patch)
      :nl  ()
      }
 
     set-bay
-    {:pre ()
-     :del ()
+    {:pre (has ?patch bay)
+     :del (has ?patch bay)
      :add (
             (is ?patch floor)
             (is ?patch bay)
-            )
+          )
      :txt (?patch is a bay)
      :cmd (set-bay ?patch)
      :nl  ()
@@ -156,7 +151,6 @@
 (def state1
   '#{
      (is patch empty)
-
      })
 
 
