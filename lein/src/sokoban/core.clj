@@ -4,7 +4,7 @@
            [clojure.set :refer :all]))
 
 (load-file "./src/sock2/socket.clj")
-;(def s25 (startup-server 2222))
+(def s25 (startup-server 2222))
 
 (defn -main
   "I don't do a whole lot ... yet."
@@ -148,11 +148,22 @@
 
 ;Cannot get operators to work for setup-ops. This is the state to be used with setup-floor
 ;(apply-op state1 (setup-ops 'set-floor))
-(def state1
+(def floor-state
   '#{
-     (is patch empty)
+     (is ?patch empty)
      })
-
+(def box-state
+  '#{
+     (has ?patch box)
+     })
+(def worker-state
+  '#{
+     (has ?patch worker)
+     })
+(def bay-state
+  '#{
+     (has ?patch bay)
+     })
 
 ;The below command will show th result of moving, feeding in already predetermined to be matching pre-conds
 ;(apply-op state2 (block-ops 'move))
@@ -164,3 +175,5 @@
             (adj   ?src-patch  ?dest-patch)
             (holds ?src-patch  ?agent)
             (holds ?dest-patch nil)})
+
+;(eval (read-string (socket-read) ) )
