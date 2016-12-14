@@ -30,11 +30,14 @@
 ;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
 (def setup-ops
   '{set-floor
-    {:pre (is ?patch empty)
-     :del (is ?patch empty)
-     :add (
-            (is ?patch floor)
-            )
+    {:pre (
+            (is ?patch empty)
+           
+          )
+     :del (
+            (is ?patch empty)
+          )
+     :add (is ?patch floor)
      :txt (?patch is a floor)
      :cmd (set-floor ?patch)
      :nl  ()
@@ -149,8 +152,11 @@
                  )))
 
 ;Cannot get operators to work for setup-ops. This is the state to be used with setup-floor
+;(apply-op state1 (setup-ops 'set-floor))
 (def state1
-  '#{(is patch empty)
+  '#{
+     (is patch empty)
+
      })
 
 
