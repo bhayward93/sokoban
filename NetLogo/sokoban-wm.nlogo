@@ -237,15 +237,23 @@ end
 
 to send-world-state
   ask patches[
-    if (boxes-here = 1)
-     [send"(apply-op box-state (setup-ops 'set-box))"]
-    if (players-here = 1)
-     [send"(apply-op worker-state (setup-ops 'set-worker))"]
-    if (switches-here = 1)
-     [send"(apply-op bay-state (setup-ops 'set-bay))"]
-    if (walls-here = 0)
-     [send"(apply-op floor-state (setup-ops 'set-floor))"]
+    if(count walls-here = 0) [
+      send (word "(is \"patch " pxcor " " pycor "\" floor)")
+      ]
+    ask switches-here [
+      send (word "(is \"patch " pxcor " " pycor "\" bay)")
+      ]
+    ask boxes-here [
+      send (word "(holds \"patch " pxcor " " pycor "\" \"turtle " who "\")")
+      send (word "(is \"turtle " who "\" box)")
+      ]
+    ask players-here [
+      send (word "(holds \"patch " pxcor " " pycor "\" \"turtle " who "\")")
+      send (word "(is \"turtle " who "\" worker)")
+      ]
     ]
+
+  send -1
 end
 @#$#@#$#@
 GRAPHICS-WINDOW

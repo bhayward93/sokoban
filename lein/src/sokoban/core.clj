@@ -6,6 +6,7 @@
 (load-file "./src/sock2/socket.clj")
 (def s25 (startup-server 2222))
 
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
@@ -28,66 +29,6 @@
        ))
 
 ;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
-(def setup-ops
-  '{set-floor
-    {:pre (is ?patch empty)
-     :del (is ?patch empty)          
-     :add (is ?patch floor)
-     :txt (?patch is a floor)
-     :cmd (set-floor ?patch)
-     :nl  ()
-     }
-
-    set-box
-    {:pre (has ?patch box)
-     :del (has ?patch box)
-     :add (
-            (is ?patch floor)
-            (holds ?patch box)
-          )
-     :txt (?box is on floor ?patch)
-     :cmd (set-box ?patch)
-     :nl  ()
-     }
-
-    set-worker
-    {:pre (has ?patch worker)
-     :del (has ?patch worker)
-     :add (
-            (is ?patch floor)
-            (holds ?patch worker)
-          )
-     :txt (?worker starts at floor ?patch)
-     :cmd (set-worker ?patch)
-     :nl  ()
-     }
-
-    set-bay
-    {:pre (has ?patch bay)
-     :del (has ?patch bay)
-     :add (
-            (is ?patch floor)
-            (is ?patch bay)
-          )
-     :txt (?patch is a bay)
-     :cmd (set-bay ?patch)
-     :nl  ()
-     }
-
-     set-adj
-    {:pre ((is ?patch floor)
-           (is ?adj-patch floor)
-            )
-     :del ()
-     :add ((adj ?patch ?adj-patch)
-            )
-     :txt (?adj-patch is adjacent to ?patch)
-     :cmd (set-adj ?patch ?adj-patch)
-     :nl  ()
-     }
-    }
-  )
-
 (def block-ops
   '{move
      {:pre (
@@ -138,6 +79,16 @@
    }
   )
 
+(defn receive-state
+  [state-list]
+    (let [new-state (socket-read s25)]
+      (println new-state)
+      (if (= new-state -1)
+        state-list
+        (receive-state (conj state-list new-state))
+        )
+      )
+  )
 
 (defn apply-op
   [state {:keys [pre del add txt cmd nl]}]
@@ -177,3 +128,6 @@
             (holds ?dest-patch nil)})
 
 ;(eval (read-string (socket-read) ) )
+
+(println "Awaiting new world state setup commands...")
+(def state-list (receive-state #{}))

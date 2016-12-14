@@ -5,3 +5,97 @@ clear
 exit
 (apply-op setup-ops)
 exit
+(socket-read s25)
+quit
+(mfind ['(set-floor ?patch) setup-ops] (? f))
+(mfind ['{:cmd (set-floor ?patch)} setup-ops] (? f))
+(mfind* ['{:cmd (set-floor ?patch)} setup-ops] (? f))
+(mfind* ['{:cmd (set-floor ?patch)} setup-ops] (? patch))
+(mfind ['{:cmd (set-floor ?patch)} setup-ops] (? patch))
+(mfind* [cmd setup-ops])
+state2
+(mfind* ['(is ?dest-patch floor) state2)
+(mfind* ['(is ?dest-patch floor) state2])
+(mfind* ['(is ?dest-patch floor) state2] println)
+exit
+cmd-list
+(receive-cmd cmd-list (set-box bob))
+(receive-cmd cmd-list '(set-box bob))
+cmd-list
+exit
+cmd-list
+(-> cmd-list (receive-cmd cmd-list '(set-box bob)))
+(receive-cmd cmd-list '(set-box bob))
+(-> cmd-list (receive-cmd cmd-list '(set-box bob)))
+(-> cmd-list '(receive-cmd cmd-list '(set-box bob)))
+(-> cmd-list (receive-cmd cmd-list '(set-box bob)))
+exit]
+(receive-cmd cmd-list '(set-box bob))
+(receive-cmd cmd-list (set-box bob))
+exit
+cmd-list
+(receive-cmd cmd-list '(set-box bob))
+exit
+cmd-list
+(receive-cmd cmd-list '(set-box bob))
+cmd-list
+exit
+(receive-cmd '())
+exit
+(receive-cmd '())
+exit
+(receive-cmd '())
+exit
+(receive-cmd '())
+exit
+(receive-cmd '())
+exit
+(receive-cmd '())
+exit
+cmd-list
+exit
+(setup-world cmd-list)
+(mfind [(first cmd-list) setup-ops])
+(mfind [(first cmd-list) setup-ops] mout)
+(mfind [(first cmd-list) setup-ops] (println mout))
+(mfind [(first cmd-list) setup-ops] (println mout)
+)
+(mfind* [(first cmd-list) setup-ops])
+(setup-ops :pre)
+(setup-ops {:cmd})
+setup-ops
+setup-ops (:add)
+(setup-ops :add)
+(setup-ops {:add})
+(setup-ops {set-floor})
+(setup-ops(set-floor))
+(setup-ops{set-floor})
+clear
+(first setup-ops)
+(first setup-ops[set-floor])
+(mfind [set-floor setup-ops])
+(mfind* [:cmd (first setup-ops)])
+(mfind* [cmd (first setup-ops)])
+(mfind* [(:cmd) (first setup-ops)])
+(mfind* [(set-floor ?patch) (first setup-ops)])
+(mfind* [(set-floor ?patch) cmd-list])
+exit
+(setup-world cmd-list)
+(apply-setup '() cmd-list setup-ops)
+(apply-setup '{} cmd-list setup-ops)
+state2
+(def state3 #{})
+state3
+(apply-setup state3 cmd-list setup-ops)
+state3
+(def state4 (apply-setup state3 cmd-list setup-ops))
+state
+state4
+undef state4
+exit
+state-list
+exit
+state-list
+exit
+state-list
+exit
