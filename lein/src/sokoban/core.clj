@@ -4,7 +4,7 @@
            [clojure.set :refer :all]))
 
 (load-file "./src/sock2/socket.clj")
-(def s25 (startup-server 2222))
+;(def s25 (startup-server 2222))
 
 (defn -main
   "I don't do a whole lot ... yet."
@@ -30,8 +30,8 @@
 ;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
 (def setup-ops
   '{set-floor
-    {:pre ()
-     :del ()
+    {:pre (is ?patch empty)
+     :del (is ?patch empty)
      :add (
             (is ?patch floor)
             )
@@ -141,46 +141,26 @@
   )
 
 
-;TEMP STUFF
-;(defn test-one []
-;  mlet ['(?x ?y ?z) '(cat dog bat)]
-;     (? y))
-
 (defn apply-op
-  [state {:keys [pre add del]}]
+  [state {:keys [pre del add txt cmd nl]}]
   (mfind* [pre state]
           (union (mout add)
                  (difference state (mout del))
                  )))
 
-;(-> state1 (apply-op ('setup-floor setup-ops)))
-;ALT
-;(apply-op state1 (setup-ops 'set-floor))
-
-
+;Cannot get operators to work for setup-ops. This is the state to be used with setup-floor
 (def state1
   '#{(is patch empty)
      })
-;alt
-;(def state1 '(is ?patch empty));TEMP STUFF
-;(defn test-one []
-;  mlet ['(?x ?y ?z) '(cat dog bat)]
-;     (? y))
-
-(defn apply-op
-  [state {:keys [pre add del]}]
-  (mfind* [pre state]
-          (union (mout add)
-                 (difference state (mout del))
-                 )))
-
-;(-> state1 (apply-op ('setup-floor setup-ops)))
-;ALT
-;(apply-op state1 (setup-ops 'set-floor))
 
 
-(def state1
-  '#{(is patch empty)
-     })
-;alt
-;(def state1 '(is ?patch empty))
+;The below command will show th result of moving, feeding in already predetermined to be matching pre-conds
+;(apply-op state2 (block-ops 'move))
+
+;This is the state for block-ops move to trigger
+(def state2
+'#{(is    ?agent      worker)
+            (is    ?dest-patch floor)
+            (adj   ?src-patch  ?dest-patch)
+            (holds ?src-patch  ?agent)
+            (holds ?dest-patch nil)})
