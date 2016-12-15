@@ -130,15 +130,23 @@
             (holds ?src-patch  ?agent)
             (holds ?dest-patch nil)})
 
+(def goal-state
+  '#{
+    (is ?patch1 bay)(holds ?patch1 ?agent1)(is ?agent1 box)
+    (is ?patch2 bay)(holds ?patch2 ?agent2)(is ?agent2 box)
+    (is ?patch3 bay)(holds ?patch3 ?agent3)(is ?agent3 box)
+  }
+)
+
+(defn a*lmg [state]
+  (let [n (:state state)]
+    (list
+      
+      )
+    )
+  )
+
 ;(eval (read-string (socket-read) ) )
 
 (println "Awaiting new world state setup commands...")
 (def state-list (receive-state #{}))
-
-;(def goal-state
-;  (
-;    ((is patch ?x1 ?y1 bay)(holds patch ?x1 ?y1 turtle 80)(is turtle 80 box))
-;    ((is patch ?x2 ?y2 bay)(holds patch ?x2 ?y2 turtle 80)(is turtle 80 box))
-;    ((is patch ?x3 ?y3 bay)(holds patch ?x3 ?y3 turtle 80)(is turtle 80 box))
-;  )
-;)
