@@ -41,11 +41,11 @@
 (defn print-goals [q]
   (if (not (empty? q))
     (do
-      (ui-out :dbg "GOALS:")
+      (println :dbg "GOALS:")
       (doseq [x q]
-        (ui-out :dbg "      " (if (map? x) [(:name x) :=> (:achieves x)] x))
+        (println :dbg "      " (if (map? x) [(:name x) :=> (:achieves x)] x))
         )
-      ;(ui-out :dbg '------)
+      ;(println :dbg '------)
       )
     ))
 
@@ -74,8 +74,8 @@
     (cond
       (map? goal) ;; it is a partially matched op
       (do
-        (ui-out :dbg '** 'APPLYING (:name goal) '=> (:achieves goal))
-       ; (ui-out :dbg '** (:add goal))
+        (println :dbg '** 'APPLYING (:name goal) '=> (:achieves goal))
+       ; (println :dbg '** (:add goal))
         (recur
           (update-path path (goal-mop-apply (:state path) goal))
           goal-ops (dec limit))
@@ -83,7 +83,7 @@
 
       ;; else it is a fact
       (not (contains? (:state path) goal))
-      (do (ui-out :dbg 'solving goal)
+      (do (println :dbg 'solving goal)
         (some (partial apply-goal-op (:state path) goal)
               (vals goal-ops))
         (recur path goal-ops (dec limit))
@@ -99,8 +99,8 @@
 
 (defn goal-mop-apply [bd mop]
   (mfind* [(:pre mop) bd]
-    (ui-out :dbg '** (mout (:add mop)))
-   ; (ui-out :dbg '=> (mout mop))
+    (println :dbg '** (mout (:add mop)))
+   ; (println :dbg '=> (mout mop))
     {:state (union (mout (:add mop))
               (difference bd (mout (:del mop))))
      :cmd   (mout (:cmd mop))
@@ -114,11 +114,11 @@
   (mlet [(:achieves op) goal]
 
     (mfind* [(:when op) bd]
-      (ui-out :dbg 'using=> (:name op))
+      (println :dbg 'using=> (:name op))
       (let [mop (mout op)]
         ;(println (list 'new-mop mop))
         (.push @goalq mop)
-        (ui-out :dbg 'new-goals (or (:post mop) '-none))
+        (println :dbg 'new-goals (or (:post mop) '-none))
         (doseq [p (reverse (:post mop))]
           (.push @goalq p))
 

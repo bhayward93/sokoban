@@ -237,21 +237,32 @@ end
 
 to send-world-state
   ask patches[
+    let currentx pxcor
+    let currenty pycor
+
     if(count walls-here = 0) [
-      send (word "(is \"patch " pxcor " " pycor "\" floor)")
-      ]
+      send (word "(is \"patch " currentx " " currenty "\" floor)")
+    ]
     ask switches-here [
-      send (word "(is \"patch " pxcor " " pycor "\" bay)")
-      ]
+      send (word "(is \"patch " currentx " " currenty "\" bay)")
+    ]
     ask boxes-here [
-      send (word "(holds \"patch " pxcor " " pycor "\" \"turtle " who "\")")
+      send (word "(holds \"patch " currentx " " currenty "\" \"turtle " who "\")")
       send (word "(is \"turtle " who "\" box)")
-      ]
+    ]
     ask players-here [
-      send (word "(holds \"patch " pxcor " " pycor "\" \"turtle " who "\")")
+      send (word "(holds \"patch " currentx " " currenty "\" \"turtle " who "\")")
       send (word "(is \"turtle " who "\" worker)")
+    ]
+    ask neighbors4 [
+      if(count walls-here = 0) [
+        send (word "(adj \"patch " currentx " " currenty "\" \"patch " pxcor " " pycor "\")")
       ]
     ]
+    if(count players-here = 0 or count boxes-here = 0) [
+      send (word "(holds \"patch " currentx " " currenty "\" nil)")
+    ]
+  ]
 
   send -1
 end

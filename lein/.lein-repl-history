@@ -103,3 +103,18 @@ state-list
 exit
 goal-state
 exit
+state-list
+(apply-op state-list (first block-ops))
+exit
+(ops-search state-list goal-state #{})
+exit
+(planner state-list goal-state block-ops)
+exit
+(planner state-list goal-state block-ops)
+exit
+(planner state-list goal-state block-ops)
+exit
+state-list
+exit
+(planner state-list goal-state block-ops)
+exit

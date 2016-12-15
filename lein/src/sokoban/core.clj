@@ -4,8 +4,9 @@
            [clojure.set :refer :all]))
 
 (load-file "./src/sock2/socket.clj")
-;(load-file "./src/planner/planner(1a).clj")
+(load-file "./src/planner/planner(1a).clj")
 (load-file "./src/Astar/Astar-search(2a).clj")
+(load-file "./src/ops-search/ops-search(1b).clj")
 
 (def s25 (startup-server 2222))
 
@@ -34,13 +35,17 @@
 ;ADDED THE FACTS AND RULES IN SO BELOW NEEDS CHANGING
 (def block-ops
   '{move
-     {:pre (
-             (is    ?agent      worker)
-             (is    ?dest-patch floor)
-             (adj   ?src-patch  ?dest-patch)
-             (holds ?src-patch  ?agent)
-             (holds ?dest-patch nil)
-           )
+     {:name move
+      :achieves (holds ?dest-patch ?agent)
+      :when (
+              (is    ?agent      worker)
+              (is    ?dest-patch floor)
+              (adj   ?src-patch  ?dest-patch)
+              (holds ?src-patch  ?agent)
+              (holds ?dest-patch nil)
+              )
+      :post ()
+      :pre ()
       :del (
              (holds ?src-patch  ?agent)
              (holds ?dest-patch nil)
@@ -49,22 +54,26 @@
              (holds ?src-patch  nil)
              (holds ?dest-patch ?agent)
            )
+      :cmd ((move ?agent ?dest-patch))
       :txt (?agent moves to ?dest-patch)
-      :cmd (move ?agent ?src-patch ?dest-patch)
       :nl  (  )
      }
 
     push-box
-     {:pre (
-             (is    ?box             box)
-             (is    ?agent           worker)
-             (is    ?dest-patch      floor)
-             (adj   ?box-src-patch   ?dest-patch)
-             (adj   ?agent-src-patch ?box-src-patch)
-             (holds ?dest-patch      nil)
-             (holds ?agent-src-patch ?agent)
-             (holds ?box-src-patch   ?box)
-           )
+     {:name push-box
+      :achieves (on ?dest-patch ?agent)
+      :when (
+              (is    ?box             box)
+              (is    ?agent           worker)
+              (is    ?dest-patch      floor)
+              (adj   ?box-src-patch   ?dest-patch)
+              (adj   ?agent-src-patch ?box-src-patch)
+              (holds ?dest-patch      nil)
+              (holds ?agent-src-patch ?agent)
+              (holds ?box-src-patch   ?box)
+              )
+      :post ((holds ?agent-src-patch ?agent))
+      :pre ()
       :del (
              (holds ?dest-patch      nil)
              (holds ?agent-src-patch ?agent)
@@ -75,8 +84,8 @@
              (holds ?agent-src-patch nil)
              (holds ?box-src-patch   ?agent)
            )
+      :cmd ((push-box ?box))
       :txt (?agent pushes ?box to ?dest-patch)
-      :cmd (push ?box ?agent ?box-src-patch ?agent-src-patch ?dest-patch)
       :nl  (  )
      }
    }
@@ -98,6 +107,7 @@
   (mfind* [pre state]
           (union (mout add)
                  (difference state (mout del))
+          cmd
                  )))
 
 ;Cannot get operators to work for setup-ops. This is the state to be used with setup-floor
