@@ -215,3 +215,12 @@ exit
 (trace-vars apply-op)
 (ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
 exit
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+(ops-search state-list goal-state block-ops)
+exit
