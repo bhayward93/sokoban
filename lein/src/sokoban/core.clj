@@ -4,6 +4,9 @@
            [clojure.set :refer :all]))
 
 (load-file "./src/sock2/socket.clj")
+;(load-file "./src/planner/planner(1a).clj")
+(load-file "./src/Astar/Astar-search(2a).clj")
+
 (def s25 (startup-server 2222))
 
 
@@ -132,10 +135,10 @@
 (println "Awaiting new world state setup commands...")
 (def state-list (receive-state #{}))
 
-(def goal-state
-  (
-    ((is patch ?x1 ?y1 bay)(holds patch ?x1 ?y1 turtle 80)(is turtle 80 box))
-    ((is patch ?x2 ?y2 bay)(holds patch ?x2 ?y2 turtle 80)(is turtle 80 box))
-    ((is patch ?x3 ?y3 bay)(holds patch ?x3 ?y3 turtle 80)(is turtle 80 box))
-  )
-)
+;(def goal-state
+;  (
+;    ((is patch ?x1 ?y1 bay)(holds patch ?x1 ?y1 turtle 80)(is turtle 80 box))
+;    ((is patch ?x2 ?y2 bay)(holds patch ?x2 ?y2 turtle 80)(is turtle 80 box))
+;    ((is patch ?x3 ?y3 bay)(holds patch ?x3 ?y3 turtle 80)(is turtle 80 box))
+;  )
+;)
