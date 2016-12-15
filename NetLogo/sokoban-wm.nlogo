@@ -6,7 +6,6 @@ breed [walls wall]
 breed [players player]
 
 to setup
-  reset
   define-map
 end
 
@@ -19,41 +18,42 @@ to define-map
   [
     set pcolor 85
   ]
+    setup-walls
+    setup-switches
+    setup-boxes
+    setup-player
 
-  setup-walls
-  setup-switches
-  setup-boxes
-  setup-player
-
-  connect-clojure
+    connect-clojure
 end
 
 ;---------------operations-------------------
 
 to move-char[dir] ;currently in degrees
-  ask player 0[set heading dir ;set heading to the dir variable specified (degrees to rotate)
+  ask player 82[set heading dir ;set heading to the dir variable specified (degrees to rotate)
                fd 1 ;move forward 1
               ]
 end
 
 to move-char-to[cx cy]
-  ask player 0[setxy cx cy]
+  ask player 82[setxy cx cy]
 end
 
 to push-box [_box]
-  ask player 0[set heading towards _box ;face the box
-               fd 1 ;move forward 1
+
+  ask player 82[set heading towards _box ;face the box
               ]
 
-  ask _box    [set heading towards player 0 ;face the player
+  ask _box    [set heading towards player 82 ;face the player
                rt 180 ;rotate 180 degrees
                fd 1 ;move forward 1
               ]
+  ask player 82 [fd 1 ;move forward 1
+    ]
 end
 
 to push-box-to [bx by _box]
   ask _box   [setxy bx by]
-  ask player 0[set heading towards _box
+  ask player 82[set heading towards _box
               fd 1
              ]
 end
@@ -89,134 +89,122 @@ to setup-walls
   setup-row-10
 end
 
-to add-wall[x y]
-  create-walls 1 [
-    set shape "square"
-    set color 125
-    setxy x y
+
+to setup-row-0
+  let index 0 ;Bottom row
+  loop[
+    if (index = 11)[stop]
+    create-walls 1 [set shape "square"
+      set color 125
+      setxy index 0]
+    set index (index + 1)
   ]
 end
 
-to setup-row-0
-  add-wall 0 0
-  add-wall 1 0
-  add-wall 2 0
-  add-wall 3 0
-  add-wall 4 0
-  add-wall 5 0
-  add-wall 6 0
-  add-wall 7 0
-  add-wall 8 0
-  add-wall 9 0
-  add-wall 10 0
+to setup-row-2
+  create-walls 1[set shape "square" set color 125 setxy 0 2]
+  create-walls 1[set shape "square" set color 125 setxy 10 2]
 end
 
 to setup-row-1
-  add-wall 0 1
-  add-wall 10 1
-end
-
-to setup-row-2
-  add-wall 0 2
-  add-wall 10 2
+  create-walls 1[set shape "square" set color 125 setxy 0 1]
+  create-walls 1[set shape "square" set color 125 setxy 10 1]
 end
 
 to setup-row-3
-  add-wall 0 3
-  add-wall 1 3
-
-  add-wall 3 3
-  add-wall 4 3
-
-  add-wall 6 3
-  add-wall 7 3
-  add-wall 8 3
-  add-wall 9 3
-  add-wall 10 3
+  let index 0
+  loop[
+    if (index = 11)[stop]
+    if (index = 2 or index = 5)[set index (index + 1)] ;blank spaces
+        create-walls 1 [set shape "square"
+                        set color 125
+                        setxy index 3
+        ]
+    set index (index + 1)
+  ]
 end
 
 to setup-row-4
-  add-wall 0 4
-  add-wall 1 4
+  let index 0
+  loop[
+    if (index = 11)[stop]
+    if (index = 2)[set index (index + 1)] ;using an or statement fails if the blank spaces are is 2 adjacent numbers
+    if (index = 5)[set index (index + 1)]
+    if (index = 7)[set index (index + 1)]
+    if (index = 8)[set index (index + 1)]
 
-  add-wall 3 4
-  add-wall 4 4
-
-  add-wall 6 4
-
-  add-wall 9 4
-  add-wall 10 4
+        create-walls 1 [set shape "square"
+                        set color 125
+                        setxy index 4
+        ]
+    set index (index + 1)
+  ]
 end
 
 to setup-row-5
-  add-wall 0 5
-  add-wall 1 5
+  let index 0
+  loop[
+    if (index = 11)[stop]
+    if (index = 2)[set index (index + 1)] ;using an or statement fails if the blank spaces are is 2 adjacent numbers
+    if (index = 5)[set index (index + 1)]
+    if (index = 7)[set index (index + 1)]
+    if (index = 8)[set index (index + 1)]
+        create-walls 1 [set shape "square"
+                        set color 125
+                        setxy index 5
+        ]
 
-  add-wall 3 5
-  add-wall 4 5
-
-  add-wall 6 5
-
-  add-wall 9 5
-  add-wall 10 5
+    set index (index + 1)
+  ]
 end
 
 to setup-row-6
-  add-wall 0 6
-  add-wall 1 6
-
-  add-wall 9 6
-  add-wall 10 6
+  create-walls 1[set shape "square" set color 125 setxy 0 6]
+  create-walls 1[set shape "square" set color 125 setxy 1 6]
+  create-walls 1[set shape "square" set color 125 setxy 9 6]
+  create-walls 1[set shape "square" set color 125 setxy 10 6]
 end
 
 to setup-row-7
-  add-wall 0 7
-  add-wall 1 7
-  add-wall 2 7
-
-  add-wall 6 7
-
-  add-wall 9 7
-  add-wall 10 7
+  create-walls 1[set shape "square" set color 125 setxy 0 7]
+  create-walls 1[set shape "square" set color 125 setxy 1 7]
+  create-walls 1[set shape "square" set color 125 setxy 2 7]
+  create-walls 1[set shape "square" set color 125 setxy 6 7]
+  create-walls 1[set shape "square" set color 125 setxy 9 7]
+  create-walls 1[set shape "square" set color 125 setxy 10 7]
 end
 
 to setup-row-8
-  add-wall 0 8
-  add-wall 1 8
-  add-wall 2 8
-
-  add-wall 6 8
-
-  add-wall 9 8
-  add-wall 10 8
+  create-walls 1[set shape "square" set color 125 setxy 0 8]
+  create-walls 1[set shape "square" set color 125 setxy 1 8]
+  create-walls 1[set shape "square" set color 125 setxy 2 8]
+  create-walls 1[set shape "square" set color 125 setxy 6 8]
+  create-walls 1[set shape "square" set color 125 setxy 9 8]
+  create-walls 1[set shape "square" set color 125 setxy 10 8]
 end
 
 to setup-row-9
-  add-wall 0 9
-  add-wall 1 9
-  add-wall 2 9
-  add-wall 3 9
-  add-wall 4 9
-  add-wall 5 9
-  add-wall 6 9
-  add-wall 7 9
-  add-wall 8 9
-  add-wall 9 9
-  add-wall 10 9
+  let index 0 ;Bottom row
+  loop[
+    if (index = 11)[stop]
+    create-walls 1 [set shape "square"
+                    set color 125
+                    setxy index 9
+                    set index (index + 1)
+    ]
+  ]
 end
 
 to setup-row-10
-  add-wall 0 10
-  add-wall 1 10
-  add-wall 2 10
-  add-wall 3 10
-  add-wall 4 10
-  add-wall 5 10
-  add-wall 6 10
-  add-wall 7 10
-  add-wall 8 10
-  add-wall 9 10
-  add-wall 10 10
+    let index 0 ;Bottom row
+  loop[
+    if (index = 11)[stop]
+    create-walls 1 [set shape "square"
+      set color 125
+      setxy index 10
+      set index (index + 1)
+      ]
+  ]
 end
 
 to setup-switches
@@ -251,33 +239,21 @@ end
 
 to send-world-state
   ask patches[
-    let currentx pxcor
-    let currenty pycor
-
     if(count walls-here = 0) [
-      send (word "(is \"patch " currentx " " currenty "\" floor)")
-    ]
+      send (word "(is \"patch " pxcor " " pycor "\" floor)")
+      ]
     ask switches-here [
-      send (word "(is \"patch " currentx " " currenty "\" bay)")
-      send (word "(is \"patch " currentx " " currenty "\" empty)")
-    ]
+      send (word "(is \"patch " pxcor " " pycor "\" bay)")
+      ]
     ask boxes-here [
-      send (word "(holds \"patch " currentx " " currenty "\" \"turtle " who "\")")
+      send (word "(holds \"patch " pxcor " " pycor "\" \"turtle " who "\")")
       send (word "(is \"turtle " who "\" box)")
-    ]
+      ]
     ask players-here [
-      send (word "(holds \"patch " currentx " " currenty "\" \"turtle " who "\")")
+      send (word "(holds \"patch " pxcor " " pycor "\" \"turtle " who "\")")
       send (word "(is \"turtle " who "\" worker)")
-    ]
-    ask neighbors4 [
-      if(count walls-here = 0) [
-        send (word "(adj \"patch " currentx " " currenty "\" \"patch " pxcor " " pycor "\")")
       ]
     ]
-    if(count players-here = 0 and count boxes-here = 0) [
-      send (word "(holds \"patch " currentx " " currenty "\" nil)")
-    ]
-  ]
 
   send -1
 end
