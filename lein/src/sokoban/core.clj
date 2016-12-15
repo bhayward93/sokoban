@@ -131,3 +131,11 @@
 
 (println "Awaiting new world state setup commands...")
 (def state-list (receive-state #{}))
+
+(def goal-state
+  (
+    ((is patch ?x1 ?y1 bay)(holds patch ?x1 ?y1 turtle 80)(is turtle 80 box))
+    ((is patch ?x2 ?y2 bay)(holds patch ?x2 ?y2 turtle 80)(is turtle 80 box))
+    ((is patch ?x3 ?y3 bay)(holds patch ?x3 ?y3 turtle 80)(is turtle 80 box))
+  )
+)
