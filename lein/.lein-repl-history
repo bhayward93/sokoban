@@ -118,3 +118,18 @@ state-list
 exit
 (planner state-list goal-state block-ops)
 exit
+(ops-search state-list goal-state #{})
+exit
+(ops-search state-list goal-state #{})
+(planner state-list goal-state block-ops)
+exit
+(planner state-list goal-state block-ops)
+goal-state
+exit
+goal-state
+(planner state-list goal-state block-ops)
+exit
+(planner state-list goal-state block-ops)
+exit
+(planner state-list goal-state block-ops)
+exit

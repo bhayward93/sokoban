@@ -3,13 +3,16 @@
   (require [cgsx.tools.matcher :refer :all :as matcher]
            [clojure.set :refer :all]))
 
+(defn ui-out [& input]
+  (println input)
+  )
+
 (load-file "./src/sock2/socket.clj")
 (load-file "./src/planner/planner(1a).clj")
 (load-file "./src/Astar/Astar-search(2a).clj")
 (load-file "./src/ops-search/ops-search(1b).clj")
 
 (def s25 (startup-server 2222))
-
 
 (defn -main
   "I don't do a whole lot ... yet."
@@ -88,8 +91,50 @@
       :txt (?agent pushes ?box to ?dest-patch)
       :nl  (  )
      }
+
+   fill-bay
+   {:name fill-bay
+    :acheives (is ?patch full)
+    :when (
+            (is ?patch bay)
+            (holds ?patch ?agent)
+            (is ?agent box)
+          )
+    :post ((holds ?patch agent))
+    :pre ()
+    :del (
+           (is ?patch empty)
+         )
+    :add (
+           (is ?patch full)
+         )
+    :cmd (fill-bay ?patch)
+    :txt (?agent fills ?patch)
+    :nl ()
    }
-  )
+
+   empty-bay
+   {:name empty-bay
+    :acheives (is ?patch empty)
+    :when (
+            (is ?patch bay)
+            (holds ?patch ?agent)
+            (is ?agent worker)
+          )
+    :post ((holds ?patch worker))
+    :pre ()
+    :del (
+           (is ?patch full)
+         )
+    :add (
+           (is ?patch empty)
+         )
+    :cmd (empty-bay ?patch)
+    :txt (?patch no longer holds a box)
+    :nl ()
+   }
+  }
+)
 
 (defn receive-state
   [state-list]
@@ -142,9 +187,9 @@
 
 (def goal-state
   '#{
-    (is ?patch1 bay)(holds ?patch1 ?agent1)(is ?agent1 box)
-    (is ?patch2 bay)(holds ?patch2 ?agent2)(is ?agent2 box)
-    (is ?patch3 bay)(holds ?patch3 ?agent3)(is ?agent3 box)
+    (is patch-5-8 full)
+    (is patch-2-5 full)
+    (is patch-6-2 full)
   }
 )
 
