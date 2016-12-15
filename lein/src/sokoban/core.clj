@@ -8,8 +8,8 @@
   )
 
 (load-file "./src/sock2/socket.clj")
-(load-file "./src/planner/planner(1a).clj")
-(load-file "./src/Astar/Astar-search(2a).clj")
+;(load-file "./src/planner/planner(1a).clj")
+;(load-file "./src/Astar/Astar-search(2a).clj")
 (load-file "./src/ops-search/ops-search(1b).clj")
 
 (def s25 (startup-server 2222))
@@ -40,68 +40,66 @@
   '{move
      {:name move
       :achieves (holds ?dest-patch ?agent)
-      :when (
-              (is    ?agent      worker)
-              (is    ?dest-patch floor)
-              (adj   ?src-patch  ?dest-patch)
-              (holds ?src-patch  ?agent)
+      :when ()
+      :post ()
+      :pre (
+              (is ?agent worker)
+              (is ?dest-patch floor)
+              (adj ?src-patch ?dest-patch)
+              (holds ?src-patch ?agent)
               (holds ?dest-patch nil)
               )
-      :post ()
-      :pre ()
       :del (
-             (holds ?src-patch  ?agent)
+             (holds ?src-patch ?agent)
              (holds ?dest-patch nil)
            )
       :add (
-             (holds ?src-patch  nil)
+             (holds ?src-patch nil)
              (holds ?dest-patch ?agent)
            )
       :cmd ((move ?agent ?dest-patch))
       :txt (?agent moves to ?dest-patch)
-      :nl  (  )
      }
 
     push-box
      {:name push-box
       :achieves (on ?dest-patch ?agent)
-      :when (
-              (is    ?box             box)
-              (is    ?agent           worker)
-              (is    ?dest-patch      floor)
-              (adj   ?box-src-patch   ?dest-patch)
-              (adj   ?agent-src-patch ?box-src-patch)
-              (holds ?dest-patch      nil)
-              (holds ?agent-src-patch ?agent)
-              (holds ?box-src-patch   ?box)
-              )
+      :when ()
       :post ((holds ?agent-src-patch ?agent))
-      :pre ()
+      :pre (
+              (is ?box box)
+              (is ?agent worker)
+              (is ?dest-patch floor)
+              (adj ?box-src-patch ?dest-patch)
+              (adj ?agent-src-patch ?box-src-patch)
+              (holds ?dest-patch nil)
+              (holds ?agent-src-patch ?agent)
+              (holds ?box-src-patch ?box)
+              )
       :del (
-             (holds ?dest-patch      nil)
+             (holds ?dest-patch nil)
              (holds ?agent-src-patch ?agent)
-             (holds ?box-src-patch   ?box)
+             (holds ?box-src-patch ?box)
            )
       :add (
-             (holds ?dest-patch      ?box)
+             (holds ?dest-patch ?box)
              (holds ?agent-src-patch nil)
-             (holds ?box-src-patch   ?agent)
+             (holds ?box-src-patch ?agent)
            )
       :cmd ((push-box ?box))
       :txt (?agent pushes ?box to ?dest-patch)
-      :nl  (  )
      }
 
    fill-bay
    {:name fill-bay
     :acheives (is ?patch full)
-    :when (
+    :when ()
+    :post ((holds ?patch agent))
+    :pre (
             (is ?patch bay)
             (holds ?patch ?agent)
             (is ?agent box)
           )
-    :post ((holds ?patch agent))
-    :pre ()
     :del (
            (is ?patch empty)
          )
@@ -110,19 +108,18 @@
          )
     :cmd (fill-bay ?patch)
     :txt (?agent fills ?patch)
-    :nl ()
    }
 
    empty-bay
    {:name empty-bay
     :acheives (is ?patch empty)
-    :when (
+    :when ()
+    :post ((holds ?patch worker))
+    :pre (
             (is ?patch bay)
             (holds ?patch ?agent)
             (is ?agent worker)
           )
-    :post ((holds ?patch worker))
-    :pre ()
     :del (
            (is ?patch full)
          )
@@ -131,7 +128,6 @@
          )
     :cmd (empty-bay ?patch)
     :txt (?patch no longer holds a box)
-    :nl ()
    }
   }
 )
@@ -147,13 +143,13 @@
       )
   )
 
-(defn apply-op
-  [state {:keys [pre del add txt cmd nl]}]
-  (mfind* [pre state]
-          (union (mout add)
-                 (difference state (mout del))
-          cmd
-                 )))
+;(defn apply-op
+;  [state {:keys [pre del add txt cmd nl]}]
+;  (mfind* [pre state]
+;          (union (mout add)
+;                 (difference state (mout del))
+;          cmd
+;                 )))
 
 ;Cannot get operators to work for setup-ops. This is the state to be used with setup-floor
 ;(apply-op state1 (setup-ops 'set-floor))
@@ -192,14 +188,6 @@
     (is patch-6-2 full)
   }
 )
-
-(defn a*lmg [state]
-  (let [n (:state state)]
-    (list
-      
-      )
-    )
-  )
 
 ;(eval (read-string (socket-read) ) )
 

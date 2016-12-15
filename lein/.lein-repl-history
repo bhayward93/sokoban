@@ -133,3 +133,85 @@ exit
 exit
 (planner state-list goal-state block-ops)
 exit
+(planner state-list goal-state block-ops)
+xit
+exit
+(planner state-list goal-state block-ops)
+(planner state-list #{(holds patch-4-8 turtle 82)} block-ops)
+(planner state-list '#{(holds patch-4-8 turtle 82)} block-ops)
+patch-4-8
+exit
+(planner state-list '#{(holds patch-4-8 turtle 82)} block-ops)
+exit
+(planner state-list '#{(holds patch-4-8 turtle 82)} block-ops)
+exit
+(planner state-list '#{(holds patch-4-8 turtle 82)} block-ops)
+state-list
+(planner state-list '#{(holds patch-4-8 turtle-82)} block-ops)
+(planner state-list '#{(holds patch-2-8 turtle-82)} block-ops)
+(planner state-list '#{(holds patch-3-8 turtle-82)} block-ops)
+(planner state-list '#{(holds patch-3-9 turtle-82)} block-ops)
+(planner state-list '#{(holds patch-3-6 turtle-82)} block-ops)
+(planner state-list '#{(holds patch-4-8 turtle-82)} block-ops)
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops '#{})
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops '())
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops :world)
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops :world '#{})
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+eit
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+(first block-ops)
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+(ops-search state-list '((holds patch-4-8 turtle-82) (holds patch 3-8 nil)) block-ops)
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82) (holds patch 3-8 nil)) block-ops)
+(ops-search state-list '((holds patch-4-8 turtle-82) (holds patch-3-8 nil)) block-ops)
+(ops-search state-list '#{(holds patch-4-8 turtle-82)} block-ops)
+exit
+(ops-search state-list '#{(holds patch-4-8 turtle-82)} block-ops)
+(ops-search state-list '#{(holds patch-4-8 turtle-82) (holds patch-3-8 nil)} block-ops)
+state-list
+exit
+(ops-search state-list '#{(holds patch-4-8 turtle-82)} block-ops)
+exit
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+exi
+exit
+(use 'clojure.tools.trace)
+(trace (* 2 3))
+(trace-vars planner)
+(trace-vars ops-search)
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+(def test-state '#{(is patch-1-1 floor) (is patch-2-1 floor) (holds patch-1-1 bob) (is bob worker) (adj patch-1-1 patch-2-1)})
+test-state
+(ops-search test-state '((holds patch-2-1 bob)) block-ops)
+(untrace-vars ops-search
+)
+(trace-vars apply-op)
+(ops-search test-state '((holds patch-2-1 bob)) block-ops)
+exit
+(trace-vars apply-op)
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(ops-search test-state '((holds patch-2-1 bob)) block-ops)
+(def test-state '#{(is patch-1-1 floor) (is patch-2-1 floor) (holds patch-1-1 bob) (is bob worker) (adj patch-1-1 patch-2-1)})
+(ops-search test-state '((holds patch-2-1 bob)) block-ops)
+(def test-state '#{(is patch-1-1 floor) (is patch-2-1 floor) (holds patch-1-1 bob) (is bob worker) (adj patch-1-1 patch-2-1) (adj patch-2-1 patch-1-1})
+(def test-state '#{(is patch-1-1 floor) (is patch-2-1 floor) (holds patch-1-1 bob) (is bob worker) (adj patch-1-1 patch-2-1) (adj patch-2-1 patch-1-1)})
+(ops-search test-state '((holds patch-2-1 bob)) block-ops)
+(def test-state '#{(is patch-1-1 floor) (is patch-2-1 floor) (holds patch-1-1 bob) (holds patch-2-1 nil) (is bob worker) (adj patch-1-1 patch-2-1) (adj patch-2-1 patch-1-1)})
+(ops-search test-state '((holds patch-2-1 bob)) block-ops)
+(untrace-vars apply-ops)
+(untrace-vars apply-op))
+(ops-search test-state '((holds patch-2-1 bob)) block-ops)
+(trace-vars apply-op)
+(ops-search state-list '((holds patch-4-8 turtle-82)) block-ops)
+exit
