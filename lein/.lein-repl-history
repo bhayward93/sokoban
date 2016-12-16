@@ -349,3 +349,26 @@ exir
 exit
 (planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
 exit
+(ops-search object-state '((at patch-4-8 turtle-0)) block-ops :world world-state)
+(ops-search object-state '((at patch-4-8 turtle-3)) block-ops :world world-state)
+(use 'clojure.tools.trace)
+(trace-vars update-state-map)
+(ops-search object-state '((at patch-7-6 turtle-0)) block-ops :world world-state)
+exit
+(first ops)
+(first block-ops)
+(apply-op (first block-ops) object-state world-state)
+exit
+(apply-op (first block-ops) object-state world-state)
+exit
+(load-file "./src/sokoban/astar.clj
+(move world-state (second object-state) 1 0)
+mfind* ['([(+ (first player) x) (+ (second player) y) ?z] [?x ?y 1]) world] (? x, ?y, ?z)]
+(move world-state (second object-state) 1 0)
+(load-file "./src/sokoban/astar.clj
+")
+(load-file "./src/sokoban/astar.clj")
+exit
+(load-file "./src/sokoban/astar.clj")
+block-ops
+exit

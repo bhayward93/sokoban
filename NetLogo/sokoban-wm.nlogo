@@ -247,6 +247,27 @@ create-players 1[set shape "person"
                  setxy 3 8]
 end
 
+to send-astar-state
+  ask patches[
+    if(pcolor = orange - 4 or pcolor = red + 4)[
+      send (word "(" pxcor " " pycor " " 0 ")")
+    ]
+    if(pcolor = brown)[
+      send (word "(" pxcor " "pycor " " 100 ")")
+    ]
+  ]
+
+  send -1
+
+  ask turtles [
+    let name breed
+    ask patch-here[
+      send (word "(" pxcor " " pycor " " name ")")
+    ]
+  ]
+  send -1
+end
+
 to send-world-state
   send-immutable-state
   send-mutable-state
@@ -370,6 +391,23 @@ BUTTON
 119
 send world state
 send-world-state
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+31
+128
+164
+161
+Send A* State
+send-astar-state
 NIL
 1
 T

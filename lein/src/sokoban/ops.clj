@@ -1,10 +1,6 @@
 (def block-ops
   '{move
-     {:name move
-      :achieves (at ?dest-patch ?agent)
-      :when ((at ?dest-patch nil))
-      :post ((at ?src-patch ?agent))
-      :pre (
+     {:pre (
               (worker ?agent)
               (floor ?dest-patch)
               (connects ?src-patch ?dest-patch)
@@ -24,20 +20,7 @@
      }
 
     push-box
-     {:name push-box
-      :achieves (at ?dest-patch ?agent)
-      :when (
-              (box ?box)
-              (worker ?agent)
-              (floor ?dest-patch)
-              (connects ?box-src-patch ?dest-patch)
-              (connects ?agent-src-patch ?box-src-patch)
-              (at ?dest-patch nil)
-              (at ?agent-src-patch ?agent)
-              (at ?box-src-patch ?box)
-              )
-      :post ((at ?agent-src-patch ?agent))
-      :pre (
+     {:pre (
               (box ?box)
               (worker ?agent)
               (floor ?dest-patch)
@@ -62,20 +45,7 @@
      }
 
    load-bay
-   {:name load-bay
-    :acheives (loaded ?box-patch)
-    :when (
-            (floor ?box-patch)
-            (bay ?box-patch)
-            (unloaded ?box-patch)
-            (at ?box-patch ?box)
-            (at ?agent-patch ?agent)
-            (connects ?agent-patch ?box-patch)
-            (worker ?agent)
-            (box ?box)
-          )
-    :post ()
-    :pre (
+   {:pre (
             (floor ?box-patch)
             (bay ?box-patch)
             (unloaded ?box-patch)
@@ -96,17 +66,7 @@
    }
 
    unload-bay
-   {:name unload-bay
-    :acheives (unloaded ?box-patch)
-    :when (
-            (floor ?dest-patch)
-            (bay ?box-patch)
-            (loaded ?box-patch)
-            (at ?box-patch ?agent)
-            (worker ?agent)
-          )
-    :post ()
-    :pre (
+   {:pre (
             (floor ?dest-patch)
             (bay ?box-patch)
             (loaded ?box-patch)
