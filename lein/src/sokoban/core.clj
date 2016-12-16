@@ -8,8 +8,8 @@
   )
 
 (load-file "./src/planner/planner(1a).clj")
-(load-file "./src/Astar/Astar-search(2a).clj")
-(load-file "./src/ops-search/ops-search(1b).clj")
+;(load-file "./src/Astar/Astar-search(2a).clj")
+;(load-file "./src/ops-search/ops-search(1b).clj")
 (load-file "./src/sokoban/ops.clj")
 (load-file "./src/sokoban/socket.clj")
 

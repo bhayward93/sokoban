@@ -1,42 +1,3 @@
-exit
-(absorb)
-(cgsx.tools.matcher)
-clear
-exit
-(apply-op setup-ops)
-exit
-(socket-read s25)
-quit
-(mfind ['(set-floor ?patch) setup-ops] (? f))
-(mfind ['{:cmd (set-floor ?patch)} setup-ops] (? f))
-(mfind* ['{:cmd (set-floor ?patch)} setup-ops] (? f))
-(mfind* ['{:cmd (set-floor ?patch)} setup-ops] (? patch))
-(mfind ['{:cmd (set-floor ?patch)} setup-ops] (? patch))
-(mfind* [cmd setup-ops])
-state2
-(mfind* ['(is ?dest-patch floor) state2)
-(mfind* ['(is ?dest-patch floor) state2])
-(mfind* ['(is ?dest-patch floor) state2] println)
-exit
-cmd-list
-(receive-cmd cmd-list (set-box bob))
-(receive-cmd cmd-list '(set-box bob))
-cmd-list
-exit
-cmd-list
-(-> cmd-list (receive-cmd cmd-list '(set-box bob)))
-(receive-cmd cmd-list '(set-box bob))
-(-> cmd-list (receive-cmd cmd-list '(set-box bob)))
-(-> cmd-list '(receive-cmd cmd-list '(set-box bob)))
-(-> cmd-list (receive-cmd cmd-list '(set-box bob)))
-exit]
-(receive-cmd cmd-list '(set-box bob))
-(receive-cmd cmd-list (set-box bob))
-exit
-cmd-list
-(receive-cmd cmd-list '(set-box bob))
-exit
-cmd-list
 (receive-cmd cmd-list '(set-box bob))
 cmd-list
 exit
@@ -371,4 +332,169 @@ mfind* ['([(+ (first player) x) (+ (second player) y) ?z] [?x ?y 1]) world] (? x
 exit
 (load-file "./src/sokoban/astar.clj")
 block-ops
+exit
+(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
+block-ops
+exit
+(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
+(use 'clojure.tools.trace)
+(trace-vars update-path)
+(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
+(untrace-vars update-path)
+(trace-vars strips-loop))
+(trace-vars strips-loop)
+(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
+(planner (conj world-state object-state) '((holds patch-4-8 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((holds patch-4-8 worker-3)) block-ops)
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+(planner (conj world-state object-state) '(at patch-4-8 worker-3) block-ops)
+exi
+exit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+(planner (conj world-state object-state) '#{(at patch-4-8 worker-3)} block-ops)
+eit
+exit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+(planner (conj world-state object-state) '#{(at patch-4-8 worker-3)} block-ops)
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+(planner (conj world-state object-state) '#{(at patch-4-8 worker-3)} block-ops)
+exit
+(planner (conj world-state object-state) '#{(at patch-4-8 worker-3)} block-ops)
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+block-ops
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-8-6 worker-3)) block-ops)
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+(planner (conj world-state object-state) '((protected worker-3)) block-ops)
+world-state
+(planner (conj world-state object-state) '((protected worker-3)) block-ops)
+(planner (conj world-state object-state) ((protected worker-3)) block-ops)
+(planner (conj world-state object-state) '(protected worker-3) block-ops)
+exit
+(planner (conj world-state object-state) '(protected worker-3) block-ops)
+(planner (conj world-state object-state) '((protected worker-3)) block-ops)
+exit
+(planner (conj world-state object-state) '((protected worker-3)) block-ops)
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+(planner '((worker worker-3)) '((protected worker-3)) block-ops)
+exit
+(planner '((worker worker-3)) '((protected worker-3)) block-ops)
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+(planner (conj world-state object-state) '((protected worker-3)) block-ops)
+(planner (conj world-state object-state) '((protected worker-3)) block-ops)exit
+quit
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+quit
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+quit
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+quit
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+quit
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+quit
+(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
+(planner '#{(worker worker-3)} '((protected worker-3)) block-ops)
+(planner '#{(worker worker-3) (at patch-1 worker-3) (at patch-2 nil) (connected patch-1 patch-2) (connected patch-2 patch-1)} '((at patch-2 worker-3)) block-ops)
+(planner '#{(worker worker-3) (floor patch-1) (floor patch-2) (at patch-1 worker-3) (at patch-2 nil) (connects patch-1 patch-2) (connects patch-2 patch-1)} '((at patch-2 worker-3)) block-ops)
+quit
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+world-state
+quit
+world-state
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-9 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-5-8 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-5-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+(planner world-state '((at patch-5-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-5-7 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
+(planner world-state '((at patch-4-8 worker-3)) block-ops)
+(planner world-state '((at patch-4-7 worker-3)) block-ops)
 exit

@@ -45,7 +45,7 @@
       (doseq [x q]
         (ui-out :dbg "      " (if (map? x) [(:name x) :=> (:achieves x)] x))
         )
-      ;(ui-out :dbg '------)
+      (ui-out :dbg '------)
       )
     ))
 
@@ -67,7 +67,7 @@
   (if (zero? limit)
     (throw (new RuntimeException "limit exceeded in run-goal-ops")))
 
-  ;(println path)
+  (println path)
   (print-goals @goalq)
 
   (if-let [goal (.poll @goalq)]
@@ -75,7 +75,7 @@
       (map? goal) ;; it is a partially matched op
       (do
         (ui-out :dbg '** 'APPLYING (:name goal) '=> (:achieves goal))
-       ; (ui-out :dbg '** (:add goal))
+        (ui-out :dbg '** (:add goal))
         (recur
           (update-path path (goal-mop-apply (:state path) goal))
           goal-ops (dec limit))
@@ -100,7 +100,7 @@
 (defn goal-mop-apply [bd mop]
   (mfind* [(:pre mop) bd]
     (ui-out :dbg '** (mout (:add mop)))
-   ; (ui-out :dbg '=> (mout mop))
+    (ui-out :dbg '=> (mout mop))
     {:state (union (mout (:add mop))
               (difference bd (mout (:del mop))))
      :cmd   (mout (:cmd mop))
@@ -110,19 +110,19 @@
 
 
 (defn apply-goal-op [bd goal op]
-  ;(println (list 'trying (:name op)))
+  (println (list 'trying (:name op)))
   (mlet [(:achieves op) goal]
 
     (mfind* [(:when op) bd]
       (ui-out :dbg 'using=> (:name op))
       (let [mop (mout op)]
-        ;(println (list 'new-mop mop))
+        (println (list 'new-mop mop))
         (.push @goalq mop)
         (ui-out :dbg 'new-goals (or (:post mop) '-none))
         (doseq [p (reverse (:post mop))]
           (.push @goalq p))
 
-        ;(println (list 'succeeded (:name op)))
+        (println (list 'succeeded (:name op)))
         true
         ))
     ))

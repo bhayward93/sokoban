@@ -286,10 +286,10 @@ to send-immutable-state
       send (word "(bay patch-" currentx "-" currenty ")")
     ]
     ask boxes-here [
-      send (word "(box turtle-" who ")")
+      send (word "(box box-" who ")")
     ]
     ask players-here [
-      send (word "(worker turtle-" who ")")
+      send (word "(worker worker-" who ")")
     ]
     ask neighbors4 [
       if not(currentcolor = brown or pcolor = brown) [
@@ -298,7 +298,7 @@ to send-immutable-state
     ]
   ]
 
-  send -1
+  ;send -1
 end
 
 to send-mutable-state
@@ -310,16 +310,17 @@ to send-mutable-state
       send (word "(unloaded patch-" currentx "-" currenty ")")
     ]
     ask boxes-here [
-      send (word "(at patch-" currentx "-" currenty " turtle-" who ")")
+      send (word "(at patch-" currentx "-" currenty " box-" who ")")
     ]
     ask players-here [
-      send (word "(at patch-" currentx "-" currenty " turtle-" who ")")
+      send (word "(at patch-" currentx "-" currenty " worker-" who ")")
     ]
     if((pcolor = orange - 4 or pcolor = red + 4) and (count players-here = 0 and count boxes-here = 0)) [
       send (word "(at patch-" currentx "-" currenty " nil)")
     ]
   ]
 
+  send -1
   send -1
 end
 @#$#@#$#@
