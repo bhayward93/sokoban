@@ -1,36 +1,68 @@
 (def block-ops
   '{:move
-     {:name move
-      :achieves ((at ?d ?w))
-      :when (
-              (at ?s ?w)
-              (at ?d nil)
-              (worker ?w)
-              (floor ?d)
-              (connects ?s ?d)
-              )
-      :post ( 
-              (protected ?w [at ?s ?w])
-              )
-      :pre (
-              (at ?s ?w)
-              (at ?d nil)              
-              (worker ?w)
-              (floor ?d)
-              (connects ?s ?d)
-              )
-      :del (
-             (protected ?w [at ?s ?w])
-             (at ?d nil)
-           )
-      :add (
-             (at ?s nil)
-             (at ?d ?w)
-           )
-      :cmd [move ?w ?d]
-      :txt (?w moves to ?d)
-      }
-
+    {:name move
+     :achieves (at ?d ?w)
+     :when ((worker ?w) (floor ?d) (floor ?s) (at ?d nil) (connects ?s ?d) (:not (protected ?w [at ?s ?w])))
+     :post ((protected ?w [at ?d ?w]) (at ?s ?w))
+     :pre ((worker ?w) (floor ?d) (floor ?s) (at ?d nil) (connects ?s ?d))
+     :del ((protected ?w [at ?s ?w]) (at ?s ?w) (at ?d nil))
+     :add ((at ?s nil) (at ?d ?w))
+     :cmd [move ?w ?d]
+     :txt (?w moves to ?d)
+     }
+	  
+	   :protect-x
+	   {:name protect-x
+	    :achieves (protected ?x ?c)
+	    :add ((protected ?x ?c))
+	    :cmd [protect-x]
+	    :txt (?x protected)
+	    }
+    }
+  )
+    
+    
+    
+    
+    
+;    :move
+;     {:name move
+;      :achieves (at ?d ?w)
+;      :when (
+;              (worker ?w)
+;              (floor ?d)
+;              (floor ?s)
+;              (at ?d nil)
+;              (connects ?s ?d)
+;              ;(:not (visited ?s ?w))
+;              )
+;      :post ( 
+;              ;(protected ?w [at ?s ?w])
+;              (at ?s ?w)
+;              )
+;      :pre (
+;              (at ?s ?w)
+;              (at ?d nil)              
+;              (worker ?w)
+;              (floor ?d)
+;              (connects ?s ?d)
+;              ;(:not (visited ?s ?w))
+;              )
+;      :del (
+;             ;(protected ?w [at ?s ?w])
+;             (at ?s ?w)
+;             (at ?d nil)
+;           )
+;      :add (
+;             (visited ?s ?w)
+;             (at ?s nil)
+;             (at ?d ?w)
+;           )
+;      :cmd [move ?w ?d]
+;      :txt (?w moves to ?d)
+;      }
+;     
+;     
 ;     :push-box
 ;     {:name push-box
 ;      :achieves (at ?dest-patch ?box)
@@ -109,12 +141,5 @@
 ;    :txt (?box-patch no longer holds a box)
 ;   }
 ;   
-   :protect-x
-   {:name protect-x
-    :achieves ((protected ?x ?c))
-    :add ((protected ?x ?c))
-    :cmd [protect-x]
-    :txt (?x protected)
-    }
-  }
-)
+;  }
+;)
