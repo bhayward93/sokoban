@@ -316,7 +316,7 @@ to send-mutable-state
       send (word "(at patch-" currentx "-" currenty " worker-" who ")")
     ]
     if((pcolor = orange - 4 or pcolor = red + 4) and (count players-here = 0 and count boxes-here = 0)) [
-      send (word "(at patch-" currentx "-" currenty " nil)")
+      send (word "(at patch-" currentx "-" currenty " none)")
     ]
   ]
 

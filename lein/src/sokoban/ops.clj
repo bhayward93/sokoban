@@ -1,26 +1,33 @@
-(def block-ops
-  '{:start
-    {:name start
-     :acheives (start)
-     :when ((worker ?w) (floor ?p) (at? ?p ?w) (protected [at ?p ?w]))
-     }
+(def goal-ops
+  '{
+;    :start
+;    {:name start
+;     :achieves (start ?p ?w)
+;     :when ((worker ?w) (floor ?p) (at ?p ?w) (protected ?w [at ?p ?w]))
+;     :post ()
+;     :pre ()
+;     :del ()
+;     :add ()
+;     :cmd ()
+;     :txt ()
+;     }
     
     :move
     {:name move
      :achieves (at ?d ?w)
-     :when ((worker ?w) (floor ?d) (at ?d nil) (connects ?s ?d) (:not (protected ?w [dest ?s ?w])))
-     :post ((protected ?w [dest ?d ?w]) (protected ?w [at ?s ?w]) (start) (at ?s ?w))
-     :pre ((worker ?w) (floor ?d) (at ?d nil) (connects ?s ?d) (:not (protected ?w [dest ?s ?w])))
-     :del ((protected ?w [dest ?s ?w]) (protected ?w [at ?_ ?w]) (at ?s ?w) (at ?d nil))
-     :add ((at ?s nil) (at ?d ?w))
-     :cmd [move ?w ?d]
+     :when ((worker ?w) (floor ?d) (at ?d none) (connects ?s ?d) (:not (destination ?s)))
+     :post ((destination ?d) (at ?s ?w))
+     :pre ()
+     :del ((protected ?w [dest ?s ?w]) (at ?s ?w) (at ?d none))
+     :add ((at ?s none) (at ?d ?w))
+     :cmd (move ?w ?d)
      :txt (?w moves to ?d)
      }
     
-	   :protect-x
-	   {:name protect-x
-	    :achieves (protected ?x ?c)
-	    :add ((protected ?x ?c))
+	   :protect-dest
+	   {:name protect-dest
+	    :achieves (destination ?x)
+	    :add ((destination ?x))
 	    }
     }
   )

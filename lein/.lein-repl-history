@@ -1,76 +1,3 @@
-(ops-search state-list goal-state block-ops)
-exit
-(planner state-list goal-state block-ops)
-exir
-exit
-(planner state-list goal-state block-ops)
-(planner state-list '((is patch-6-2 loaded) (is patch-5-8 loaded) (is patch-2-5 loaded)) block-ops)
-(ops-search state-list goal-state block-ops)
-(use 'clojure.tools.trace)
-(trace-vars update-state-map)
-(ops-search state-list goal-state block-ops)
-exit
-(ops-search state-list goal-state block-ops)
-(ops-search state-list '((holds ?x ?y) (is ?x bay) (is ?y box)) block-ops)
-(ops-search state-list '((holds patch-5-8 ?y) (is patch-5-8 bay) (is ?y box)) block-ops)
-(ops-search state-list '((holds patch-8-6 turtle-82)) block-ops)
-(planner state-list '((holds patch-8-6 turtle-82)) block-ops)
-(planner state-list '((holds patch-5-5 turtle-82)) block-ops)
-(planner state-list '((holds patch-5-6 turtle-82)) block-ops)
-(ops-search state-list '((holds patch-5-6 turtle-82)) block-ops)
-exit
-world-state
-exit
-world-state
-object-state
-(ops-search state-list '((holds patch-5-6 turtle-82)) block-ops :world world-state))
-(ops-search object '((holds patch-5-6 turtle-82)) block-ops :world world-state))
-(ops-search object-state '((holds patch-5-6 turtle-82)) block-ops :world world-state))
-(use 'clojure.tools.trace)
-(trace-vars update-state-map)
-(ops-search object-state '((holds patch-5-6 turtle-82)) block-ops :world world-state))
-world-state
-exit
-world-state
-exit
-world-state
-object-state
-(planner state-list '((holds patch-5-6 turtle-82)) block-ops)
-(planner (conj object-state world-state) '((holds patch-5-6 turtle-82)) block-ops)
-(planner (conj object-state world-state) '((holds patch-5-6 turtle-3)) block-ops)
-exit
-world
-world-state
-object-state
-(planner (conj object-state world-state) '((holds patch-5-6 turtle-3)) block-ops)
-exit
-(planner (conj object-state world-state) '((holds patch-5-6 turtle-3)) block-ops)
-(ops-search object-state '((holds patch-5-6 turtle-3)) block-ops :world world-state))
-(use 'clojure.tools.trace)
-(trace-vars update-state-map)
-(ops-search object-state '((holds patch-5-6 turtle-3)) block-ops :world world-state))
-(ops-search object-state '((at patch-5-6 turtle-3)) block-ops :world world-state))
-(ops-search object-state '((at patch-4-8 turtle-3)) block-ops :world world-state))
-exit
-world-state
-object-state
-(untrace-vars update-state-map)
-(ops-search object-state '((at patch-4-8 turtle-3)) block-ops :world world-state))
-exit
-(ops-search object-state '((at patch-4-8 turtle-3)) block-ops :world world-state))
-(ops-search object-state '((at patch-4-8 turtle-3)) block-ops :world world-state)
-(ops-search object-state '((at patch-7-8 turtle-3)) block-ops :world world-state)
-(ops-search object-state '((at patch-7-6 turtle-0)) block-ops :world world-state)
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
-(planner (conj object-state world-state) '(at patch-4-8 turtle-3) block-ops)
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) bexitlock-ops)
-exit
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
-goal <- (pop goal-stack)
-exit
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
-exit
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
 exir
 exit
 (planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
@@ -497,4 +424,77 @@ exit
 (planner world-state '(at patch-4-7 worker-3) block-ops)
 exit
 (planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exir
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+(use 'clojure.tools.trace)
+(trace-vars contains?)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(use 'clojure.tools.trace)
+(trace-vars contains?)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+clear
+exit
+(use 'clojure.tools.trace)
+(trace-vars contains?)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+world-state
+(use 'clojure.tools.trace))
+(use 'clojure.tools.trace)
+(trace-vars update-path))
+(trace-vars update-path)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(use 'clojure.tools.trace)
+(trace-vars update-path)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(use 'clojure.tools.trace)
+(trace-vars update-path)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(use 'clojure.tools.trace)
+(trace-vars update-path)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(use 'clojure.tools.trace)
+(trace-vars update-path)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+(planner world-state '(at patch-3-8 worker-3) block-ops)
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
 exit
