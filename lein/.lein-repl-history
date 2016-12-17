@@ -1,39 +1,4 @@
 (ops-search state-list goal-state block-ops)
-(use clojure.tools.trace)
-'(use clojure.tools.trace)
-(trace-vars apply-op)
-(use 'clojure.tools.trace)
-(trace-vars apply-op)
-(ops-search state-list goal-state block-ops)
-exit
-(ops-search state-list goal-state block-ops)
-clear
-(use 'clojure.tools.trace)
-(trace-vars apply-op)
-(ops-search state-list goal-state block-ops)
-exit
-(ops-search state-list goal-state block-ops)
-(use 'clojure.tools.trace)
-(trace-vars apply-op)
-(ops-search state-list goal-state block-ops)
-exit
-(use 'clojure.tools.trace)
-(trace-vars apply-op)
-(ops-search state-list goal-state block-ops)
-exit
-(ops-search state-list goal-state block-ops)
-exit
-(ops-search state-list goal-state block-ops)
-exit
-(planner state-list goal-state block-ops)
-exit
-(planner state-list goal-state block-ops)
-exit
-(planner state-list goal-state block-ops)
-(ops-search state-list goal-state block-ops)
-exit
-(planner state-list goal-state block-ops)
-(ops-search state-list goal-state block-ops)
 exit
 (planner state-list goal-state block-ops)
 exir
@@ -489,6 +454,41 @@ exit
 (planner world-state '((at patch-4-7 worker-3)) block-ops)
 exit
 (planner world-state '((at patch-4-7 worker-3)) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+(planner world-state '(at patch-6-6 worker-3) block-ops)
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+clear
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+exir
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
+exit
+(planner world-state '(at patch-4-7 worker-3) block-ops)
 exit
 (planner world-state '(at patch-4-7 worker-3) block-ops)
 exit

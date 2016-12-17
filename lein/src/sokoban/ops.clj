@@ -1,22 +1,26 @@
 (def block-ops
-  '{:move
+  '{:start
+    {:name start
+     :acheives (start)
+     :when ((worker ?w) (floor ?p) (at? ?p ?w) (protected [at ?p ?w]))
+     }
+    
+    :move
     {:name move
      :achieves (at ?d ?w)
-     :when ((worker ?w) (floor ?d) (floor ?s) (at ?d nil) (connects ?s ?d) (:not (protected ?w [at ?s ?w])))
-     :post ((protected ?w [at ?d ?w]) (at ?s ?w))
-     :pre ((worker ?w) (floor ?d) (floor ?s) (at ?d nil) (connects ?s ?d))
-     :del ((protected ?w [at ?s ?w]) (at ?s ?w) (at ?d nil))
+     :when ((worker ?w) (floor ?d) (at ?d nil) (connects ?s ?d) (:not (protected ?w [dest ?s ?w])))
+     :post ((protected ?w [dest ?d ?w]) (protected ?w [at ?s ?w]) (start) (at ?s ?w))
+     :pre ((worker ?w) (floor ?d) (at ?d nil) (connects ?s ?d) (:not (protected ?w [dest ?s ?w])))
+     :del ((protected ?w [dest ?s ?w]) (protected ?w [at ?_ ?w]) (at ?s ?w) (at ?d nil))
      :add ((at ?s nil) (at ?d ?w))
      :cmd [move ?w ?d]
      :txt (?w moves to ?d)
      }
-	  
+    
 	   :protect-x
 	   {:name protect-x
 	    :achieves (protected ?x ?c)
 	    :add ((protected ?x ?c))
-	    :cmd [protect-x]
-	    :txt (?x protected)
 	    }
     }
   )
