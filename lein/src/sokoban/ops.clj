@@ -11,15 +11,15 @@
 ;     :cmd ()
 ;     :txt ()
 ;     }
-    
+;    (planner (conj world-state object-state) '(at patch-4-8 worker-3) goal-ops)
     :move
     {:name move
      :achieves (at ?d ?w)
-     :when ((worker ?w) (floor ?d) (at ?d none) (connects ?s ?d) (:not (destination ?s)))
-     :post ((destination ?d) (at ?s ?w))
+     :when ((worker ?w) (floor ?d) (at ?d none) (connects ?s ?d) (connects ?d ?s) (:not (last-patch ?d)))
+     :post (at ?s ?w)
      :pre ()
-     :del ((protected ?w [dest ?s ?w]) (at ?s ?w) (at ?d none))
-     :add ((at ?s none) (at ?d ?w))
+     :del ((last-patch ?x) (at ?s ?w) (at ?d none))
+     :add ((at ?s none) (at ?d ?w) (last-patch ?s))
      :cmd (move ?w ?d)
      :txt (?w moves to ?d)
      }
