@@ -1,60 +1,3 @@
-exir
-exit
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
-exit
-(planner (conj object-state world-state) '((at patch-4-8 ?x) (worker ?x)) block-ops)
-(ops-search object-state '((at patch-7-6 ?x) (worker ?x)) block-ops :world world-state)
-(use 'clojure.tools.trace)
-(trace-vars update-state-map)
-(ops-search object-state '((at patch-7-6 turtle-0)) block-ops :world world-state)
-exit
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
-exir
-exit
-(planner (conj object-state world-state) '((at patch-4-8 turtle-3)) block-ops)
-exit
-(ops-search object-state '((at patch-4-8 turtle-0)) block-ops :world world-state)
-(ops-search object-state '((at patch-4-8 turtle-3)) block-ops :world world-state)
-(use 'clojure.tools.trace)
-(trace-vars update-state-map)
-(ops-search object-state '((at patch-7-6 turtle-0)) block-ops :world world-state)
-exit
-(first ops)
-(first block-ops)
-(apply-op (first block-ops) object-state world-state)
-exit
-(apply-op (first block-ops) object-state world-state)
-exit
-(load-file "./src/sokoban/astar.clj
-(move world-state (second object-state) 1 0)
-mfind* ['([(+ (first player) x) (+ (second player) y) ?z] [?x ?y 1]) world] (? x, ?y, ?z)]
-(move world-state (second object-state) 1 0)
-(load-file "./src/sokoban/astar.clj
-")
-(load-file "./src/sokoban/astar.clj")
-exit
-(load-file "./src/sokoban/astar.clj")
-block-ops
-exit
-(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
-block-ops
-exit
-(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
-exit
-(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
-(use 'clojure.tools.trace)
-(trace-vars update-path)
-(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
-(untrace-vars update-path)
-(trace-vars strips-loop))
-(trace-vars strips-loop)
-(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
-exit
-(planner (conj world-state object-state) '((holds patch-4-8 turtle-3)) block-ops)
-(planner (conj world-state object-state) '((holds patch-4-8 worker-3)) block-ops)
-exit
-(planner (conj world-state object-state) '((holds patch-4-8 worker-3)) block-ops)
-(planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
 exit
 (planner (conj world-state object-state) '((at patch-4-8 worker-3)) block-ops)
 (planner (conj world-state object-state) '(at patch-4-8 worker-3) block-ops)
@@ -498,3 +441,60 @@ exit
 exit
 (planner world-state '(at patch-4-8 worker-3) block-ops)
 exit
+(planner world-state '(at patch-4-8 worker-3) block-ops)
+(planner world-state '(at patch-4-8 worker-3) goal-ops)
+(planner world-state '(at patch-5-8 worker-3) goal-ops)
+(planner world-state '(at patch-5-7 worker-3) goal-ops)
+exit
+(planner world-state '(at patch-5-7 worker-3) goal-ops)
+exit
+(planner world-state '(at 5 7 worker-3) goal-ops)
+exit
+(planner world-state '(at 5 7 worker-3) goal-ops)
+exit
+(planner world-state '(at 5 7 worker-3) goal-ops)
+(planner world-state '(at 5 8 worker-3) goal-ops)
+(planner world-state '(at 4 8 worker-3) goal-ops)
+(planner world-state '(at 3 7 worker-3) goal-ops)
+exit
+(planner world-state '(at 3 7 worker-3) goal-ops)
+exit
+(planner world-state '(at 3 7 worker-3) goal-ops)
+exit
+((sort planner world-state) '(at 3 7 worker-3) goal-ops)
+('(sort planner world-state) '(at 3 7 worker-3) goal-ops)
+(planner (sort world-state) '(at 3 7 worker-3) goal-ops)
+(planner '(sort world-state) '(at 3 7 worker-3) goal-ops)
+exit
+(planner world-state '(at (3 7) w3) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+eit
+exit
+(planner world-state '(at (3 7) w0) goal-ops)
+exit
+(planner world-state '(at '(3 7) w0) goal-ops)
+(planner world-state '(at '(3 7) w0)) goal-ops)
+(planner world-state '(goal '(at '(3 7) w0)) goal-ops)
+exit
+(planner world-state '(goal '(at '(3 7) w0)) goal-ops)
+exit
+(planner world-state '(at '(3 7) w0) goal-ops)
+exit
+(planner world-state '(at '(3 7) w0) goal-ops)

@@ -5,6 +5,9 @@ breed [switches switch]
 breed [walls wall]
 breed [players player]
 
+patches-own[id]
+turtles-own[t-id]
+
 to setup
   reset
   define-map
@@ -269,54 +272,57 @@ to send-astar-state
 end
 
 to send-world-state
-  send-immutable-state
-  send-mutable-state
-end
+  let w 0
+  let b 0
 
-to send-immutable-state
-  ask patches[
-    let currentx pxcor
-    let currenty pycor
-    let currentcolor pcolor
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      set id (word "'(" pxcor " " pycor ")")
 
-    if(pcolor = orange - 4) [
-      send (word "(floor patch-" currentx "-" currenty ")")
-    ]
-    if(pcolor = red + 4) [
-      send (word "(bay patch-" currentx "-" currenty ")")
-    ]
-    ask boxes-here [
-      send (word "(box box-" who ")")
-    ]
-    ask players-here [
-      send (word "(worker worker-" who ")")
-    ]
-    ask neighbors4 [
-      if not(currentcolor = brown or pcolor = brown) [
-        send (word "(connects patch-" currentx "-" currenty " patch-" pxcor "-" pycor ")")
+      if (pcolor = orange - 4 or pcolor = red + 4) [
+        send (word "(isa " id " floor)")
+      ]
+
+      if (pcolor = red + 4) [
+        send (word "(isa " id " bay)")
+      ]
+
+      let pid id
+
+      if (pcolor != brown and count players-here > 0) [
+        ask players-here [
+          set t-id (word "w" w)
+          set w w + 1
+
+          send (word "(isa " t-id " worker)")
+          send (word "(at " pid " " t-id ")")
+        ]
+      ]
+
+      if (pcolor != brown and count boxes-here > 0) [
+        ask boxes-here [
+          set t-id (word "b" b)
+          set b b + 1
+
+          send (word "(isa " t-id " box)")
+          send (word "(on " pid " " t-id ")")
+        ]
+      ]
+
+      if (pcolor != brown and count turtles-here = 0) [
+        send (word "(on " pid " none)")
       ]
     ]
-  ]
+  ])
 
-  ;send -1
-end
+  ask patches [
+    let pid id
 
-to send-mutable-state
-  ask patches[
-    let currentx pxcor
-    let currenty pycor
-
-    if(pcolor = red + 4) [
-      send (word "(unloaded patch-" currentx "-" currenty ")")
-    ]
-    ask boxes-here [
-      send (word "(at patch-" currentx "-" currenty " box-" who ")")
-    ]
-    ask players-here [
-      send (word "(at patch-" currentx "-" currenty " worker-" who ")")
-    ]
-    if((pcolor = orange - 4 or pcolor = red + 4) and (count players-here = 0 and count boxes-here = 0)) [
-      send (word "(at patch-" currentx "-" currenty " none)")
+    ask neighbors4 [
+      if (pcolor != brown) [
+        send (word "(connects " pid " " id ")")
+        send (word "(connects " id " " pid ")")
+      ]
     ]
   ]
 

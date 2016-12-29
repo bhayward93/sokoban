@@ -12,23 +12,63 @@
 ;     :txt ()
 ;     }
 ;    (planner (conj world-state object-state) '(at patch-4-8 worker-3) goal-ops)
+
     :move
     {:name move
-     :achieves (at ?d ?w)
-     :when ((worker ?w) (floor ?d) (at ?d none) (connects ?s ?d) (connects ?d ?s) (:not (last-patch ?d)))
-     :post (at ?s ?w)
+     :achieves (at '(?dx ?dy) ?w)
+     :when (
+             (isa ?w worker)
+             (isa '(?sx ?sy) floor)
+             (isa '(?dx ?dy) floor)
+             (on '(?sx ?sy) none) 
+             (connects '(?sx ?sy) '(?dx ?dy))
+             (goal ?g)
+             (:not (destination ?x ?g))
+             )
+     :post ((destination ?s ?g) (at '(?sx ?sy) ?w))
      :pre ()
-     :del ((last-patch ?x) (at ?s ?w) (at ?d none))
-     :add ((at ?s none) (at ?d ?w) (last-patch ?s))
-     :cmd (move ?w ?d)
-     :txt (?w moves to ?d)
+     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none))
+     :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
+     :cmd (move ?w '(?dx ?dy))
+     :txt (?w moves to '(?dx ?dy))
      }
     
-	   :protect-dest
-	   {:name protect-dest
-	    :achieves (destination ?x)
-	    :add ((destination ?x))
-	    }
+    :move-back
+    {:name move-back
+     :achieves (at '(?dx ?dy) ?w)
+     :when (
+             (isa ?w worker)
+             (isa '(?sx ?sy) floor)
+             (isa '(?dx ?dy) floor)
+             (on '(?sx ?sy) none) 
+             (connects '(?sx ?sy) '(?dx ?dy))
+             (goal ?g)
+             )
+     :post ((destination ?s ?g) (at '(?sx ?sy) ?w))
+     :pre ()
+     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none))
+     :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
+     :cmd (move ?w '(?dx ?dy))
+     :txt (?w moves to '(?dx ?dy))
+     }
+    
+    :start
+    {:name start
+     :achieves (at '(?dx ?dy) ?w)
+     :post ((goal '(at '(?dx ?dy) ?w)) (at '(?dx ?dy) ?w))
+     }
+     
+		:set-goal
+		{:name set-goal
+		 :achieves (goal ?g)
+		 :add ((goal ?g))
+		 }
+    
+		:protect-dest
+		{:name protect-dest
+		 :achieves (destination ?d ?g)
+		 :add ((destination ?d ?g))
+		 }
     }
   )
     
