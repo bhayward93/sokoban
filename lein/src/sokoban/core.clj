@@ -3,6 +3,8 @@
   (require [cgsx.tools.matcher :refer :all]
            [clojure.set :refer :all]))
 
+(defn abs [n] (max n (- n)))
+
 (defn ui-out [& input]
   (println input)
   )

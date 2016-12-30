@@ -13,40 +13,89 @@
 ;     }
 ;    (planner (conj world-state object-state) '(at patch-4-8 worker-3) goal-ops)
 
-    :move
-    {:name move
+    :move-x
+     {:name move-x
      :achieves (at '(?dx ?dy) ?w)
      :when (
-             (isa ?w worker)
-             (isa '(?sx ?sy) floor)
-             (isa '(?dx ?dy) floor)
-             (on '(?sx ?sy) none) 
+             (at '(?wx ?wy) ?w)
+             (on '(?sx ?sy) none)
+             (on '(?dx ?dy) none)
              (connects '(?sx ?sy) '(?dx ?dy))
              (goal ?g)
-             (:not (destination ?x ?g))
+             (:guard (< (abs (- (? sx) (? wx)))
+                        (abs (- (? sy) (? wy)))
+                        )
+                    )
+             (:not (destination '(?sx ?sy) ?g))
              )
-     :post ((destination ?s ?g) (at '(?sx ?sy) ?w))
-     :pre ()
-     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none))
+     :post ((destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
+     :pre ((destination '(?dx ?dy) ?g))
+     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none) (destination '(?sx ?sy) ?g))
      :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
      :cmd (move ?w '(?dx ?dy))
      :txt (?w moves to '(?dx ?dy))
      }
+    
+     :move-y
+     {:name move-y
+     :achieves (at '(?dx ?dy) ?w)
+     :when (
+             (at '(?wx ?wy) ?w)
+             (on '(?sx ?sy) none)
+             (on '(?dx ?dy) none)
+             (connects '(?sx ?sy) '(?dx ?dy))
+             (goal ?g)
+             (:guard (< (abs (- (? sy) (? wy)))
+                        (abs (- (? sx) (? wx)))
+                        )
+                    )
+             (:not (destination '(?sx ?sy) ?g))
+             )
+     :post ((destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
+     :pre ((destination '(?dx ?dy) ?g))
+     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none) (destination '(?sx ?sy) ?g))
+     :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
+     :cmd (move ?w '(?dx ?dy))
+     :txt (?w moves to '(?dx ?dy))
+     }
+     
+;    :move
+;    {:name move
+;     :achieves (at '(?dx ?dy) ?w)
+;     :when (
+;             (at '(?wx ?wy) ?w)
+;             (on '(?sx ?sy) none)
+;             (on '(?dx ?dy) none)
+;             (connects '(?sx ?sy) '(?dx ?dy))
+;             (goal ?g)
+;             (:guard (< (abs (- (+ (? sx) (? sy)) (+ (? wx) (? wy))))
+;                        (abs (- (+ (? dx) (? dy)) (+ (? wx) (? wy))))
+;                        )
+;                    )
+;             (:not (destination '(?sx ?sy) ?g))
+;             )
+;     :post ((destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
+;     :pre ((destination '(?dx ?dy) ?g))
+;     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none) (destination '(?sx ?sy) ?g))
+;     :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
+;     :cmd (move ?w '(?dx ?dy))
+;     :txt (?w moves to '(?dx ?dy))
+;     }
     
     :move-back
     {:name move-back
      :achieves (at '(?dx ?dy) ?w)
      :when (
              (isa ?w worker)
-             (isa '(?sx ?sy) floor)
-             (isa '(?dx ?dy) floor)
+             (at '(?wx ?wy) ?w)
              (on '(?sx ?sy) none) 
              (connects '(?sx ?sy) '(?dx ?dy))
              (goal ?g)
+             (:guard (and (not= (? dx) (? wx)) (not= (? dy) (? wy))))
              )
-     :post ((destination ?s ?g) (at '(?sx ?sy) ?w))
-     :pre ()
-     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none))
+     :post ((destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
+     :pre ((destination '(?dx ?dy) ?g))
+     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none) (destination '(?sx ?sy) ?g))
      :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
      :cmd (move ?w '(?dx ?dy))
      :txt (?w moves to '(?dx ?dy))

@@ -309,7 +309,7 @@ to send-world-state
         ]
       ]
 
-      if (pcolor != brown and count turtles-here = 0) [
+      if (pcolor != brown and count boxes-here = 0) [
         send (word "(on " pid " none)")
       ]
     ]
