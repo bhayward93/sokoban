@@ -99,7 +99,7 @@
              (on '(?sx ?sy) none) 
              (connects '(?sx ?sy) '(?dx ?dy))
              (goal ?g)
-             (:guard (and (not= (? dx) (? wx)) (not= (? dy) (? wy))))
+             (:not (destination '(?sx ?sy) ?g))
              )
      :post ((destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
      :pre ((destination '(?dx ?dy) ?g))
