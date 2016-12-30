@@ -321,7 +321,6 @@ to send-world-state
     ask neighbors4 [
       if (pcolor != brown) [
         send (word "(connects " pid " " id ")")
-        send (word "(connects " id " " pid ")")
       ]
     ]
   ]
