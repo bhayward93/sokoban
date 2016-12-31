@@ -316,11 +316,13 @@ to send-world-state
   ])
 
   ask patches [
-    let pid id
+    if (pcolor != brown) [
+      let pid id
 
-    ask neighbors4 [
-      if (pcolor != brown) [
-        send (word "(connects " pid " " id ")")
+      ask neighbors4 [
+        if (pcolor != brown) [
+          send (word "(connects " pid " " id ")")
+        ]
       ]
     ]
   ]

@@ -1,11 +1,3 @@
-exit
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-(planner world-state '((at patch-4-9 worker-3)) block-ops)
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-(planner world-state '((at patch-5-8 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-8 worker-3)) block-ops)
 (planner world-state '((at patch-4-8 worker-3)) block-ops)
 exit
 (planner world-state '((at patch-4-8 worker-3)) block-ops)
@@ -497,4 +489,12 @@ exit
 exit
 (planner world-state '(at '(2 6) w0) goal-ops)
 (planner world-state '(at '(9 2) w0) goal-ops)
+exit
+(planner world-state '(at '(2 6) w0) goal-ops)
+exit
+(planner world-state '(at '(2 6) w0) goal-ops)
+exit
+(planner world-state '(at '(2 6) w0) goal-ops)
+exit
+(planner world-state '(at '(2 6) w0) goal-ops)
 exit
