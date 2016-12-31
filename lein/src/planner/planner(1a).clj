@@ -59,7 +59,7 @@
 (defn planner [state goal goal-ops]
   (.clear @goalq)
   (.push @goalq goal)
-  (strips-loop {:state state, :cmds nil, :txt nil} goal-ops 60))
+  (strips-loop {:state state, :cmds nil, :txt nil} goal-ops 100))
 
 
 (defn strips-loop

@@ -280,7 +280,7 @@ to send-world-state
       set id (word "'(" pxcor " " pycor ")")
 
       if (pcolor = orange - 4 or pcolor = red + 4) [
-        send (word "(isa " id " floor)")
+        send (word "(available " id ")")
       ]
 
       if (pcolor = red + 4) [
