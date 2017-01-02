@@ -285,6 +285,7 @@ to send-world-state
 
       if (pcolor = red + 4) [
         send (word "(isa " id " bay)")
+        send (word "(unloaded " id "))"
       ]
 
       let pid id

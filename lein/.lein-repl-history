@@ -5,34 +5,6 @@ exit
 exit
 (planner world-state '((at patch-4-7 worker-3)) block-ops)
 (planner world-state '((at patch-4-8 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-(planner world-state '((at patch-5-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-7 worker-3)) block-ops)
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
 (planner world-state '((at patch-4-7 worker-3)) block-ops)
 exit
 (planner world-state '((at patch-4-7 worker-3)) block-ops)
@@ -497,4 +469,32 @@ exit
 (planner world-state '(at '(2 6) w0) goal-ops)
 exit
 (planner world-state '(at '(2 6) w0) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
+exit
+(planner world-state '(complete) goal-ops)
 exit
