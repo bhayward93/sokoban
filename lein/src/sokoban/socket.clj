@@ -15,5 +15,5 @@
 
 (println "Awaiting new world state setup commands...")
 (def world-state (receive-state '#{}))
-(println "Awaiting new object state setup commands...")
-(def object-state (receive-state '#{}))
+(println "Awaiting new target state setup commands...")
+(def target-state (receive-state '#{}))

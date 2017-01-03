@@ -109,30 +109,67 @@
              (on '(?sx ?sy) ?b)
              (isa ?b box)
              )
-     :post ((mark '(?dx ?dy) ?b) (find-bay))
+     :post ((mark '(?dx ?dy) ?b) (find-bay ?b))
      :cmd ((at '(?dx ?dy) ?b))
      }
     
     :find-bay
     {:name find-bay
-     :achieves (find-bay)
+     :achieves (find-bay ?b)
      :when (
              (unloaded '(?dx ?dy))
              (isa ?b box)
              )
      :post ((loaded '(?dx ?dy) ?b))
      }
-    
+      
     :mark
     {:name mark
      :achieves (mark '(?dx ?dy) ?b)
-     :del ((unloaded '(?dx ?dy)) (isa ?b box))
+     :del ((unloaded '(?dx ?dy)))
+     :add ((loaded '(?dx ?dy) ?b))
+     }
+    
+    :unload-bay
+    {:name unload-bay
+     :achieves (unloaded '(?dx ?dy) ?b)
+     :when (
+             (loaded '(?dx ?dy) ?b)
+             )
+     :post ((unmark '(?dx ?dy) ?b) (find-marked-bay ?b))
+     }
+    
+    :unmark
+    {:name unmark
+     :achieves (unmark '(?dx ?dy) ?b)
+     :del ((loaded '(?dx ?dy) ?b))
+     :add ((unloaded '(?dx ?dy)))
+     }
+    
+    
+    :find-marked-bay
+    {:name find-marked-bay
+     :achieves (find-marked-bay ?b)
+     :when (
+              (loaded '(?dx ?dy) ?b)
+              )
+     :post ((unloaded '(?dx ?dy) ?b))
+     }
+      
+    :mark-box
+    {:name mark-box
+     :achieves (mark-box ?b)
+     :when ((isa ?b box))
+     :post ((loaded '(?dx ?dy) ?b) (unloaded '(?dx ?dy) ?b))
+     :del ((isa ?b box))
      }
     
     :complete
     {:name complete
      :achieves (complete)
-     :post ((loaded '(?dx ?dy) ?b))
+     :when ((isa ?b box))
+     :post ((mark-box ?b) (complete))
+     :del ((isa ?b box))
      }
     }
  )
