@@ -5,7 +5,7 @@ breed [switches switch]
 breed [walls wall]
 breed [players player]
 
-patches-own[id]
+patches-own[id dirs]
 turtles-own[t-id]
 
 to setup
@@ -283,11 +283,6 @@ to send-world-state
         send (word "(available " id ")")
       ]
 
-      if (pcolor = red + 4) [
-        send (word "(isa " id " bay)")
-        send (word "(unloaded " id ")")
-      ]
-
       let pid id
 
       if (pcolor != brown and count players-here > 0) [
@@ -319,17 +314,68 @@ to send-world-state
   ask patches [
     if (pcolor != brown) [
       let pid id
+      let srcdirs 0
 
       ask neighbors4 [
         if (pcolor != brown) [
+          set srcdirs srcdirs + 1
           send (word "(connects " pid " " id ")")
         ]
       ]
+
+      set dirs srcdirs
+    ]
+  ]
+
+  ask patches [
+    if (dirs = 4) [
+      send (word "(isa " id " junction)")
+
+      find-linked-junction 0 1
+      find-linked-junction 0 -1
+      find-linked-junction 1 0
+      find-linked-junction -1 0
     ]
   ]
 
   send -1
+
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      if (pcolor = red + 4) [
+        send (word "(isa " id " bay)")
+        send (word "(unloaded " id ")")
+      ]
+    ]
+  ])
+
   send -1
+end
+
+to find-linked-junction [inc-x inc-y]
+  let halt false
+
+  let pid id
+
+  let tgt-x pxcor
+  let tgt-y pycor
+
+  loop [
+    set tgt-x tgt-x + inc-x
+    set tgt-y tgt-y + inc-y
+
+    ask patch tgt-x tgt-y[
+      if (pcolor = brown) [set halt true]
+
+      print (word tgt-x " " tgt-y)
+
+      if (dirs = 4) [
+        set halt true
+      ]
+    ]
+
+    if (halt) [stop]
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
