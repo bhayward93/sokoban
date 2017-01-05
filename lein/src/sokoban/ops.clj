@@ -100,6 +100,65 @@
     }
   )
 
+(def box-ops
+  '{:push-x
+    {:name push-x
+	    :achieves (on '(?dx ?dy) ?b)
+	    :when (
+              (isa ?w worker)
+              (on '(?bx ?by) ?b)
+              (on '(?wx ?wy) none)
+              (connects '(?wx ?wy) '(?sx ?sy))
+	            (links '(?sx ?sy) '(?dx ?dy))
+              (:guard (and (>= (abs (- (? dx) (? bx)))
+                               (abs (- (? dy) (? by)))
+                               )
+                           (< (abs (- (? sx) (? bx)))
+                              (abs (- (? dx) (? bx)))
+                              )
+                           (> (abs (- (? wx) (? dx)))
+                              (abs (- (? sx) (? dx)))
+                              )
+                           )
+                      )
+              )
+     :post ((on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
+     :cmd ((on '(?dx ?dy) ?b))
+     }
+    
+    :push-y
+    {:name push-y
+	    :achieves (on '(?dx ?dy) ?b)
+	    :when (
+              (isa ?w worker)
+              (on '(?bx ?by) ?b)
+              (on '(?wx ?wy) none)
+              (connects '(?wx ?wy) '(?sx ?sy))
+	            (links '(?sx ?sy) '(?dx ?dy))
+              (:guard (and (>= (abs (- (? dy) (? by)))
+                               (abs (- (? dx) (? bx)))
+                               )
+                           (< (abs (- (? sy) (? by)))
+                              (abs (- (? dy) (? by)))
+                              )
+                           (> (abs (- (? wy) (? dy)))
+                              (abs (- (? sy) (? dy)))
+                              )
+                           )
+                      )
+              )
+     :post ((on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
+     :cmd ((on '(?dx ?dy) ?b))
+     }
+    
+    :move
+    {:name move
+     :achieves (at '(?dx ?dy) ?w)
+     :cmd ((at '(?dx ?dy) ?w))
+     }
+    }
+  )
+
 (def goal-ops
   '{:load-bay
     {:name load-bay
@@ -110,7 +169,7 @@
              (isa ?b box)
              )
      :post ((mark '(?dx ?dy) ?b) (find-bay ?b))
-     :cmd ((at '(?dx ?dy) ?b))
+     :cmd ((on '(?dx ?dy) ?b))
      }
     
     :find-bay

@@ -1,42 +1,3 @@
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-7 worker-3)) block-ops)
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-4-8 worker-3)) block-ops)
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-(planner world-state '(at patch-5-6 worker-3) block-ops)
-(planner world-state '#{(at patch-5-6 worker-3)} block-ops)
-exit
-(planner world-state '#{(at patch-5-6 worker-3)} block-ops)
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-exit
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
-(planner world-state '(at patch-4-8 worker-3) block-ops)
-(planner world-state '((at patch-5-6 worker-3)) block-ops)
 (planner world-state '(at patch-4-8 worker-3) block-ops)
 (planner world-state '((at patch-4-8 worker-3)) block-ops)
 exit
@@ -497,4 +458,43 @@ exit
 (complete-puzzle)
 exit
 (complete-puzzle)
+exit
+(planner initial-state '(on '(6 2) b2) box-ops)
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+                           (> (abs (- (? wy) (? dy)))
+                              (abs (- (? by) (? dy)))
+                              )
+(> (abs (- 5 8)) (abs (- 6 8)))
+(and 1 1 1)
+(and true true true0
+)
+(and true true true)
+(and true false true)
+(and true true false true)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
+exit
+(planner initial-state '(on '(5 8) b2) box-ops)
 exit

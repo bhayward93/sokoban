@@ -345,6 +345,11 @@ to send-world-state
       if (pcolor = red + 4) [
         send (word "(isa " id " bay)")
         send (word "(unloaded " id ")")
+
+        find-linked-junction 0 1
+        find-linked-junction 0 -1
+        find-linked-junction 1 0
+        find-linked-junction -1 0
       ]
     ]
   ])
@@ -367,9 +372,8 @@ to find-linked-junction [inc-x inc-y]
     ask patch tgt-x tgt-y[
       if (pcolor = brown) [set halt true]
 
-      print (word tgt-x " " tgt-y)
-
-      if (dirs = 4) [
+      if (dirs = 4 or pcolor = red + 4) [
+        send (word "(links " pid " " id ")")
         set halt true
       ]
     ]
