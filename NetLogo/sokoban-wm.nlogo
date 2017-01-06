@@ -279,10 +279,6 @@ to send-world-state
     ask ?1 [
       set id (word "'(" pxcor " " pycor ")")
 
-      if (pcolor = orange - 4 or pcolor = red + 4) [
-        send (word "(available " id ")")
-      ]
-
       let pid id
 
       if (pcolor != brown and count players-here > 0) [
@@ -336,21 +332,26 @@ to send-world-state
       find-linked-junction 1 0
       find-linked-junction -1 0
     ]
+
+    if (pcolor = red + 4) [
+      send (word "(isa " id " bay)")
+
+      find-linked-junction 0 1
+      find-linked-junction 0 -1
+      find-linked-junction 1 0
+      find-linked-junction -1 0
+    ]
   ]
 
   send -1
 
   (foreach (sort patches) (n-values count patches [?]) [
     ask ?1 [
-      if (pcolor = red + 4) [
-        send (word "(isa " id " bay)")
-        send (word "(unloaded " id ")")
-
-        find-linked-junction 0 1
-        find-linked-junction 0 -1
-        find-linked-junction 1 0
-        find-linked-junction -1 0
+      if (pcolor = orange - 4 or pcolor = red + 4) [
+        send (word "(available " id ")")
       ]
+
+      if (pcolor = red + 4) [send (word "(unloaded " id ")")]
     ]
   ])
 
