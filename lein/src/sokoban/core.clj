@@ -24,17 +24,15 @@
   [& args]
   (println "Hello, World!"))
 
-(defn get-goals [world-state]
- (let [state (planner world-state '(complete) goal-ops)]
-  
-	 (cond
-	   (not= world-state state) (get-goals (union state target-state))
-	   :else
-	   state
-	   )
-	 )
- )
+(defn get-routes [goals route-list]
+  (cond
+    (empty? goals) route-list
+    :else (recur (rest goals) (cons (get (planner initial-state (first goals) box-ops) :cmds) route-list))
+    )
+  )
 
 (defn complete-puzzle []
-  (planner initial-state '(complete) goal-ops)
+  (let [goals (get (planner initial-state '(complete) goal-ops) :cmds)]
+    (get-routes goals '())
+    )
   )

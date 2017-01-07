@@ -1,20 +1,6 @@
 (planner world-state '(at patch-4-7 worker-3) block-ops)
 exit
 (planner world-state '(at patch-4-7 worker-3) block-ops)
-(planner world-state '(at patch-6-6 worker-3) block-ops)
-(planner world-state '(at patch-4-7 worker-3) block-ops)
-exit
-(planner world-state '(at patch-4-7 worker-3) block-ops)
-exit
-(planner world-state '(at patch-4-7 worker-3) block-ops)
-exit
-(planner world-state '(at patch-4-7 worker-3) block-ops)
-exit
-(planner world-state '(at patch-4-7 worker-3) block-ops)
-exit
-(planner world-state '(at patch-4-7 worker-3) block-ops)
-exit
-(planner world-state '(at patch-4-7 worker-3) block-ops)
 clear
 exit
 (planner world-state '(at patch-4-7 worker-3) block-ops)
@@ -497,4 +483,18 @@ exit
 (planner initial-state '(on '(6 2) b0) box-ops)
 (planner initial-state '(on '(6 2) b2) box-ops)
 exi
+exit
+(complete-puzzle)
+exit
+(complete-puzzle)
+exit
+(complete-puzzle)
+exit
+(complete-puzzle)
+(get (planner initial-state '(on '(2 5) b0) box-ops) :cmds)
+(cons (get (planner initial-state '(on '(2 5) b0) box-ops) :cmds))
+(cons (get (planner initial-state '(on '(2 5) b0) box-ops) :cmds) '())
+(complete-puzzle)
+exit
+(complete-puzzle)
 exit
