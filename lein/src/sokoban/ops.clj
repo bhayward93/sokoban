@@ -1,8 +1,8 @@
 ;    (planner (conj world-state object-state) '(at patch-4-8 worker-3) goal-ops)
 
 (def step-ops
-  '{:move-x
-     {:name move-x
+  '{:move
+     {:name move
      :achieves (at '(?dx ?dy) ?w)
      :when (
              (at '(?wx ?wy) ?w)
@@ -10,51 +10,34 @@
              (on '(?dx ?dy) none)
              (connects '(?sx ?sy) '(?dx ?dy))
              (goal ?g)
-             (:guard (and (>= (abs (- (? dx) (? wx)))
-                             (abs (- (? dy) (? wy)))
+             (:guard (and (or (and (>= (abs (- (? dx) (? wx)))
+                                     (abs (- (? dy) (? wy)))
+                                     )
+                                  (< (abs (- (? sx) (? wx)))
+                                     (abs (- (? dx) (? wx)))
+                                     )
+                                  )
+                             (and (>= (abs (- (? dy) (? wy)))
+                                     (abs (- (? dx) (? wx)))
+                                     )
+                                  (< (abs (- (? sy) (? wy)))
+                                     (abs (- (? dy) (? wy)))
+                                     )
+                                  )
                              )
-                          (< (abs (- (? sx) (? wx)))
-                             (abs (- (? dx) (? wx)))
-                             )
+                          (not= 'none (? g))
                           )
                     )
              (available '(?sx ?sy))
              )
      :post ((unavailable '(?sx ?sy)) (destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
      :pre ((destination '(?dx ?dy) ?g))
-     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none) (destination '(?sx ?sy) ?g))
-     :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
+     :del ((at '(?sx ?sy) ?w) (destination '(?sx ?sy) ?g))
+     :add ((at '(?dx ?dy) ?w))
      :cmd (move ?w '(?dx ?dy))
      :txt (?w moves to '(?dx ?dy))
      }
-    
-     :move-y
-     {:name move-y
-     :achieves (at '(?dx ?dy) ?w)
-     :when (
-             (at '(?wx ?wy) ?w)
-             (on '(?sx ?sy) none)
-             (on '(?dx ?dy) none)
-             (connects '(?sx ?sy) '(?dx ?dy))
-             (goal ?g)
-             (:guard (and (>= (abs (- (? dy) (? wy)))
-                             (abs (- (? dx) (? wx)))
-                             )
-                          (< (abs (- (? sy) (? wy)))
-                             (abs (- (? dy) (? wy)))
-                             )
-                          )
-                    )
-             (available '(?sx ?sy))
-             )
-     :post ((unavailable '(?sx ?sy)) (destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
-     :pre ((destination '(?dx ?dy) ?g))
-     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none) (destination '(?sx ?sy) ?g))
-     :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
-     :cmd (move ?w '(?dx ?dy))
-     :txt (?w moves to '(?dx ?dy))
-     }
-    
+   
     :move-back
     {:name move-back
      :achieves (at '(?dx ?dy) ?w)
@@ -65,24 +48,87 @@
              (connects '(?sx ?sy) '(?dx ?dy))
              (goal ?g)
              (available '(?sx ?sy))
+             (:guard (not= 'none (? g)))
              )
      :post ((unavailable '(?sx ?sy)) (destination '(?dx ?dy) ?g) (at '(?sx ?sy) ?w))
      :pre ((destination '(?dx ?dy) ?g))
-     :del ((at '(?sx ?sy) ?w) (at '(?dx ?dy) none) (destination '(?sx ?sy) ?g))
-     :add ((at '(?sx ?sy) none) (at '(?dx ?dy) ?w))
+     :del ((at '(?sx ?sy) ?w) (destination '(?sx ?sy) ?g))
+     :add ((at '(?dx ?dy) ?w))
      :cmd (move ?w '(?dx ?dy))
      :txt (?w moves to '(?dx ?dy))
      }
     
+    :push-box
+    {:name push-box
+     :achieves (on '(?dx ?dy) ?b)
+     :when (
+             (isa ?w worker)
+             (at (?swx ?swy) ?w)
+             (on '(?bx ?by) ?b)
+             (on '(?wx ?wy) ?o)
+             (connects '(?wx ?wy) '(?sx ?sy))
+             (connects '(?sx ?sy) '(?dx ?dy))
+             (:guard (and (or (and (>= (abs (- (? dx) (? bx)))
+                                       (abs (- (? dy) (? by)))
+                                       )
+                                   (< (abs (- (? sx) (? bx)))
+                                      (abs (- (? dx) (? bx)))
+                                      )
+                                   (> (abs (- (? wx) (? dx)))
+                                      (abs (- (? sx) (? dx)))
+                                      )
+                                   )
+                              (and (>= (abs (- (? dy) (? by)))
+                                       (abs (- (? dx) (? bx)))
+                                       )
+                                   (< (abs (- (? sy) (? by)))
+                                      (abs (- (? dy) (? by)))
+                                      )
+                                   (> (abs (- (? wy) (? dy)))
+                                      (abs (- (? sy) (? dy)))
+                                      )
+                               )
+                              )
+                          (not= 'none (? g))
+                          (or (= 'none (? o))
+                              (= (? b) (? o))
+                              )
+                          )
+                     )
+             (available '(?sx ?sy))
+             )
+     :post ((unavailable '(?sx ?sy)) (destination '(?dx ?dy) ?g) (on '(?sx ?sy) ?b))
+     :pre ((destination '(?dx ?dy) ?g))
+     :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?wx ?wy) ?w) (destination '(?sx ?sy) ?g))
+     :add ((on '(?sx ?sy) none) (on '(?dx ?dy) ?b) (at '(?sx ?sy) ?w))
+     :cmd (push-box ?w '(?dx ?dy))
+     :txt (?w pushes ?b to '(?dx ?dy))
+     }
+    
+    :remove-goal
+    {:name remove-goal
+     :achieves (remove-goal ?g)
+     :del ((goal ?g))
+     :add ((goal none))
+     }
+     
     :finish
     {:name finish
-     :achieves (at '(?dx ?dy) ?w)
-     :post ((unavailable '(?dx ?dy)) (goal '(at '(?dx ?dy) ?w)) (at '(?dx ?dy) ?w))
+     :achieves (?loc '(?dx ?dy) ?i)
+     :when (
+             (goal none)
+             (:guard (or (= 'on (? loc))
+                         (= 'at (? loc))
+                         )
+                     )
+             )
+     :post ((unavailable '(?dx ?dy)) (goal '(?loc '(?dx ?dy) ?i)) (?loc '(?dx ?dy) ?i) (remove-goal '(?loc '(?dx ?dy) ?i)))
      }
      
 		:set-goal
 		{:name set-goal
 		 :achieves (goal ?g)
+     :del ((goal none))
 		 :add ((goal ?g))
 		 }
     
@@ -100,42 +146,195 @@
     }
   )
 
+(def worker-ops
+  '{:move-junctions
+    {:name move-junctions
+	    :achieves (at '(?dx ?dy) ?w)
+	    :when (
+              (isa ?w worker)
+              (at '(?wx ?wy) ?w)
+              (on '(?sx ?sy) none)
+	            (links '(?sx ?sy) '(?dx ?dy))
+              (available '(?sx ?sy))
+              (goal ?g)
+              (:guard (and (or (and (>= (abs (- (? dx) (? wx)))
+                                        (abs (- (? dy) (? wy)))
+                                        )
+                                    (< (abs (- (? sx) (? wx)))
+                                       (abs (- (? dx) (? wx)))
+                                       )
+                                    )
+                                (and (>= (abs (- (? dy) (? wy)))
+                                         (abs (- (? dx) (? wx)))
+                                     )
+                                     (< (abs (- (? sy) (? wy)))
+                                        (abs (- (? dy) (? wy)))
+                                        )
+                                 )
+                                )
+                           (not= 'none (? g))
+                           )
+                      )
+              )
+     :post ((unavailable '(?sx ?sy)) (at '(?sx ?sy) ?w))
+     :del ((at '(?sx ?sy) ?w))
+     :add ((at '(?dx ?dy) ?w))
+     :cmd ((at '(?dx ?dy) ?w))
+     }
+    
+    :move
+    {:name move
+     :achieves (at '(?dx ?dy) ?w)
+     :when (
+             (isa ?w worker)
+             (at '(?wx ?wy) ?w)
+             (on '(?sx ?sy) none)
+             (connects '(?sx ?sy) '(?dx ?dy))
+             (available '(?sx ?sy))
+             (goal ?g)
+	           (:guard (and (or (and (>= (abs (- (? dx) (? wx)))
+	                                     (abs (- (? dy) (? wy)))
+	                                     )
+	                                 (< (abs (- (? sx) (? wx)))
+	                                    (abs (- (? dx) (? wx)))
+	                                    )
+	                                 )
+                              (and (>= (abs (- (? dy) (? wy)))
+                                       (abs (- (? dx) (? wx)))
+                                       )
+                                   (< (abs (- (? sy) (? wy)))
+                                      (abs (- (? dy) (? wy)))
+                                      )
+                                )
+                             )
+                         (not= 'none (? g))
+                         )
+	                   )
+             )
+     :post ((unavailable '(?sx ?sy)) (at '(?sx ?sy) ?w))
+     :del ((at '(?sx ?sy) ?w))
+     :add ((at '(?dx ?dy) ?w))
+     :cmd ((at '(?dx ?dy) ?w))
+     }
+    
+    :move-junctions-alt
+    {:name move-junctions-alt
+	    :achieves (at '(?dx ?dy) ?w)
+	    :when (
+              (isa ?w worker)
+              (at '(?wx ?wy) ?w)
+              (on '(?sx ?sy) none)
+	            (links '(?sx ?sy) '(?dx ?dy))
+              (available '(?sx ?sy))
+              (goal ?g)
+              (:guard (not= 'none (? g)))
+              )
+     :post ((unavailable '(?sx ?sy)) (block '(?sx ?sy) '(?dx ?dy)) (at '(?sx ?sy) ?w))
+     :del ((at '(?sx ?sy) ?w))
+     :add ((at '(?dx ?dy) ?w))
+     :cmd ((at '(?dx ?dy) ?w))
+     }
+    
+    :move-alt
+    {:name move-alt
+     :achieves (at '(?dx ?dy) ?w)
+     :when (
+             (isa ?w worker)
+             (at '(?wx ?wy) ?w)
+             (on '(?sx ?sy) none)
+             (connects '(?sx ?sy) '(?dx ?dy))
+             (available '(?sx ?sy))
+             (goal ?g)
+             (:guard (not= 'none (? g)))
+             )
+     :post ((unavailable '(?sx ?sy)) (at '(?sx ?sy) ?w))
+     :del ((at '(?sx ?sy) ?w))
+     :add ((at '(?dx ?dy) ?w))
+     :cmd ((at '(?dx ?dy) ?w))
+     }
+    
+    :block-link
+    {:name block-link
+     :achieves (block '(?sx ?sy) '(?dx ?dy))
+     :when (
+             (links '(?sx ?sy) '(?dx ?dy))
+             (connects '(?mx ?my) '(?sx ?sy))
+             (:guard (or (< (abs (- (? mx) (? dx)))
+                            (abs (- (? sx) (? dx)))
+                            )
+                         (< (abs (- (? my) (? dy)))
+                            (abs (- (? sy) (? dy)))
+                            )
+                         )
+                     )
+             )
+     :del ((available '(?mx ?my)))
+     }
+    
+    :finish
+    {:name finish
+     :achieves (at '(?dx ?dy) ?w)
+     :when ((goal none))
+     :post ((unavailable '(?dx ?dy)) (goal '(at '(?dx ?dy) ?w)) (at '(?dx ?dy) ?w))
+     }
+     
+		:set-goal
+		{:name set-goal
+		 :achieves (goal ?g)
+     :del ((goal none))
+		 :add ((goal ?g))
+		 }
+  
+    :mark-junction
+    {:name mark-junction
+     :achieves (unavailable ?j)
+     :del ((available ?j))
+     }
+
+    }
+  )
+
 (def box-ops
   '{:push-junctions
     {:name push-junctions
 	    :achieves (on '(?dx ?dy) ?b)
 	    :when (
               (isa ?w worker)
+              (at (?swx ?swy) ?w)
               (on '(?bx ?by) ?b)
               (on '(?wx ?wy) none)
               (connects '(?wx ?wy) '(?sx ?sy))
 	            (links '(?sx ?sy) '(?dx ?dy))
               (available '(?sx ?sy))
               (goal ?g)
-              (:guard (or (and (>= (abs (- (? dx) (? bx)))
-                                   (abs (- (? dy) (? by)))
-                                   )
-                               (< (abs (- (? sx) (? bx)))
-                                  (abs (- (? dx) (? bx)))
-                                  )
-                               (> (abs (- (? wx) (? dx)))
-                                  (abs (- (? sx) (? dx)))
-                                  )
-                               )
-                           (and (>= (abs (- (? dy) (? by)))
-                                    (abs (- (? dx) (? bx)))
+              (:guard (and (or (and (>= (abs (- (? dx) (? bx)))
+                                        (abs (- (? dy) (? by)))
+                                        )
+                                    (< (abs (- (? sx) (? bx)))
+                                       (abs (- (? dx) (? bx)))
+                                       )
+                                    (> (abs (- (? wx) (? dx)))
+                                       (abs (- (? sx) (? dx)))
+                                       )
+                                    )
+                                (and (>= (abs (- (? dy) (? by)))
+                                         (abs (- (? dx) (? bx)))
+                                     )
+                                     (< (abs (- (? sy) (? by)))
+                                        (abs (- (? dy) (? by)))
+                                        )
+                                     (> (abs (- (? wy) (? dy)))
+                                        (abs (- (? sy) (? dy)))
+                                        )
+                                 )
                                 )
-                                (< (abs (- (? sy) (? by)))
-                                   (abs (- (? dy) (? by)))
-                                   )
-                                (> (abs (- (? wy) (? dy)))
-                                   (abs (- (? sy) (? dy)))
-                                   )
-                            )
+                           (not= 'none (? g))
                            )
                       )
               )
      :post ((unavailable '(?sx ?sy)) (on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
+     :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
+     :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
      :cmd ((on '(?dx ?dy) ?b))
      }
     
@@ -144,35 +343,40 @@
      :achieves (on '(?dx ?dy) ?b)
      :when (
              (isa ?w worker)
+             (at (?swx ?swy) ?w)
              (on '(?bx ?by) ?b)
              (connects '(?wx ?wy) '(?sx ?sy))
              (connects '(?sx ?sy) '(?dx ?dy))
              (available '(?sx ?sy))
              (goal ?g)
-	           (:guard (or (and (>= (abs (- (? dx) (? bx)))
-	                                (abs (- (? dy) (? by)))
-	                                )
-	                            (< (abs (- (? sx) (? bx)))
-	                               (abs (- (? dx) (? bx)))
-	                               )
-	                            (> (abs (- (? wx) (? dx)))
-	                               (abs (- (? sx) (? dx)))
-	                               )
-	                            )
-                         (and (>= (abs (- (? dy) (? by)))
-                               (abs (- (? dx) (? bx)))
-                               )
-                           (< (abs (- (? sy) (? by)))
-                              (abs (- (? dy) (? by)))
-                              )
-                           (> (abs (- (? wy) (? dy)))
-                              (abs (- (? sy) (? dy)))
-                              )
-                           )
-                        )
+	           (:guard (and (or (and (>= (abs (- (? dx) (? bx)))
+	                                     (abs (- (? dy) (? by)))
+	                                     )
+	                                 (< (abs (- (? sx) (? bx)))
+	                                    (abs (- (? dx) (? bx)))
+	                                    )
+	                                 (> (abs (- (? wx) (? dx)))
+	                                    (abs (- (? sx) (? dx)))
+	                                    )
+	                                 )
+                              (and (>= (abs (- (? dy) (? by)))
+                                    (abs (- (? dx) (? bx)))
+                                    )
+                                (< (abs (- (? sy) (? by)))
+                                   (abs (- (? dy) (? by)))
+                                   )
+                                (> (abs (- (? wy) (? dy)))
+                                   (abs (- (? sy) (? dy)))
+                                   )
+                                )
+                             )
+                         (not= 'none (? g))
+                         )
 	                   )
              )
      :post ((unavailable '(?sx ?sy)) (on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
+     :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
+     :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
      :cmd ((on '(?dx ?dy) ?b))
      }
     
@@ -181,26 +385,31 @@
 	    :achieves (on '(?dx ?dy) ?b)
 	    :when (
               (isa ?w worker)
+              (at (?swx ?swy) ?w)
               (on '(?bx ?by) ?b)
               (on '(?wx ?wy) none)
               (connects '(?wx ?wy) '(?sx ?sy))
 	            (links '(?sx ?sy) '(?dx ?dy))
               (available '(?sx ?sy))
               (goal ?g)
-              (:guard (or (and (> (abs (- (? wx) (? dx)))
-                                  (abs (- (? sx) (? dx)))
-                                  )
-                               (= (? wy) (? dy))
+              (:guard (and (or (and (> (abs (- (? wx) (? dx)))
+                                       (abs (- (? sx) (? dx)))
+                                       )
+                                    (= (? wy) (? dy))
+                                    )
+                               (and (> (abs (- (? wy) (? dy)))
+                                       (abs (- (? sy) (? dy)))
+                                       )
+                                    (= (? wx) (? dx))
+                                    )
                                )
-                          (and (> (abs (- (? wy) (? dy)))
-                                  (abs (- (? sy) (? dy)))
-                                  )
-                               (= (? wx) (? dx))
-                               )
-                          )
+                           (not= 'none (? g))
+                           )
                       )
               )
      :post ((unavailable '(?sx ?sy)) (block '(?sx ?sy) '(?dx ?dy)) (on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
+     :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
+     :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
      :cmd ((on '(?dx ?dy) ?b))
      }
     
@@ -222,52 +431,26 @@
      :del ((available '(?mx ?my)))
      }
     
-;    :push-box-alt
-;    {:name push-box-alt
-;     :achieves (on '(?dx ?dy) ?b)
-;     :when (
-;             (isa ?w worker)
-;             (on '(?bx ?by) ?b)
-;             (connects '(?wx ?wy) '(?sx ?sy))
-;             (connects '(?sx ?sy) '(?dx ?dy))
-;             (available '(?sx ?sy))
-;             (goal ?g)
-;	           (:guard (or (and (< (abs (- (? sx) (? bx)))
-;	                               (abs (- (? dx) (? bx)))
-;	                               )
-;	                            (> (abs (- (? wx) (? dx)))
-;	                               (abs (- (? sx) (? dx)))
-;	                               )
-;	                            )
-;                         (and (< (abs (- (? sy) (? by)))
-;                              (abs (- (? dy) (? by)))
-;                              )
-;                           (> (abs (- (? wy) (? dy)))
-;                              (abs (- (? sy) (? dy)))
-;                              )
-;                           )
-;                        )
-;	                   )
-;             )
-;     :post ((unavailable '(?sx ?sy)) (on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
-;     :cmd ((on '(?dx ?dy) ?b))
-;     }
-    
     :move
     {:name move
      :achieves (at '(?dx ?dy) ?w)
+     :when ((at '(?sx ?sy) ?w))
      :cmd ((at '(?dx ?dy) ?w))
+     :del ((at '(?sx ?sy) ?w))
+     :add ((at '(?dx ?dy) ?w))
      }
     
     :finish
     {:name finish
      :achieves (on '(?dx ?dy) ?b)
+     :when ((goal none))
      :post ((unavailable '(?dx ?dy)) (goal '(on '(?dx ?dy) ?b)) (on '(?dx ?dy) ?b))
      }
      
 		:set-goal
 		{:name set-goal
 		 :achieves (goal ?g)
+     :del ((goal none))
 		 :add ((goal ?g))
 		 }
   

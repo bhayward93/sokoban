@@ -272,6 +272,8 @@ to send-astar-state
 end
 
 to send-world-state
+  send (word "(goal none)")
+
   let w 0
   let b 0
 

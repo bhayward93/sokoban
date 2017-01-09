@@ -14,6 +14,8 @@
 ;(load-file "./src/ops-search/ops-search(1b).clj")
 (load-file "./src/sokoban/ops.clj")
 (load-file "./src/sokoban/socket.clj")
+(load-file "./src/sokoban/state-cleaning.clj")
+(load-file "./src/sokoban/route-building.clj")
 
 (def initial-state
   (union world-state target-state)
@@ -24,15 +26,8 @@
   [& args]
   (println "Hello, World!"))
 
-(defn get-routes [goals route-list]
-  (cond
-    (empty? goals) route-list
-    :else (recur (rest goals) (cons (get (planner initial-state (first goals) box-ops) :cmds) route-list))
-    )
-  )
-
 (defn complete-puzzle []
-  (let [goals (get (planner initial-state '(complete) goal-ops) :cmds)]
-    (get-routes goals '())
+  (let [goals (get-goals initial-state)]
+;    (get-routes goals initial-state '())
     )
   )
