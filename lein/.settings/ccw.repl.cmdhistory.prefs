@@ -1,0 +1,2 @@
+cmdhistory=["(A*search world-state  '(at '(5 3) w0) format-state)" "(A*search world-state  '(at '(5 3) w0) format-state \:debug true)" "(test-search)"]
+eclipse.preferences.version=1
