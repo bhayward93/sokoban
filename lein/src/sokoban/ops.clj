@@ -539,12 +539,12 @@
  (def lmg-ops
   '{:move
     {:name move
-     :achieves (at ?next-patch w0)
+     :achieves ((at ?next-patch w0))
      :when ()
      :post ()
      :pre ((at ?patch w0) (connects ?patch ?next-patch)(on ?next-patch none)(isa w0 worker))
-     :add (at ?next-patch w0)
-     :del (at ?patch w0)
+     :add ((at ?next-patch w0))
+     :del ((at ?patch w0))
      :cmd ()
      :txt (w0 moves to ?next-patch)
      :cost ()

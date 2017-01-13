@@ -16,7 +16,7 @@
 (load-file "./src/sokoban/socket.clj")
 (load-file "./src/sokoban/state-cleaning.clj")
 (load-file "./src/sokoban/route-building.clj")
-(load-file "./src/lmg/lmg.clj")
+;(load-file "./src/lmg/lmg.clj")
 
 (def initial-state
   (union world-state target-state)
@@ -32,3 +32,10 @@
 ;    (get-routes goals initial-state '())
     )
   )
+
+;(format-state object-state)
+(defn format-state [state]
+ (list (map #(update % :state seq) (apply-all lmg-ops state world-state)))
+ )
+
+
