@@ -27,6 +27,16 @@
   [& args]
   (println "Hello, World!"))
 
+(defn exp [x n]
+  (if (zero? n) 1
+    (* x (exp x (dec n)))
+    )
+  )
+
+(defn calc-dist [x1 y1 x2 y2]
+  (Math/sqrt (+ (exp (- x2 x1) 2) (exp (- y2 y1) 2)))
+  )
+
 (defn complete-puzzle []
   (let [goals (get-goals initial-state)]
 ;    (get-routes goals initial-state '())
@@ -35,7 +45,10 @@
 
 ;(format-state object-state)
 (defn format-state [state]
- (list (map #(update % :state seq) (apply-all lmg-ops state world-state)))
+  (let [s (:state state)
+        c (:cost state)]
+    (apply-all lmg-ops s #{})
+    )
  )
 
 

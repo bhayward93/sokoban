@@ -1,171 +1,3 @@
-(planner world-state '(at '(3 7) w0) goal-ops)
-exit
-(planner world-state '(at '(3 7) w0) goal-ops)
-exit
-(planner world-state '(at '(3 7) w0) goal-ops)
-exit
-(planner world-state '(at '(3 7) w0) goal-ops)
-(< 1 2)
-(< 2 1)
-(< (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7))))
-(abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7)))
-(abs (- (+ 3 7) (+ 3 7)))
-(abs (- (+ 3 7) (+ 3 8)))
-(< (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7))))
-(+ (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7))))
-(< '(abs (- (+ 3 7) (+ 3 7))) '(abs (- (+ 3 8) (+3 7))))
-(+ (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7))))
-+ (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7))))
-+ (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7)))
-(+ (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+3 7))))
-(+ (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+ 3 7))))
-(< (abs (- (+ 3 7) (+ 3 7))) (abs (- (+ 3 8) (+ 3 7))))
-(< (abs (- (+ 3 7) (+ 3 9))) (abs (- (+ 3 8) (+ 3 7))))
-(< (abs (- (+ 3 7) (+ 4 7))) (abs (- (+ 3 8) (+ 3 7))))
-(< (abs (- (+ 4 7) (+ 3 7))) (abs (- (+ 3 8) (+ 3 7))))
-eit
-exit
-(planner world-state '(at '(3 7) w0) goal-ops)
-exit
-(planner world-state '(at '(3 7) w0) goal-ops)
-(planner world-state '(at '(5 3) w0) goal-ops)
-exit
-(planner world-state '(at '(5 3) w0) goal-ops)
-exit
-(planner world-state '(at '(7 8) w0) goal-ops)
-exit
-(planner world-state '(at '(7 8) w0) goal-ops)
-exit
-(planner world-state '(at '(5 3) w0) goal-ops)
-(planner world-state '(at '(7 8) w0) goal-ops)
-exit
-(planner world-state '(at '(7 8) w0) goal-ops)
-exit
-(planner world-state '(at '(7 8) w0) goal-ops)
-exit
-(planner world-state '(at '(7 8) w0) goal-ops)
-exit
-(planner world-state '(at '(7 8) w0) goal-ops)
-exit
-(planner world-state '(at '(2 6) w0) goal-ops)
-(planner world-state '(at '(9 2) w0) goal-ops)
-exit
-(planner world-state '(at '(2 6) w0) goal-ops)
-exit
-(planner world-state '(at '(2 6) w0) goal-ops)
-exit
-(planner world-state '(at '(2 6) w0) goal-ops)
-exit
-(planner world-state '(at '(2 6) w0) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-(planner world-state '(complete) goal-ops)
-exit
-complete-puzzle
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-xit
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(planner initial-state '(on '(6 2) b2) box-ops)
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
 exit
 (planner initial-state '(on '(5 8) b2) box-ops)
 exit
@@ -497,4 +329,172 @@ exit
 (try-goal '(on '(5 8) b1) initial-state '())
 exit
 (try-goal '(on '(5 8) b1) initial-state '())
+exit
+(format-state world-state)
+(def new-state (union (difference world-state '(at '(3 8) w0)) '(at '(3 7) w0)))
+new-state
+(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
+new-state
+(format-state new-state)
+new
+new-state
+(format-state new-state)
+exit
+(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
+(format-state new-state)
+exit
+(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
+(format-state new-state)
+clear
+(A*search world-state '((at '(2 6) w0)) format-state)
+exit
+(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
+(format-state new-state)
+(A*search {:state world-state :cost 0} '((at '(2 6) w0)) format-state)
+(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
+(< (abs (- (+ 3 7) (+ 4 7))) (abs (- (+ 3 8) (+ 3 7))))
+(use clojure.tools.trace)
+(use 'clojure.tools.trace)
+(trace-vars A*search)
+(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
+(trace-vars format-state))
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
+exit
+(use 'clojure.tools.trace)
+(trace-vars A*search)
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state)
+(untrace-vars format-state)
+(untrace-vars A*search)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state [:debug])
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :debug)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :keys[debug])
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :keys [debug])
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :keys debug)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state {:keys debug})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state (:keys debug))
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state debug)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state [debug])
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true))
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} '((at '(4 8) w0)) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef :true)
+(format-state world-state)
+exit
+(format-state world-state)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef :true)
+(use 'clojure.tools.trace)
+(trace-vars A*search)
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef :true)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars A*search)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(trace-vars apply-all)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(format-state {:state world-state :cost 0})
+(trace-vars list)
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars A*search)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars A*search)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(trace-vars format-state)
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars clojure.lang.Util.compare)
+(trace-vars compare)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(trace-vars compare)
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars compare)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars disj)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+exit
+(trace-vars format-state)
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars disj)
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(untrace-vars disj)
+(trace-vars map)
+(untrace-vars map)
+(trace-vars apply-all)
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+exit4
+exit
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+exir
+exit
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+exit
+(format-state {:state world-state :cost 0})
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars A*search)
+(trace-vars format-state))
+(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} '((at '(4 8) w0)) format-state :state :cost :undef true)
+(contains? world-state '(at '(3 8) w0))
+(contains? world-state '(at '(3 8) w1))
+(A*search {:state world-state :cost 0} (fn [x] (contains? x (at '(4 8) w0))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(4 8) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(4 8) w0))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
 exit

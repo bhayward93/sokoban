@@ -69,6 +69,7 @@
               (difference state (set (mout (:del op)))))
      :cmd   (mout (:cmd op))
      :txt   (mout (:txt op))
+     :cost  (mout (:cost op))
      }
     ))
 

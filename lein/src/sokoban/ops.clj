@@ -10,20 +10,8 @@
              (on '(?dx ?dy) none)
              (connects '(?sx ?sy) '(?dx ?dy))
              (goal ?g)
-             (:guard (and (or (and (>= (abs (- (? dx) (? wx)))
-                                     (abs (- (? dy) (? wy)))
-                                     )
-                                  (< (abs (- (? sx) (? wx)))
-                                     (abs (- (? dx) (? wx)))
-                                     )
-                                  )
-                             (and (>= (abs (- (? dy) (? wy)))
-                                     (abs (- (? dx) (? wx)))
-                                     )
-                                  (< (abs (- (? sy) (? wy)))
-                                     (abs (- (? dy) (? wy)))
-                                     )
-                                  )
+             (:guard (and (< (calc-dist (? sx) (? sy) (? wx) (? wy))
+                             (calc-dist (? dx) (? dy) (? wx) (? wy))
                              )
                           (not= 'none (? g))
                           )
@@ -335,7 +323,11 @@
      :post ((unavailable '(?sx ?sy)) (on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
      :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
      :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
-     :cmd ((on '(?dx ?dy) ?b))
+     :cmd ({
+            :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
+            :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
+            :cmd ((on '(?dx ?dy) ?b))
+            })
      }
     
     :push-box
@@ -377,7 +369,11 @@
      :post ((unavailable '(?sx ?sy)) (on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
      :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
      :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
-     :cmd ((on '(?dx ?dy) ?b))
+     :cmd ({
+            :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
+            :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
+            :cmd ((on '(?dx ?dy) ?b))
+            })
      }
     
     :push-junctions-alt
@@ -410,7 +406,11 @@
      :post ((unavailable '(?sx ?sy)) (block '(?sx ?sy) '(?dx ?dy)) (on '(?sx ?sy) ?b) (at '(?wx ?wy) ?w))
      :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
      :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
-     :cmd ((on '(?dx ?dy) ?b))
+     :cmd ({
+            :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?swx ?swy) ?w))
+            :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?wx ?wy) ?w))
+            :cmd ((on '(?dx ?dy) ?b))
+            })
      }
     
     :block-link
@@ -536,18 +536,41 @@
     }
  )
 
- (def lmg-ops
-  '{:move
-    {:name move
-     :achieves ((at ?next-patch w0))
-     :when ()
-     :post ()
-     :pre ((at ?patch w0) (connects ?patch ?next-patch)(on ?next-patch none)(isa w0 worker))
-     :add ((at ?next-patch w0))
-     :del ((at ?patch w0))
-     :cmd ()
-     :txt (w0 moves to ?next-patch)
-     :cost ()
-     }
- }
-  )
+
+;    :nudge
+;    {:name nudge
+;     :achieves (at '(?dx ?dy) ?w)
+;     :when (
+;             (isa ?w worker)
+;             (on '(?sx ?sy) ?b)
+;             (on '(?dx ?dy) none)
+;             (on '(?xx ?xy) none)
+;             (at '(?swx ?swy) none) 
+;             (connects '(?sx ?sy) '(?dx ?dy))
+;             (connects '(?swx ?swy) '(?sx ?sy))
+;             (connects '(?dx ?dy) '(?xx ?xy))
+;             (available '(?dx ?dy))
+;             (goal ?g)
+;             (guard (or (= (? swx) (? sx) (? dx) (? xx))
+;                        (= (? swy) (? sy) (? dy) (? xy))
+;                        )
+;                    )
+;             )
+;     :post ((at '(?dx ?dy) ?w) (on '(?dx ?dy) ?b) (at '(?sx ?sy) ?w) (on '(?sx ?sy) ?b))
+;     }
+
+(def lmg-ops
+ '{:move
+   {:name move
+    :achieves ((at ?next-patch w0))
+    :when ()
+    :post ()
+    :pre ((at ?patch w0) (connects ?patch ?next-patch) (on ?next-patch none) (isa w0 worker))
+    :add ((at ?next-patch w0))
+    :del ((at ?patch w0))
+    :cmd ()
+    :txt (w0 moves to ?next-patch)
+    :cost 1
+    }
+   }
+ )
