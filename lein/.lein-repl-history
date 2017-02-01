@@ -1,71 +1,4 @@
 exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-                           (> (abs (- (? wy) (? dy)))
-                              (abs (- (? by) (? dy)))
-                              )
-(> (abs (- 5 8)) (abs (- 6 8)))
-(and 1 1 1)
-(and true true true0
-)
-(and true true true)
-(and true false true)
-(and true true false true)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-(planner initial-state '(on '(5 8) b1) box-ops)
-exit
-(planner initial-state '(on '(5 8) b1) box-ops)
-(planner initial-state '(on '(6 2) b1) box-ops)
-(planner initial-state '(on '(2 5) b1) box-ops)
-(planner initial-state '(on '(5 8) b0) box-ops)
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-(planner initial-state '(on '(6 2) b1) box-ops)
-(planner initial-state '(on '(2 5) b1) box-ops)
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b2) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
 (planner initial-state '(on '(5 8) b0) box-ops)
 exir
 exit
@@ -497,4 +430,71 @@ exit
 exit
 (A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(4 8) w0))) format-state :state :cost :undef true)
 (A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(use '(clojure.tools.trace))
+(use 'clojure.tools.trace)
+(trace-vars apply-all)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(untrace-vars apply-all)
+(trace-vars format-state)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(untrace-vars format-state
+)
+(trace-vars map)
+(untrace-vars map)
+(trace-vars apply-op)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+exir
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+world-state
+target-state
+clear
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
 exit

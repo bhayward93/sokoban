@@ -1,0 +1,182 @@
+to add-wall[x y]
+  ask patch x y [
+    set pcolor brown
+  ]
+end
+
+
+;== SETUP WALLS ======
+to setup-walls
+  setup-row-0
+  setup-row-1
+  setup-row-2
+  setup-row-3
+  setup-row-4
+  setup-row-5
+  setup-row-6
+  setup-row-7
+  setup-row-8
+  setup-row-9
+  setup-row-10
+end
+;== END SETUP WALLS ==
+
+;== SETUP BAYS =======
+to setup-switches
+  ask patch 6 2 [
+    set pcolor red + 4
+    ]
+  ask patch 2 5 [
+    set pcolor red + 4
+    ]
+  ask patch 5 8 [
+    set pcolor red + 4
+  ]
+end
+;== END SETUP BAYS ===
+
+;== SETUP BOXES ======
+to setup-boxes
+  create-boxes 1[set shape "square"
+                 setxy 7 7
+                 set color 4]
+  create-boxes 1[set shape "square"
+                 setxy 7 5
+                 set color 4]
+  create-boxes 1[set shape "square"
+                 setxy 3 6
+                 set color 4]
+end
+;== END SETUP BOXES ==
+
+;== SETUP WORKER =====
+to setup-player
+create-players 1[set shape "person"
+                 set color 9.9
+                 setxy 3 8]
+end
+;== END SETUP WORKER =
+
+;== SETUP ROWS =======
+to setup-row-0
+  add-wall 0 0
+  add-wall 1 0
+  add-wall 2 0
+  add-wall 3 0
+  add-wall 4 0
+  add-wall 5 0
+  add-wall 6 0
+  add-wall 7 0
+  add-wall 8 0
+  add-wall 9 0
+  add-wall 10 0
+end
+
+to setup-row-1
+  add-wall 0 1
+  add-wall 10 1
+end
+
+to setup-row-2
+  add-wall 0 2
+  add-wall 10 2
+end
+
+to setup-row-3
+  add-wall 0 3
+  add-wall 1 3
+
+  add-wall 3 3
+  add-wall 4 3
+
+  add-wall 6 3
+  add-wall 7 3
+  add-wall 8 3
+  add-wall 9 3
+  add-wall 10 3
+end
+
+to setup-row-4
+  add-wall 0 4
+  add-wall 1 4
+
+  add-wall 3 4
+  add-wall 4 4
+
+  add-wall 6 4
+
+  add-wall 9 4
+  add-wall 10 4
+end
+
+to setup-row-5
+  add-wall 0 5
+  add-wall 1 5
+
+  add-wall 3 5
+  add-wall 4 5
+
+  add-wall 6 5
+
+  add-wall 9 5
+  add-wall 10 5
+end
+
+to setup-row-6
+  add-wall 0 6
+  add-wall 1 6
+
+  add-wall 9 6
+  add-wall 10 6
+end
+
+to setup-row-7
+  add-wall 0 7
+  add-wall 1 7
+  add-wall 2 7
+
+  add-wall 6 7
+
+  add-wall 9 7
+  add-wall 10 7
+end
+
+to setup-row-8
+  add-wall 0 8
+  add-wall 1 8
+  add-wall 2 8
+
+  add-wall 6 8
+
+  add-wall 9 8
+  add-wall 10 8
+end
+
+to setup-row-9
+  add-wall 0 9
+  add-wall 1 9
+  add-wall 2 9
+  add-wall 3 9
+  add-wall 4 9
+  add-wall 5 9
+  add-wall 6 9
+  add-wall 7 9
+  add-wall 8 9
+  add-wall 9 9
+  add-wall 10 9
+end
+
+to setup-row-10
+  add-wall 0 10
+  add-wall 1 10
+  add-wall 2 10
+  add-wall 3 10
+  add-wall 4 10
+  add-wall 5 10
+  add-wall 6 10
+  add-wall 7 10
+  add-wall 8 10
+  add-wall 9 10
+  add-wall 10 10
+end
+;== END SETUP ROWS ===

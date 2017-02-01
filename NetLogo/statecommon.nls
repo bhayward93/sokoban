@@ -1,0 +1,88 @@
+to send-basics
+  let w 0
+  let b 0
+  
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      set id (word "'(" pxcor " " pycor ")")
+      
+      let pid id
+      
+      if (pcolor != brown and count players-here > 0) [
+        ask players-here [
+          set t-id (word "w" w)
+          set w w + 1
+          
+          send (word "(isa " t-id " worker)")
+          send (word "(at " pid " " t-id ")")
+        ]
+      ]
+      
+      if (pcolor != brown and count boxes-here > 0) [
+        ask boxes-here [
+          set t-id (word "b" b)
+          set b b + 1
+          
+          send (word "(isa " t-id " box)")
+          send (word "(on " pid " " t-id ")")
+        ]
+      ]
+      
+      if (pcolor != brown and count boxes-here = 0) [
+        send (word "(on " pid " none)")
+      ]
+    ]
+  ])
+end
+
+to send-connectors
+  ask patches [
+    if (pcolor != brown) [
+      let pid id
+      let srcdirs 0
+      
+      ask neighbors4 [
+        if (pcolor != brown) [
+          set srcdirs srcdirs + 1
+          send (word "(connects " pid " " id ")")
+        ]
+      ]
+      
+      set dirs srcdirs
+    ]
+  ]
+end
+
+to send-junctions
+    ask patches [
+    if (dirs = 4) [
+      send (word "(isa " id " junction)")
+
+      find-linked-junction 0 1
+      find-linked-junction 0 -1
+      find-linked-junction 1 0
+      find-linked-junction -1 0
+    ]
+
+    if (pcolor = red + 4) [
+      send (word "(isa " id " bay)")
+
+      find-linked-junction 0 1
+      find-linked-junction 0 -1
+      find-linked-junction 1 0
+      find-linked-junction -1 0
+    ]
+  ]
+end
+
+to send-target-state
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      if (pcolor = orange - 4 or pcolor = red + 4) [
+        send (word "(available " id ")")
+      ]
+      
+      if (pcolor = red + 4) [send (word "(unloaded " id ")")]
+    ]
+  ])
+end

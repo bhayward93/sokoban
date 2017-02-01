@@ -562,14 +562,51 @@
 (def lmg-ops
  '{:move
    {:name move
-    :achieves ((at ?next-patch w0))
-    :when ()
-    :post ()
-    :pre ((at ?patch w0) (connects ?patch ?next-patch) (on ?next-patch none) (isa w0 worker))
-    :add ((at ?next-patch w0))
-    :del ((at ?patch w0))
+    :achieves ((at '(?dx ?dy) w0))
+    :pre (
+           (at '(?sx ?sy) w0)
+           (on '(?dx ?dy) none)
+           (:guard (or (and (= (? dx) (? sx))
+                            (= 1 (abs (- (? dy) (? sy))))
+                            )
+                       (and (= (? dy) (? sy))
+                            (= 1 (abs (- (? dx) (? sx))))
+                            )
+            )
+           )
+           )
+    :add ((at '(?dx ?dy) w0))
+    :del ((at '(?sx ?sy) w0))
     :cmd ()
-    :txt (w0 moves to ?next-patch)
+    :txt (w0 moves to '(?dx ?dy))
+    :cost 2
+    }
+   
+   :push-box
+   {:name push-box
+    :achieves ((on '(?dx ?dy) ?b))
+    :pre (
+           (on '(?sx ?sy) ?b)
+           (at '(?wx ?wy) w0)
+           (on '(?dx ?dy) none)
+           (isa ?b box)
+           (:guard (or (and (= (? dx) (? wx))
+                            (= 1 (abs (- (? dy) (? sy))))
+                            (= 1 (abs (- (? wy) (? sy))))
+                            (not= (? dy) (? wy))
+                            )
+                       (and (= (? dy) (? wy))
+                            (= 1 (abs (- (? dx) (? sx))))
+                            (= 1 (abs (- (? wx) (? sx))))
+                            (not= (? dx) (? wx))
+                            )
+                       )
+                   )
+           )
+    :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at (?sx ?sy) w0))
+    :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?wx ?wy) w0))
+    :cmd ()
+    :txt (?b pushed to '(?dx ?dy))
     :cost 1
     }
    }

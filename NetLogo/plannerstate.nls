@@ -1,0 +1,41 @@
+;== SEND WORLD STATE =========
+to send-world-state
+  send (word "(goal none)")
+
+  send-basics
+  send-connectors
+  send-junctions
+  
+  send -1
+
+  send-target-state
+  send -1
+end
+;== END SEND WORLD STATE =====
+
+;== FIND LINKED JUNCTION =====
+to find-linked-junction [inc-x inc-y]
+  let halt false
+
+  let pid id
+
+  let tgt-x pxcor
+  let tgt-y pycor
+
+  loop [
+    set tgt-x tgt-x + inc-x
+    set tgt-y tgt-y + inc-y
+
+    ask patch tgt-x tgt-y[
+      if (pcolor = brown) [set halt true]
+
+      if (dirs = 4 or pcolor = red + 4) [
+        send (word "(links " pid " " id ")")
+        set halt true
+      ]
+    ]
+
+    if (halt) [stop]
+  ]
+end
+;== END FIND LINKED JUNCTION =

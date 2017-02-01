@@ -1,0 +1,6 @@
+to send-astar-state
+  send-basics
+
+  send -1
+  send -1
+end
