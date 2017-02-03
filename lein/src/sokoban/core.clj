@@ -16,10 +16,11 @@
 (load-file "./src/sokoban/socket.clj")
 (load-file "./src/sokoban/state-cleaning.clj")
 (load-file "./src/sokoban/route-building.clj")
+(load-file "./src/astar-ops-search/astar-ops-search.clj")
 ;(load-file "./src/lmg/lmg.clj")
 
 (def initial-state
-  (union world-state target-state)
+  (union world current-state)
   )
 
 (defn -main
@@ -51,4 +52,10 @@
     )
  )
 
-
+(defn alt-lmg [state]
+  (let [s (:state state)
+        w (:world state)
+        c (:cost state)]
+    (astar-apply-all lmg-ops-test s w c)
+    )
+  )

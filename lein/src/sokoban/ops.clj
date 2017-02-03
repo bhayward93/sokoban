@@ -559,6 +559,68 @@
 ;     :post ((at '(?dx ?dy) ?w) (on '(?dx ?dy) ?b) (at '(?sx ?sy) ?w) (on '(?sx ?sy) ?b))
 ;     }
 
+
+(def lmg-ops-test
+  '{:move
+    {:name move
+     :when ((at '(?wx ?wy) ?w))
+     :if ((2 '(?dx ?dy)))
+     :at '(?wx ?wy)
+     :range ((2 '((:eval (- (? wx) 1)) ?wy))
+             (2 '((:eval (+ (? wx) 1)) ?wy))
+             (2 '(?wx (:eval (- (? wy) 1))))
+             (2 '(?wx (:eval (+ (? wy) 1))))
+             )
+     :add {:world ()
+           :state ((at '(?dx ?dy) w0))}
+     :del {:world ()
+           :state ((at '(?wx ?wy) w0))}
+     :cmd ()
+     :txt (w0 moves to '(?dx ?dy))
+     :cost (:eval (+ (? cost) 2))
+     }
+    
+    :push-box
+    {:name push-box
+     :when ((at '(?wx ?wy) ?w)
+            (on '(?bx ?by) ?b))
+     :if (
+           (1 '(?bx ?by))
+           (2 '(?dx ?dy))
+           (:guard (or (and (= (? dx) (? bx) (? wx))
+                            (= 1 (abs (- (? dy) (? by))))
+                            (= 1 (abs (- (? wy) (? by))))
+                            (not= (? dy) (? wy))
+                            )
+                       (and (= (? dy) (? by) (? wy))
+                            (= 1 (abs (- (? dx) (? bx))))
+                            (= 1 (abs (- (? wx) (? bx))))
+                            (not= (? dx) (? wx))
+                            )
+                       )
+                   )
+           )
+     :at '(?wx ?wy)
+     :range ((2 '((:eval (- (? wx) 2)) ?wy))
+             (1 '((:eval (- (? wx) 1)) ?wy))
+             (1 '((:eval (+ (? wx) 1)) ?wy))
+             (2 '((:eval (+ (? wx) 2)) ?wy))
+             (2 '(?wx (:eval (- (? wy) 2))))
+             (1 '(?wx (:eval (- (? wy) 1))))
+             (1 '(?wx (:eval (+ (? wy) 1))))
+             (2 '(?wx (:eval (+ (? wy) 2))))
+             )
+     :add {:world ((1 '(?dx ?dy)) (2 '(?bx ?by)))
+           :state ((on '(?dx ?dy) ?b) (at '(?bx ?by) w0))}
+     :del {:world ((2 '(?dx ?dy)) (1 '(?bx ?by)))
+           :state ((on '(?bx ?by) ?b) (at '(?wx ?wy) w0))}
+     :cmd ()
+     :txt (?b pushed to '(?dx ?dy))
+     :cost (:eval (+ (? cost) 1))
+     }
+    }
+  )
+  
 (def lmg-ops
  '{:move
    {:name move
@@ -590,12 +652,12 @@
            (at '(?wx ?wy) w0)
            (on '(?dx ?dy) none)
            (isa ?b box)
-           (:guard (or (and (= (? dx) (? wx))
+           (:guard (or (and (= (? dx) (? sx) (? wx))
                             (= 1 (abs (- (? dy) (? sy))))
                             (= 1 (abs (- (? wy) (? sy))))
                             (not= (? dy) (? wy))
                             )
-                       (and (= (? dy) (? wy))
+                       (and (= (? dy) (? sy) (? wy))
                             (= 1 (abs (- (? dx) (? sx))))
                             (= 1 (abs (- (? wx) (? sx))))
                             (not= (? dx) (? wx))
@@ -603,7 +665,7 @@
                        )
                    )
            )
-    :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at (?sx ?sy) w0))
+    :add ((on '(?dx ?dy) ?b) (on '(?sx ?sy) none) (at '(?sx ?sy) w0))
     :del ((on '(?sx ?sy) ?b) (on '(?dx ?dy) none) (at '(?wx ?wy) w0))
     :cmd ()
     :txt (?b pushed to '(?dx ?dy))

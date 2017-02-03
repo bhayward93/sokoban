@@ -1,325 +1,3 @@
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exir
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-(planner initial-state '(on '(5 8) b1) box-ops)
-exit
-(planner initial-state '(on '(5 8) b1) box-ops)
-exit
-(planner initial-state '(on '(5 8) b1) box-ops)
-exit
-(planner initial-state '(on '(5 8) b1) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-exit
-(planner initial-state '(on '(5 8) b0) box-ops)
-(planner initial-state '(on '(5 8) b1) box-ops)
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-(> (abs (- 2 5)) (abs (- 3 5)))
-(and (> (abs (- 2 5)) (abs (- 3 5))) (> (- 1 5) (- 2 5)))
-(and (> (abs (- 2 5)) (abs (- 3 5))) (> (abs (- 1 5)) (abs(- 2 5))))
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-exit
-(planner initial-state '(on '(2 5) b1) box-ops)
-(planner initial-state '(on '(5 8) b1) box-ops)
-(planner initial-state '(on '(6 2) b1) box-ops)
-(planner initial-state '(on '(2 5) b0) box-ops)
-(planner initial-state '(on '(2 5) b2) box-ops)
-(planner initial-state '(on '(6 2) b0) box-ops)
-(planner initial-state '(on '(6 2) b2) box-ops)
-exi
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(complete-puzzle)
-(get (planner initial-state '(on '(2 5) b0) box-ops) :cmds)
-(cons (get (planner initial-state '(on '(2 5) b0) box-ops) :cmds))
-(cons (get (planner initial-state '(on '(2 5) b0) box-ops) :cmds) '())
-(complete-puzzle)
-exit
-(complete-puzzle)
-exit
-(try-route ((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-rxit
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(planner (at '(2 6) w0) step-ops)
-(planner '(at '(2 6) w0) step-ops)
-(planner initial-state '(at '(2 6) w0) step-ops)
-(get (planner initial-state '(at '(2 6) w0) step-ops) :state)
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-clear
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-exi
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-exit
-(try-route '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) initial-state '())
-(planner initial-state '(at '(2 6) w0) worker-ops)
-exit
-(planner initial-state '(at '(2 6) w0) worker-ops)
-(planner initial-state '(at '(2 5) w0) worker-ops)
-exit
-(planner initial-state '(at '(2 5) w0) worker-ops)
-(planner initial-state '(at '(2 6) w0) worker-ops)
-exit
-(planner initial-state '(at '(2 6) w0) worker-ops)
-exit
-(planner initial-state '(at '(2 6) w0) worker-ops)
-exit
-(planner initial-state '(at '(2 6) w0) worker-ops)
-(planner initial-state '(at '(9 1) w0) worker-ops)
-exit
-exitg
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-(mfor ['(on ?t ?b) initial-state] '(on ?t ?b))
-(mfor ['(on ?t ?b) initial-state] '(on (? t) (? b)))
-(mfor ['(on ?t ?b) initial-state] (on (? t) (? b)))
-(mfor ['('on ?t ?b) initial-state] '('on (? t) (? b)))
-(mfor ['(on ?t ?b) initial-state] '(on (? t) (? b)))
-(mfor ['(at ?t ?b) initial-state] '(at (? t) (? b)))
-(mfor ['(at ?t ?b) world-state] '(at (? t) (? b)))
-exit
-(mfor ['(at ?t ?b) world-state] '(at (? t) (? b)))
-(mfor ['(at ?t ?b) world-state] (? t) (? b))
-(mfor ['(at ?t ?b) world-state] (? t))
-(mfor ['(at ?t ?b) world-state])
-(mfor ['(at ?t ?b) world-state] ?)
-(mfor ['(at ?t w0) world-state] '(at (? t) w0))
-(mfor ['(at ?t w0) world-state] '(at '(? t) w0))
-(mfor* ['(?g (at ?l ?w)) initial-state) (? g))
-(mfor* ['(?g (at ?l ?w)) initial-state) (? g))])
-(mfor* ['(?g (at ?l ?w)) initial-state] (? g)))
-(mfor* ['(?g (at ?l ?w)) initial-state] (? g))
-(mfor* ['(?g '(at ?l ?w)) initial-state] (? g))
-(mfor ['(available ?l) initial-state] (? l))
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-(find-goals initial-state)
-(find-goals (planner initial-state '(at '(2 5) w0) worker-ops))
-(find-goals (planner initial-state '(at '(2 6) w0) worker-ops))
-(mfor ['(goal ?g) (planner initial-state '(at '(2 6) w0) worker-ops))] (? g))
-(mfor ['(goal ?g) (planner initial-state '(at '(2 6) w0) worker-ops)] (? g))
-(mfor ['(at '(?x ?y) ?g) (planner initial-state '(at '(2 6) w0) worker-ops)] (? g))
-(mfor ['(goal ?g) (get (planner initial-state '(at '(2 6) w0) worker-ops) :state)] (? g))
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-(mfor ['(goal ?g) (get (planner initial-state '(at '(2 6) w0) worker-ops) :state)] (? g))
-exit
-(mfor ['(goal ?g) (get (planner initial-state '(at '(2 6) w0) worker-ops) :state)] (? g))
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-(concat '() '(1 2 3))
-(concat '() '(first (1 2 3))
-)
-(concat '() '(first (1 2 3)))
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-eit
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-ecit
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-exit
-exir
-exit
-(find-goals (get (planner initial-state '(at '(2 6) w0) worker-ops):state))
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-(difference target-state (available '(?_x ?_y))
-)
-(difference target-state (available '(?_x ?_y)))
-(difference target-state '(available '(?_x ?_y)))
-(difference target-state ((available '(?_x ?_y))))
-(difference target-state '((available '(?_x ?_y))))
-(difference target-state '((available ?x)))
-(difference target-state '(available ?x))
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(build-worker-routes initial-state '((at (quote (2 6)) w0) (on (quote (4 6)) b1) (at (quote (3 6)) w0) (on (quote (5 6)) b1) (at (quote (5 5)) w0) (on (quote (5 8)) b1)) '())
-exit
-(try-goal '(at '(5 8) b1) initial-state '())
-exit
-(try-goal '(at '(5 8) b1) initial-state '())
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exirt
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(try-goal '(on '(5 8) b1) initial-state '())
-exit
-(format-state world-state)
-(def new-state (union (difference world-state '(at '(3 8) w0)) '(at '(3 7) w0)))
-new-state
-(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
-new-state
-(format-state new-state)
-new
-new-state
-(format-state new-state)
-exit
-(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
-(format-state new-state)
-exit
-(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
-(format-state new-state)
-clear
-(A*search world-state '((at '(2 6) w0)) format-state)
-exit
-(def new-state (union (difference world-state '((at '(3 8) w0))) '((at '(3 7) w0))))
-(format-state new-state)
-(A*search {:state world-state :cost 0} '((at '(2 6) w0)) format-state)
-(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
-(< (abs (- (+ 3 7) (+ 4 7))) (abs (- (+ 3 8) (+ 3 7))))
-(use clojure.tools.trace)
-(use 'clojure.tools.trace)
-(trace-vars A*search)
-(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
-(trace-vars format-state))
-(trace-vars format-state)
-(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
-exit
-(use 'clojure.tools.trace)
-(trace-vars A*search)
-(trace-vars format-state)
-(A*search {:state world-state :cost 0} '(at '(2 6) w0) format-state)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state)
-(untrace-vars format-state)
-(untrace-vars A*search)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state [:debug])
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :debug)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :keys[debug])
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :keys [debug])
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :keys debug)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state {:keys debug})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state (:keys debug))
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state debug)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state [debug])
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true))
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(A*search {:state world-state :cost 0} '((at '(4 8) w0)) format-state :state :cost :undef true)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef :true)
-(format-state world-state)
-exit
-(format-state world-state)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef :true)
-(use 'clojure.tools.trace)
-(trace-vars A*search)
 (trace-vars format-state)
 (A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef :true)
 (A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
@@ -497,4 +175,326 @@ exit
 exit
 (A*search {:state world-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) format-state :state :cost :undef true)
 (A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(5 8) b1))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(5 8) b1))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(5 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(5 6) b1))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars apply-op)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) format-state :state :cost :undef true)
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(5 6) b1))) format-state :state :cost :undef true)
+exit
+(A*search {:state world-state :cost 0} (fn [x] (contains? x '(on '(5 6) b1))) format-state :state :cost :undef true)
+exit
+(intersection world-state ((on (quote (6 1) none)))
+)
+(intersection world-state ('(on (quote (6 1) none)))
+)
+(intersection world-state ('(on ' (6 1) none)))
+(intersection world-state ((on '(6 1) none)))
+(intersection world-state (('on '(6 1) none)))
+(intersection world-state (('on '(6 1) 'none)))
+world-state
+(intersection world-state #{(on '(4 2) none)}))
+(intersection world-state #{'(on '(4 2) none)}))
+(intersection world-state #{'(on '(4 2) none)})
+(intersection world-state #{'(on '(4 2) none) '(on '(7 6) none)})
+exit
+xit
+exit
+(:range (:move test-ops))
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars mlet)
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+(trace-var* mlet)
+(trace-vars intersection)
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(5 2) (:range (:move test-ops)) world-state)
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+(eval ((2 '((+ 2 2) 3)
+)
+0
+)
+(eval ((2 '((+ 2 2) 3))))
+(eval (+ 2 3))
+(eval (2 (+ 2 3)))
+exit
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+eval 1
+(eval 1)
+exit
+(mout (eval 1))
+ecit
+exit
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 (5 2)) (:range (:move test-ops)) world-state)
+exitg
+exit
+(get-locality '(2 '(5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 '(5 2)) (:range (:move test-ops)) world-state)
+(trace-vars get-locality)
+(get-locality '(2 '(5 2)) (:range (:move test-ops)) world-state)
+(mout bob)
+exit
+(get-locality '(2 '(5 2)) (:range (:move test-ops)) world-state)
+(use 'clojure.tools.trace)
+(trace-vars intersection)
+(get-locality '(2 '(5 2)) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(2 '(5 2)) (:range (:move test-ops)) world-state)
+(get-locality '(2 '(5 6)) (:range (:move test-ops)) world-state)
+(intersection world-state (?_ '(5 2))
+)
+(intersection world-state (mout (?_ '(5 2)))
+)
+(intersection world-state (mout (?_ '(5 2))))
+exit
+(get-locality '(5 6) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(5 6) (:range (:move test-ops)) world-state)
+exit
+(get-locality '(5 6) (:range (:move test-ops)) world-state)
+(A*search {:state world-state :world target-state :cost 0} (fn [x] (contains? x '(at '(2 6) b1))) alt-lmg :state :cost :undef true)
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-all)
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+(trace-vars astar-apply-op)
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+(seq (bob((
+))))
+(seq (bob))
+(seq #{bob nob}))
+(seq #{bob nob})
+(seq #{'bob 'nob})
+exit
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(trace-vars astar-apply-all)
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+(trace-vars get-locality))
+(trace-vars get-locality)
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+exit
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+exit
+(get-locality (2 '(5 6)) (:range (:move test-ops)) world-state)
+(get-locality (2 '(5 6)) (:range (:move lmg-ops-test)) world-state)
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world-state)
+(get-locality '(5 6) (:range (:push-box lmg-ops-test)) world-state)
+exit
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(trace-vars astar-apply-all)
+(trace-vars get-locality)
+(alt-lmg {:state world-state :world-state target-state :cost 0})
+target-state
+(alt-lmg {:state world-state :world target-state :cost 0})
+clear
+(alt-lmg {:state world-state :world target-state :cost 0})
+(astar-apply-op (:when (:move lmg-ops-test)) world-state target-state)
+(astar-apply-op (:when (:push-box lmg-ops-test)) world-state target-state)
+(alt-lmg {:state world-state :world target-state :cost 0})
+(astar-apply-op (:when (:push-box lmg-ops-test)) world-state target-state)
+(:when (:move lmg-ops-test))
+(:when (:when (:move lmg-ops-test)))
+exit
+(alt-lmg {:state world-state :world target-state :cost 0})
+(alt-lmg {:state current-state :world world :cost 0})
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(trace-vars astar-apply-all)
+(trace-vars get-locality)
+(alt-lmg {:state current-state :world world :cost 0})
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+world
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+(trace-vars intersection)
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+exit
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+(alt-lmg {:state current-state :world world :cost 0})
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(trace-vars astar-apply-all)
+(trace-vars get-locality)
+(trace-vars intersection)
+(alt-lmg {:state current-state :world world :cost 0})
+(trace-vars set)
+(alt-lmg {:state current-state :world world :cost 0})
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+exit
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+(alt-lmg {:state current-state :world world :cost 0})
+exit
+(astar-apply-op (:when (:push-box lmg-ops-test)) world-state target-state)
+exit
+(astar-apply-op (:when (:push-box lmg-ops-test)) world-state target-state)
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+(astar-apply-op (:move lmg-ops-test) world current-statee)
+(astar-apply-op (:move lmg-ops-test) world current-state)
+exit
+(get-locality '(5 6) (:range (:move lmg-ops-test)) world)
+(alt-lmg {:state current-state :world world :cost 0})
+exit
+(alt-lmg {:state current-state :world world :cost 0})
+exit
+(alt-lmg {:state current-state :world world :cost 0})
+exit
+(alt-lmg {:state current-state :world world :cost 0})
+exit
+(alt-lmg {:state current-state :world world :cost 0})
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(trace-vars astar-apply-all)
+(trace-vars get-locality)
+(alt-lmg {:state current-state :world world :cost 0})
+(trace-vars set)
+(alt-lmg {:state current-state :world world :cost 0})
+(trace-vars union)
+(untrace-vars set)
+(alt-lmg {:state current-state :world world :cost 0})
+exit
+(alt-lmg {:state current-state :world world :cost 0})
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(trace-vars astar-apply-all)
+(trace-vars get-locality)
+(trace-vars intersection)
+(alt-lmg {:state current-state :world world :cost 0})
+exit
+(alt-lmg {:state current-state :world world :cost 0})
+(A*search {:state world :world current-state :cost 0} (fn [x] (contains? x '(at '(2 6) b1))) alt-lmg :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-all)
+(A*search {:state world :world current-state :cost 0} (fn [x] (contains? x '(at '(2 6) b1))) alt-lmg :state :cost :undef true)
+(trace-vars astar-apply-op)
+(A*search {:state world :world current-state :cost 0} (fn [x] (contains? x '(at '(2 6) b1))) alt-lmg :state :cost :undef true)
+(A*search {:state world :world current-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(trace-vars get-locality)
+(trace-vars intersection)
+(A*search {:state world :world current-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(alt-lmg {:state current-state :world world :cost 0})
+(A*search {:state world :world current-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state world :world current-state :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(7 2) w0))) alt-lmg :state :cost :undef true)
+(trace-vars astar-apply-op)
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+(trace-vars get-locality)
+(trace-vars intersection)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(7 2) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(7 2) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(7 2) w0))) alt-lmg :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(7 2) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+wor
+world
+current-state
+clear
+current-state
+(difference current-state ((at '(3 8)) w0))
+(difference current-state (('at '(3 8)) 'w0))
+current-state
+(difference current-state '((at '(3 8)) w0))
+(difference current-state ('(at '(3 8)) w0))
+(difference current-state ('(at '(3 8) w0)))
+(difference current-state '((at '(3 8) w0))
+)
+current-state
+(def new-state (union '((at '(2 6) w0)) (difference current-state'((at '(3 8) w0)))))
+current-state
+(def new-state (union '((at '(2 6) w0)) (difference current-state'((at '(3 8) w0)))))
+(def new-state (union (set '((at '(2 6) w0))) (difference current-state (set '((at '(3 8) w0))))))
+new-state
+(alt-lmg {:state current-state :world world :cost 0})
+(alt-lmg {:state new-state :world world :cost 0})
+exit
+(def new-state (union (set '((at '(2 6) w0))) (difference current-state (set '((at '(3 8) w0))))))
+(alt-lmg {:state new-state :world world :cost 0})
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+exit
+exit4
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(7 2) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(5 8) b1))) alt-lmg :state :cost :undef true)
 exit

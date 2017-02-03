@@ -38,12 +38,12 @@
                (let [result (planner state (first cmds) ops1)
                      new-state (clear-goals (get result :state) (find-goals (get result :state)))
                      worker-cmds (get result :cmds)]
-                 (recur (union new-state target-state) (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
+                 (recur (union new-state current-state) (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
                  )
                (let [result (planner state (first cmds) ops2)
                      new-state (clear-goals (get result :state) (find-goals (get result :state)))
                      worker-cmds (get result :cmds)]
-                 (recur (union new-state target-state) (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
+                 (recur (union new-state current-state) (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
                  )
                )
     )

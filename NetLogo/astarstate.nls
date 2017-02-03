@@ -1,6 +1,55 @@
-to send-astar-state
-  send-basics
+to send-astar-states
+  send-astar-world
+  
+  send -1
+  
+  send-astar-state
+  send -1
+end
 
-  send -1
-  send -1
+to send-astar-world
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      set id (word "'(" pxcor " " pycor ")")
+      
+      if (pcolor != brown and count boxes-here > 0) [
+        send (word "(1 " id ")")
+      ]
+      
+      if (pcolor != brown and count boxes-here = 0) [
+        send (word "(2 " id ")")
+      ]
+    ]
+  ])
+end
+
+to send-astar-state
+  let w 0
+  let b 0
+  
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      set id (word "'(" pxcor " " pycor ")")
+      
+      if (pcolor != brown and count players-here > 0) [
+        ask players-here [
+          set t-id (word "w" w)
+          set w w + 1
+          
+          send (word "(at " id " " t-id ")")
+        ]
+      ]
+      
+      if (pcolor != brown and count boxes-here > 0) [
+        ask boxes-here [
+          set t-id (word "b" b)
+          set b b + 1
+          
+          send (word "(on " id " " t-id ")")
+        ]
+      ]
+      
+      if (pcolor = red + 4) [send (word "(unloaded " id ")")]
+    ]
+  ])
 end

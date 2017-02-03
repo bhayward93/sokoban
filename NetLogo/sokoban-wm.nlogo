@@ -121,7 +121,7 @@ BUTTON
 164
 161
 Send A* State
-send-astar-state
+send-astar-states
 NIL
 1
 T
