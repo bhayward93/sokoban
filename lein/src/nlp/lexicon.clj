@@ -20,9 +20,32 @@
 
 ;prefixes - note, can convert this and suffixes into a different datatype using REPL.
 ;           should we be storing the values of these symbols in a map, with the value being the meaning
-(defn prefixes (:anti :de :dis :en :em :fore :in :im :in
-                 :im :il :ir :inter :mid :mis :non :over
-                 :pre :re :semi :sub :super :trans :un :under))
+(defn prefixes {:anti {:no [:noun ] }
+                {:de {:reverse [:verb :adverb]}
+                 {:dis {:not [:adjective :verb :noun]}
+                  {:en {:within [:adjective :noun]} ;"to put (something/someone) into <noun>",
+                  :em {:within [:noun :adjective];http://www.dictionary.com/browse/en-
+                  :fore ;{:before
+                  :in
+                  :im
+                  :in
+
+                 :im
+                  :il
+                  :ir
+                  :inter
+                  :mid
+                  :mis
+                  :non
+                  :over
+                  :pre
+                  :re
+                  :semi
+                  :sub
+                  :super
+                  :trans
+                  :un
+                  :under})
 
 ;taken from http://teacher.scholastic.com/reading/bestpractices/vocabulary/pdf/prefixes_suffixes.pdf
 ;Considerations:
