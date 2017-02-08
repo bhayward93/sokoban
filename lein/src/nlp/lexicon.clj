@@ -20,32 +20,33 @@
 
 ;prefixes - note, can convert this and suffixes into a different datatype using REPL.
 ;           should we be storing the values of these symbols in a map, with the value being the meaning
-(defn prefixes {:anti {:no [:noun ] }
-                {:de {:reverse [:verb :adverb]}
-                 {:dis {:not [:adjective :verb :noun]}
-                  {:en {:within [:adjective :noun]} ;"to put (something/someone) into <noun>",
-                  :em {:within [:noun :adjective];http://www.dictionary.com/browse/en-
-                  :fore ;{:before
-                  :in
-                  :im
-                  :in
+;      format:  {prefix {reworded [word type]}} - note word type feild may be off, and also require ordering.
+(defn prefixes  {:anti {:no        [:noun ]}
+                   :de {:reverse   [:verb :adverb]}
+                  :dis {:not       [:adjective :verb :noun]}
+                   :en {:within    [:adjective :noun]} ;"to put (something/someone) into <noun>",
+                   :em {:within    [:noun :adjective]};http://www.dictionary.com/browse/en-
+                 :fore {:already   [:noun :adjective]};{:before
+                   :in {:in        [:verb :adjective :noun]}
+                   :im {:in        [:verb :adjective :noun]}
+                   :il {:not       [:noun :adjective :verb]}
+                   :ir {:not       [:noun :adjective :verb]}
+                 :inter{:interior  [:noun :adjective :verb :adverb]}
+                  :mid {:middle    [:verb :adjective :verb]}
+                  :mis {:wrong     [:verb :noun :adjective]}
+                  :non {:not       [:adjective :verb :noun]}
+                 :over {:overly    [:adjective :adverb :prep]}
+                  :pre {:prior     [:verb :adjective :adverb :noun]} ;do before
+                   :re {:again     [:verb :adjective :noun :adverb]} ;do again
+                  :semi{:part      [:noun :adjective :verb :adverb :pronoun]}
+                  :sub {:underneath[:noun :ajective :adverb]}
+                 :super{:greater   [:noun :adjective :adverb]}
+                 :trans{:cross     [:noun :adjective :adverb :adverb]}
+                    :un{:not       [:adjective :verb :pronoun :noun]}
+                 :under{:beneath   [:adverb :prep]}
+                        })
 
-                 :im
-                  :il
-                  :ir
-                  :inter
-                  :mid
-                  :mis
-                  :non
-                  :over
-                  :pre
-                  :re
-                  :semi
-                  :sub
-                  :super
-                  :trans
-                  :un
-                  :under})
+;see Dictionary.com. Look up "re-" for the prefix re.
 
 ;taken from http://teacher.scholastic.com/reading/bestpractices/vocabulary/pdf/prefixes_suffixes.pdf
 ;Considerations:
