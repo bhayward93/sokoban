@@ -9,15 +9,22 @@
   (println input)
   )
 
+;(load-file "./src/*") < Eliminates all of the below? 
+; but for debugging its nice to not use socket.clj.
+
+;NLP 
+;(load-file "./src/nlp/lexicon.clj")
+;(load-file "./src/nlp/morphologicalprocessor.clj")
+
+;Core 
 (load-file "./src/planner/planner(1a).clj")
 (load-file "./src/Astar/Astar-search(2a).clj")
 (load-file "./src/ops-search/ops-search(1b).clj")
 (load-file "./src/sokoban/ops.clj")
 (load-file "./src/sokoban/socket.clj")
 (load-file "./src/sokoban/state-cleaning.clj")
-(load-file "./src/sokoban/route-building.clj")
+;(load-file "./src/sokoban/route-building.clj")
 (load-file "./src/astar-ops-search/astar-ops-search.clj")
-;(load-file "./src/lmg/lmg.clj")
 
 (def initial-state
   (union world current-state)
