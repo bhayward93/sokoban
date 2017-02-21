@@ -14,17 +14,24 @@
 ;(prefix-remover "nonbeliever person")
 ;(map s/includes? (map first (stringify-keys prefixes)) "anti" )
 (defn prefix-remover [input]   
-     (let [split-sent (split input #"\s+")] ;split the string into words
-              (fn [splitting]          ;quick anon fn for recursion 
-                 (if (.contains (map first (stringify-keys prefixes)) "anti") ;if prefixes includes first word See footnote [1]
-                     (print  "inside the cond"))
+     (let [split-sent (split input #"\s+")]
+       (let [splitting split-sent] ;split the string into words
+       (print "recurred/started > ") ;test line
+       
+              (loop [splitting 10]          
+                 (cond 
+                    (not (= (count splitting) 1)) ;if word count is greater than 1
+                                     (recur (rest splitting))  ;recur   
+                   
+                     (.contains (map first (stringify-keys prefixes)) (first splitting)) ;if prefixes includes first word See footnote [1]
+                                    (print  "inside the cond > ")
                     
-                     (not= (count splitting) 1) ;if word count is greater than 1
-                     (recur (rest splitting))  ;recur
-                                 
-              )
-     )
-     (print "Finished")
+                      
+                 )
+               )
+       )
+      )
+     (print "finished > ")
 )
    
 
