@@ -9,30 +9,36 @@
 ;Gets the users input
 (defn get-input [x])
 
+
 ;will call get-input when everything is linked up.
 ;iterate through words in the input
-;(prefix-remover "nonbeliever person")
-;(map s/includes? (map first (stringify-keys prefixes)) "anti" )
-(defn prefix-remover [input]   
-     (let [split-sent (split input #"\s+")]
-       (let [splitting split-sent] ;split the string into words
-       (print "recurred/started > ") ;test line
-       
-              (loop [splitting 10]          
-                 (cond 
-                    (not (= (count splitting) 1)) ;if word count is greater than 1
-                                     (recur (rest splitting))  ;recur   
-                   
-                     (.contains (map first (stringify-keys prefixes)) (first splitting)) ;if prefixes includes first word See footnote [1]
-                                    (print  "inside the cond > ")
-                    
-                      
-                 )
-               )
-       )
-      )
-     (print "finished > ")
-)
+;(prefix-remover "non anti interaction anti nonbeliever anti-matter person thing man d")
+
+(defn prefix-remover 
+ ([input]                                                                  ;default input
+   (prefix-remover (split input #"\s+") (split input #"\s+")))             ;split into words e.g. '("foo bar") => '("foo" "bar")
+  
+ ([current found] ;second pass
+           
+   (println "recurred/started \n> Current:       " current 
+                           "  \n> First Currrent:" (first current) 
+                           "  \n> Rest Current:  " (into [](rest current))) ;debugging
+   (if
+     (and
+       (.contains (map first (stringify-keys prefixes))(first current)); if the first of current contains a prefix               
+       (not (empty? current)))                                         ;and current is not empty                      
+     (
+       (print "==========================================\n")          ;debugging; shows a found prefix
+       (prefix-remover (into [] (rest current)) (conj found current))));recur with the rest of current
+   
+   (if (not (empty? (rest current)))                                   ;if is just not empty, recur with the rest 
+     (prefix-remover (into [] (rest current)) (conj found current)))   ;see above
+   "> Finished | Found:" found))
+ 
+
+   
+     
+
    
 
 ;replace that part of input with the alternative meaning recur
