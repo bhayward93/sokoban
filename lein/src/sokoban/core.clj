@@ -1,13 +1,16 @@
 (ns sokoban.core
   (:gen-class)
-  (require [cgsx.tools.matcher :refer :all]
-           [clojure.set :refer :all]))
-
-(defn abs [n] (max n (- n)))
-
-(defn ui-out [& input]
-  (println input)
-  )
+  (:require [cgsx.tools.matcher :refer :all]
+            [clojure.set :refer :all]
+            [sokoban.helpers.helpers :refer :all]
+            [astar.astar-search :refer :all]
+            [ops-search.ops-search :refer :all]
+            [planner.planner :refer :all]
+            [sokoban.socket.socket :refer :all]
+            [sokoban.ops.ops :refer :all]
+            [sokoban.route-building.route-building :refer :all]
+            [sokoban.state-cleaning.state-cleaning :refer :all]
+            [sokoban.astar-ops-search.astar-ops-search :refer :all]))
 
 ;(load-file "./src/*") < Eliminates all of the below? 
 ; but for debugging its nice to not use socket.clj.
@@ -16,34 +19,25 @@
 ;(load-file "./src/nlp/lexicon.clj")
 ;(load-file "./src/nlp/morphologicalprocessor.clj")
 
-;Core 
-(load-file "./src/planner/planner(1a).clj")
-(load-file "./src/Astar/Astar-search(2a).clj")
-(load-file "./src/ops-search/ops-search(1b).clj")
-(load-file "./src/sokoban/ops.clj")
-(load-file "./src/sokoban/socket.clj")
-(load-file "./src/sokoban/state-cleaning.clj")
-;(load-file "./src/sokoban/route-building.clj")
-(load-file "./src/astar-ops-search/astar-ops-search.clj")
-
-(def initial-state
-  (union world current-state)
-  )
-
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (def s25 (open-socket 2222))
+  (println "Awaiting new world state setup commands...")
+  (def world (receive-state s25 '#{}))
+  (println "Awaiting new target state setup commands...")
+  (def current-state (receive-state s25 '#{}))
+  (def initial-state (union world current-state)))
 
-(defn exp [x n]
-  (if (zero? n) 1
-    (* x (exp x (dec n)))
-    )
+(defn collect-result [key result collected-results]
+  (into '{} (concat collected-results (key result)))
   )
 
-(defn calc-dist [x1 y1 x2 y2]
-  (Math/sqrt (+ (exp (- x2 x1) 2) (exp (- y2 y1) 2)))
-  )
+(defn extract-result
+  "Extracts a list of values from the A* result matching a key."
+  [cmd result-state]
+  (remove nil? (map cmd result-state))
+)
 
 (defn complete-puzzle []
   (let [goals (get-goals initial-state)]

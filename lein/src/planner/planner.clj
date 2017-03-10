@@ -1,3 +1,8 @@
+(ns planner.planner
+  (:require [cgsx.tools.matcher :refer :all]
+            [clojure.set :refer :all]
+            [sokoban.helpers.helpers :refer [ui-out]]))
+
 
 ;===================================================
 ; based on: strips-search-1a.clj from SHRDLU model

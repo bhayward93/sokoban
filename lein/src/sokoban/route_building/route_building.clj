@@ -1,3 +1,10 @@
+(ns sokoban.route-building.route-building
+  (:require [clojure.set :refer :all]
+            [planner.planner :refer :all]
+            [cgsx.tools.matcher :refer :all]
+            [sokoban.ops.ops :refer :all]
+            [sokoban.state-cleaning.state-cleaning :refer :all]))
+
 (declare get-goals try-goal get-box-goals get-worker-goals get-route build-worker-routes)
 
 (defn get-goals [state]
@@ -5,14 +12,14 @@
   )
 
 
-(defn try-goal [goal state cmds]
-  (get-route goal state)
+(defn try-goal [goal state current-state cmds]
+  (get-route goal state current-state)
   )
 
-(defn get-route [goal state]
+(defn get-route [goal state current-state]
   (let [box-goals (get-box-goals goal state)
         worker-goals (get-worker-goals box-goals state)]
-    (build-worker-routes state worker-goals '() step-ops step-ops)
+    (build-worker-routes state current-state  worker-goals '() step-ops step-ops)
         )
   )
 
@@ -31,19 +38,19 @@
 ;    )
 ;  )
 
-(defn build-worker-routes [state cmds new-cmds ops1 ops2]
+(defn build-worker-routes [state current-state cmds new-cmds ops1 ops2]
   (cond
     (empty? cmds) new-cmds
     :else (mif ['(at '(?x ?y) ?w) (first cmds)]
                (let [result (planner state (first cmds) ops1)
                      new-state (clear-goals (get result :state) (find-goals (get result :state)))
                      worker-cmds (get result :cmds)]
-                 (recur (union new-state current-state) (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
+                 (recur (union new-state current-state) current-state (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
                  )
                (let [result (planner state (first cmds) ops2)
                      new-state (clear-goals (get result :state) (find-goals (get result :state)))
                      worker-cmds (get result :cmds)]
-                 (recur (union new-state current-state) (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
+                 (recur (union new-state current-state) current-state (rest cmds) (concat new-cmds worker-cmds) ops1 ops2)
                  )
                )
     )

@@ -1,3 +1,7 @@
+(ns sokoban.astar-ops-search.astar-ops-search
+  (:require [cgsx.tools.matcher :refer :all]
+            [clojure.set :refer :all]))
+
 (declare astar-apply-op get-locality astar-apply-all)
 
 (def test-ops

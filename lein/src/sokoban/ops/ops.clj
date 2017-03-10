@@ -1,3 +1,5 @@
+(ns sokoban.ops.ops)
+
 ;    (planner (conj world-state object-state) '(at patch-4-8 worker-3) goal-ops)
 
 (def step-ops
@@ -575,7 +577,7 @@
            :state ((at '(?dx ?dy) w0))}
      :del {:world ()
            :state ((at '(?wx ?wy) w0))}
-     :cmd ()
+     :cmd (move ?w '(?dx ?dy))
      :txt (w0 moves to '(?dx ?dy))
      :cost (:eval (+ (? cost) 2))
      }
@@ -614,7 +616,7 @@
            :state ((on '(?dx ?dy) ?b) (at '(?bx ?by) w0))}
      :del {:world ((2 '(?dx ?dy)) (1 '(?bx ?by)))
            :state ((on '(?bx ?by) ?b) (at '(?wx ?wy) w0))}
-     :cmd ()
+     :cmd (push-box ?b '(?dx ?dy))
      :txt (?b pushed to '(?dx ?dy))
      :cost (:eval (+ (? cost) 1))
      }

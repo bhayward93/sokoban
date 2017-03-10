@@ -1,67 +1,3 @@
-(trace-vars format-state)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef :true)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-exit
-(format-state {:state world-state :cost 0})
-exit
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(use 'clojure.tools.trace)
-(trace-vars A*search)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(trace-vars format-state)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(trace-vars apply-all)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(format-state {:state world-state :cost 0})
-(trace-vars list)
-(format-state {:state world-state :cost 0})
-exit
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(use 'clojure.tools.trace)
-(trace-vars A*search)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-exit
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(use 'clojure.tools.trace)
-(trace-vars A*search)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(trace-vars format-state)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-exit
-(trace-vars format-state)
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-exit
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-exit
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(use 'clojure.tools.trace)
-(trace-vars clojure.lang.Util.compare)
-(trace-vars compare)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-exit
-(trace-vars compare)
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(use 'clojure.tools.trace)
-(trace-vars compare)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-exit
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(use 'clojure.tools.trace)
-(trace-vars disj)
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(format-state {:state world-state :cost 0})
-(A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
-(trace-vars format-state)
 (A*search {:state world-state :cost 0} '(at '(4 8) w0) format-state :state :cost :undef true)
 exit
 (trace-vars format-state)
@@ -497,4 +433,68 @@ exit
 (A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(7 2) w0))) alt-lmg :state :cost :undef true)
 (A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(4 6) b1))) alt-lmg :state :cost :undef true)
 (A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(on '(5 8) b1))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) b1))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) b1))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) b1))) alt-lmg :state :cost :undef true)
+(use 'clojure.tools.trace)
+(trace-vars astar-apply-op)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) b1))) alt-lmg :state :cost :undef true)
+(untrace-vars astar-apply-op)
+(untrace-vars astar-apply-all)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) b1))) alt-lmg :state :cost :undef true)
+(trace-vars astar-apply-all)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) b1))) alt-lmg :state :cost :undef true)
+(untrace-vars astar-apply-all)
+(trace-vars alt-lmg)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) b1))) alt-lmg :state :cost :undef true)
+exit
+(use 'clojure.tools.trace)
+(trace-vars alt-lmg)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) b1))) alt-lmg :state :cost :undef true)
+(untrace-vars alt-lmg)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+exit
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(2 6) w0))) alt-lmg :state :cost :undef true)
+(A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) w0))) alt-lmg :state :cost :undef true)
+clear
+exit
+(extract-result :cmd (A*search {:state current-state :world world :cost 0} (fn [x] (contains? x '(at '(5 6) w0))) alt-lmg :state :cost :undef true))
+(collect-result :cmd #{:tom 1 :dick 2 :harry 4 :cmd 6}
+)
+(collect-result :cmd #{:tom 1 :dick 2 :harry 4 :cmd 6} ())
+(collect-result :cmd #{:tom 1 :dick 2 :harry 4 :cmd 6} '())
+(:cmd #{:tom 1 :dick 2 :harry 4 :cmd 6})
+(:cmd {:tom 1 :dick 2 :harry 4 :cmd 6})
+(:harry {:tom 1 :dick 2 :harry 4 :cmd 6})
+(collect-result :cmd {:tom 1 :dick 2 :harry 4 :cmd 6} '())
+(collect-result :cmd {:tom 1 :dick 2 :harry 4 :cmd 6} '{})
+exit
+(collect-result :cmd {:tom 1 :dick 2 :harry 4 :cmd 6} '{})
+(collect-result :cmd {:tom 1 :dick 2 :harry 4 :cmd 6} ())
+(concat '{} ( result))
+(concat '{} (:cmd {:tom 1 :dick 2 :harry 4 :cmd 6}))
+(concat '{} (:cmd {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (at (quote (3 8)) w0) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}, :world #{(2 (quote (7 1))) (2 (quote (4 1))) (2 (quote (5 1))) (2 (quote (8 8))) (2 (quote (2 2))) (2 (quote (2 5))) (2 (quote (1 1))) (2 (quote (7 8))) (2 (quote (9 1))) (2 (quote (2 1))) (2 (quote (4 6))) (2 (quote (4 7))) (2 (quote (2 4))) (2 (quote (2 6))) (2 (quote (3 7))) (2 (quote (6 6))) (2 (quote (3 2))) (2 (quote (5 3))) (1 (quote (7 5))) (2 (quote (5 4))) (2 (quote (2 3))) (2 (quote (6 1))) (2 (quote (4 8))) (2 (quote (5 5))) (2 (quote (8 6))) (1 (quote (3 6))) (2 (quote (8 4))) (2 (quote (9 2))) (2 (quote (8 7))) (2 (quote (5 8))) (2 (quote (1 2))) (2 (quote (7 6))) (2 (quote (8 5))) (2 (quote (6 2))) (1 (quote (7 7))) (2 (quote (5 6))) (2 (quote (5 2))) (2 (quote (4 2))) (2 (quote (7 4))) (2 (quote (7 2))) (2 (quote (8 2))) (2 (quote (3 8))) (2 (quote (5 7))) (2 (quote (8 1))) (2 (quote (3 1)))}, :cost 0}))
+(concat '{} (:cmd {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (at (quote (3 7)) w0) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}, :world #{(2 (quote (7 1))) (2 (quote (4 1))) (2 (quote (5 1))) (2 (quote (8 8))) (2 (quote (2 2))) (2 (quote (2 5))) (2 (quote (1 1))) (2 (quote (7 8))) (2 (quote (9 1))) (2 (quote (2 1))) (2 (quote (4 6))) (2 (quote (4 7))) (2 (quote (2 4))) (2 (quote (2 6))) (2 (quote (3 7))) (2 (quote (6 6))) (2 (quote (3 2))) (2 (quote (5 3))) (1 (quote (7 5))) (2 (quote (5 4))) (2 (quote (2 3))) (2 (quote (6 1))) (2 (quote (4 8))) (2 (quote (5 5))) (2 (quote (8 6))) (1 (quote (3 6))) (2 (quote (8 4))) (2 (quote (9 2))) (2 (quote (8 7))) (2 (quote (5 8))) (2 (quote (1 2))) (2 (quote (7 6))) (2 (quote (8 5))) (2 (quote (6 2))) (1 (quote (7 7))) (2 (quote (5 6))) (2 (quote (5 2))) (2 (quote (4 2))) (2 (quote (7 4))) (2 (quote (7 2))) (2 (quote (8 2))) (2 (quote (3 8))) (2 (quote (5 7))) (2 (quote (8 1))) (2 (quote (3 1)))}, :cmd (move w0 (quote (3 7))), :txt (w0 moves to (quote (3 7))), :cost 2}))
+(:cmd {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (at (quote (3 7)) w0) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}, :world #{(2 (quote (7 1))) (2 (quote (4 1))) (2 (quote (5 1))) (2 (quote (8 8))) (2 (quote (2 2))) (2 (quote (2 5))) (2 (quote (1 1))) (2 (quote (7 8))) (2 (quote (9 1))) (2 (quote (2 1))) (2 (quote (4 6))) (2 (quote (4 7))) (2 (quote (2 4))) (2 (quote (2 6))) (2 (quote (3 7))) (2 (quote (6 6))) (2 (quote (3 2))) (2 (quote (5 3))) (1 (quote (7 5))) (2 (quote (5 4))) (2 (quote (2 3))) (2 (quote (6 1))) (2 (quote (4 8))) (2 (quote (5 5))) (2 (quote (8 6))) (1 (quote (3 6))) (2 (quote (8 4))) (2 (quote (9 2))) (2 (quote (8 7))) (2 (quote (5 8))) (2 (quote (1 2))) (2 (quote (7 6))) (2 (quote (8 5))) (2 (quote (6 2))) (1 (quote (7 7))) (2 (quote (5 6))) (2 (quote (5 2))) (2 (quote (4 2))) (2 (quote (7 4))) (2 (quote (7 2))) (2 (quote (8 2))) (2 (quote (3 8))) (2 (quote (5 7))) (2 (quote (8 1))) (2 (quote (3 1)))}, :cmd (move w0 (quote (3 7))), :txt (w0 moves to (quote (3 7))), :cost 2})
+(concat '{} (:cmd {:tom 1 :dick 2 :harry 4 :cmd 6}))
+(:harry {:tom 1 :dick 2 :harry 4 :cmd 6})
+(:state {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (at (quote (3 7)) w0) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}, :world #{(2 (quote (7 1))) (2 (quote (4 1))) (2 (quote (5 1))) (2 (quote (8 8))) (2 (quote (2 2))) (2 (quote (2 5))) (2 (quote (1 1))) (2 (quote (7 8))) (2 (quote (9 1))) (2 (quote (2 1))) (2 (quote (4 6))) (2 (quote (4 7))) (2 (quote (2 4))) (2 (quote (2 6))) (2 (quote (3 7))) (2 (quote (6 6))) (2 (quote (3 2))) (2 (quote (5 3))) (1 (quote (7 5))) (2 (quote (5 4))) (2 (quote (2 3))) (2 (quote (6 1))) (2 (quote (4 8))) (2 (quote (5 5))) (2 (quote (8 6))) (1 (quote (3 6))) (2 (quote (8 4))) (2 (quote (9 2))) (2 (quote (8 7))) (2 (quote (5 8))) (2 (quote (1 2))) (2 (quote (7 6))) (2 (quote (8 5))) (2 (quote (6 2))) (1 (quote (7 7))) (2 (quote (5 6))) (2 (quote (5 2))) (2 (quote (4 2))) (2 (quote (7 4))) (2 (quote (7 2))) (2 (quote (8 2))) (2 (quote (3 8))) (2 (quote (5 7))) (2 (quote (8 1))) (2 (quote (3 1)))}, :cmd (move w0 (quote (3 7))), :txt (w0 moves to (quote (3 7))), :cost 2})
+current-state
+(:state {:state current-state :world world :cost 0})
+(:state {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (at (quote (3 7)) w0) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (unloaded (quote (5 8))) (unloaded (quote (2 5)))})
+(:state {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (at (quote (3 7)) w0) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}})
+(:state {:state current-state :world world :cost 0})
+(:state {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (at (quote (3 8)) w0) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}})
+current-state
+(:state {:state current-state})
+(:state {:state #{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (at (quote (3 8)) w0) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}})
+(:state {:state '#{(on (quote (7 5)) b2) (unloaded (quote (6 2))) (on (quote (7 7)) b0) (on (quote (3 6)) b1) (at (quote (3 8)) w0) (unloaded (quote (5 8))) (unloaded (quote (2 5)))}})
+exit
+(-main)
+initial-state
+world
+current-state
 exit

@@ -1,4 +1,4 @@
-
+(ns astar.astar-search)
 
 ;; best first search mechanism
 ;; based on earlier breadth-1st search
