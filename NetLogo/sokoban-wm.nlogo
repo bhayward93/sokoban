@@ -4,7 +4,8 @@ __includes ["sock2.nls"
             "astarstate.nls"
             "plannerstate.nls"
             "operations.nls"
-            "statecommon.nls"]
+            "statecommon.nls"
+            "world.nls"]
 
 breed [boxes box]
 breed [switches switch]
@@ -122,6 +123,23 @@ BUTTON
 161
 Send A* State
 send-astar-states
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+33
+169
+143
+202
+NIL
+send-world
 NIL
 1
 T

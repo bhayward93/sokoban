@@ -1,0 +1,56 @@
+to send-world
+  send-initial-world
+  send -1
+  
+  send-initial-state
+  send -1
+end
+
+to send-initial-world
+  let wh_wall 0
+  let wh_floor 1
+  let wh_bay 2
+  
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      if (pcolor = brown) [
+        send (word "{ :type " wh_wall " :x " pxcor " :y " pycor "}")
+      ]
+      
+      if (pcolor = orange - 4) [
+        send (word "{ :type " wh_floor " :x " pxcor " :y " pycor "}")
+      ]
+      
+      if (pcolor = red + 4) [
+        send (word "{ :type " wh_bay " :x " pxcor " :y " pycor "}")
+      ] 
+    ]
+  ])
+end
+
+to send-initial-state
+  let w 0
+  let b 0
+  
+  (foreach (sort patches) (n-values count patches [?]) [
+    ask ?1 [
+      if (pcolor != brown and count players-here > 0) [
+        ask players-here [
+          set t-id (word "w" w)
+          set w w + 1
+          
+          send (word "(" t-id " " pxcor " " pycor ")")
+        ]
+      ]
+      
+      if (pcolor != brown and count boxes-here > 0) [
+        ask boxes-here [
+          set t-id (word "b" b)
+          set b b + 1
+          
+          send (word "(" t-id " " pxcor " " pycor ")")
+        ]
+      ]
+    ]
+  ])
+end
