@@ -39,5 +39,6 @@
   (abs (- first-edge second-edge)))
 
 (defn edges-adjacent?
+  "Are the given edges on adjacent rows or columns?"
   [first-edge second-edge]
   (= 1 (compare-edge first-edge second-edge)))

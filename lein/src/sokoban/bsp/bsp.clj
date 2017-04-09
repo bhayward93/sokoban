@@ -14,6 +14,21 @@
   (remove nil? (map (fn [x] (if (= val (direction x)) x)) world))
   )
 
+(defn get-zone-slice
+  [world direction zone zone-edge]
+  (let [other-direction (switch-dir direction)
+        first-end (if (= :x other-direction)
+                    (get-edge zone :left)
+                    (get-edge zone :top))
+        other-end (if (= :x other-direction)
+                    (get-edge zone :right)
+                    (get-edge zone :bottom))]
+    (remove nil? (map (fn [x] 
+                        (if (and
+                             (>= (other-direction x) first-end)
+                             (<= (other-direction x) other-end)) x))
+                      (get-slice world direction zone-edge)))))
+
 (defn get-tile-difference
   "Compares differences between the counts of tiles of a specified type in two slices."
   [world direction type first-slice second-slice]
@@ -127,6 +142,19 @@
                   (collect-zones (first node) parents)
                   (collect-zones (rest node) parents)))))
 
+(defn collect-links
+  ([node]
+   (collect-links node []))
+  ([node parents]
+   (cond
+    (empty? node) parents
+    (vector? node) (list node)
+    :else (mapcat (fn [x] (collect-links x parents)) node))))
+
+(defn links-into-lists
+  [set]
+  (map (fn [x] (apply list x)) set))
+
 (defn bsp
   "Divides a map into zones using a form of binary space partitioning."
   ([world]
@@ -148,16 +176,48 @@
                 new-map (split-map world splitting-line)]
             (map (fn [x] (bsp x (switch-dir direction))) new-map)))))
 
+(defn add-links
+  [world
+   first-zone first-zone-edge
+   next-zone next-zone-edge]
+  (if (edges-adjacent? (get-edge first-zone first-zone-edge)
+                       (get-edge next-zone next-zone-edge))
+    (let [direction (if (or (= first-zone-edge :left) (= first-zone-edge :right)) :x :y)
+          first-zone-slice (get-zone-slice world
+                                           direction
+                                           first-zone
+                                           (get-edge first-zone first-zone-edge))
+          next-zone-slice (get-zone-slice world
+                                          direction
+                                          next-zone
+                                          (get-edge next-zone next-zone-edge))]
+      (remove empty? (map (fn [x]
+                            (remove nil? (map (fn [y]
+                                                (if (= ((switch-dir direction) x)
+                                                       ((switch-dir direction) y))
+                                                  (vector
+                                                   'links
+                                                   (list (:x x) (:y x))
+                                                   (list (:x y) (:y y)))))
+                                              next-zone-slice)))
+                          first-zone-slice)))))
+
 (defn connect-zones
-  ([zones]
+  ([world zones]
    (if (empty? zones)
      zones
      (let [first-zone (first zones)
            remaining-zones (rest zones)]
-       (map (fn [x] (connect-zones first-zone x)) remaining-zones))))
-  ([first-zone next-zone]
-   (list
-    (edges-adjacent? (get-edge first-zone :left) (get-edge next-zone :right))
-    (edges-adjacent? (get-edge first-zone :right) (get-edge next-zone :left))
-    (edges-adjacent? (get-edge first-zone :top) (get-edge next-zone :bottom))
-    (edges-adjacent? (get-edge first-zone :bottom) (get-edge next-zone :top)))))
+       (remove empty? (concat (map
+                               (fn [x] (connect-zones world first-zone x))
+                               remaining-zones) (connect-zones world (rest zones)))))))
+  ([world first-zone next-zone]
+   (remove #(or (nil? %) (empty? %)) (list
+                                      (add-links world first-zone :left
+                                                 next-zone :right)
+                                      (add-links world first-zone :right 
+                                                 next-zone :left)
+                                      (add-links world first-zone :top
+                                                 next-zone :bottom)
+                                      (add-links world first-zone :bottom
+                                                 next-zone :top)))))
